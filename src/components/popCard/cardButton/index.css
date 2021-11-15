@@ -1,0 +1,41 @@
+.card-button {
+    border: 0;
+    outline: 0;
+
+    border-radius: 8px;
+    color: #ffffff;
+    background-color: #2F6FDC;
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    transition: all 0.4s ease-out;
+
+    cursor: pointer
+}
+
+.card-button-delete {
+    background-color: #F64842;
+}
+
+@media(hover: hover) and (pointer: fine) {
+    .card-button:hover {
+        box-shadow: 0 0 25px -5px rgba(0, 60, 255, 0.7);
+    }
+
+    .card-button-delete:hover {
+        box-shadow: 0 0 25px -5px rgba(218, 82, 82, 0.7);
+    }
+}
+
+.card-button-pending {
+    cursor: not-allowed;
+    box-shadow: 0 0 25px -5px rgba(0, 60, 255, 0.7);
+}
+
+.card-button-delete-pending {
+    box-shadow: 0 0 25px -5px rgba(218, 82, 82, 0.7);
+}
+
+.loading-icon {
+    margin-right: 5px;
+}
