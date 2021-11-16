@@ -1,0 +1,41 @@
+.main-page-container {
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.main-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.main-title-l {
+    display: flex;
+    align-items: center;
+}
+
+.main-title-l :nth-child(1) {
+    font-weight: 700;
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+.main-title-l :nth-child(2) {
+    cursor: pointer;
+    color: #226df8;
+}
+
+.main-card {
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 146px;
+    margin-bottom: 30px;
+    box-shadow: 3px 3px 20px -10px rgba(0, 0, 0, 0.35);
+}
+
+

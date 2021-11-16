@@ -5,33 +5,37 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 
 class PopCard extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {}
-    }
 
     static defaultProps = {
-        btnType: 'normal'
+        btnType: 'normal',
+        loadingIcon: false,
+        closeCallback: () => {
+            console.error('Popcard does not have a close callback.')
+        }
     }
 
     render() {
-        const { title, btnType } = this.props
+        const { title, btnType, loadingIcon, closeCallback, children } = this.props
 
         return (
             <div className='pop-card'>
 
                 <div className='pop-card-header'>
                     <div>{title}</div>
-                    <div>
+                    <div onClick={closeCallback}>
                         <FontAwesomeIcon icon={faTimes} transform="shrink-6" />
                     </div>
                 </div>
 
                 <div className='pop-card-content'>
-
+                    {children}
                 </div>
 
-                {btnType !== 'none' && <CardButton type={btnType} />}
+                {btnType !== 'none' &&
+                    <div onClick={this.props.onCardbtnClick} style={{ width: '100%' }}>
+                        <CardButton type={btnType} loadingIcon={loadingIcon} />
+                    </div>
+                }
 
             </div>
         )

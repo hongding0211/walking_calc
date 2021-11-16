@@ -1,0 +1,33 @@
+.simple-list-container {
+    background-color: #fff;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.13);
+    position: absolute;
+    top: 50px;
+    border-radius: 4px;
+    height: min-content;
+    max-height: 150px;
+    max-width: 100%;
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px 0 5px 0;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.simple-list-item {
+    margin: 5px 10px 5px 10px;
+    padding: 10px 25px 10px 25px;
+    border-radius: 4px;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+@media(hover: hover) and (pointer: fine) {
+    .simple-list-item:hover {
+        background-color: #2F6FDC;
+        border-color: #2F6FDC;
+        color: #fff;
+    }
+}

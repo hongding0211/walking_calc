@@ -1,0 +1,9 @@
+.avatar-tag {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-tag span {
+    margin-left: 30px;
+    font-size: 16px;
+}

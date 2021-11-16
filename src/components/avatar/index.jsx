@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './index.css'
+import defaultAvatar from './blank_user.png'
 
 class Avatar extends Component {
 
@@ -13,7 +14,7 @@ class Avatar extends Component {
         return (
             <div>
                 <img
-                    src={img}
+                    src={img ? img : defaultAvatar}
                     style={{ width: size, height: size }}
                     className='avatar'
                     alt={alt}
