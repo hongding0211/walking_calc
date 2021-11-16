@@ -6,9 +6,6 @@ import TransparentMask from '../../components/transparentMask'
 import '../../config'
 import './index.css'
 
-import PopCard from '../../components/popCard'
-
-
 class Main extends Component {
 
     state = {

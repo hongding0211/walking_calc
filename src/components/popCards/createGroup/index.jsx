@@ -13,17 +13,42 @@ class CreateGroupCard extends Component {
         this.state = {
             creator: props.creator,
             members: [],
-            feedback: ''
+            feedback: '',
+            searchCandidates: []
         }
         this.groupNameRef = React.createRef()
     }
 
+    updateCandidate = (text) => {
+        let searchCandidates = []
+
+        fetch(`${global.host}/getUsers?keyword=${text}`).then(v => v.json())
+            .then(v => {
+                if (v.code === 200) {
+                    for (const u of v.data.users)
+                        searchCandidates.push({
+                            name: u.name,
+                            img: `data:image/png;base64,${u.img}`,
+                            uid: u.uid
+                        })
+                }
+                this.setState({
+                    searchCandidates
+                })
+            })
+    }
+
     addItem = (item) => {
-        if (!this.state.members.find(m => item.uid === m.uid)) {
+        let feedback = ''
+        console.log(item)
+        if (this.state.members.find(m => item.uid === m.uid) || this.state.creator.uid === item.uid)
+            feedback = '不能重复添加成员'
+        else {
             this.setState({
                 members: [...this.state.members, item]
             })
         }
+        this.setState({ feedback })
     }
 
     dropItem = (item) => {
@@ -37,9 +62,7 @@ class CreateGroupCard extends Component {
         const groupName = this.groupNameRef.current.value
         const members = this.state.members
         const creator = this.state.creator.uid
-        if (members.length === 0) {
-            feedback = '* 群组至少需要两名成员'
-        } else if (groupName === '') {
+        if (groupName === '') {
             feedback = '* 群组名称不能为空'
         } else {
             // try to submit
@@ -50,6 +73,7 @@ class CreateGroupCard extends Component {
                 .then(v => v.json())
                 .then(v => {
                     // TODO Group 创建成功后的callback 操作
+                    // TODO 返回 code feedback
                 })
         }
         this.setState({
@@ -73,7 +97,7 @@ class CreateGroupCard extends Component {
                                 <Avatar size='32px' img={`data:image/png;base64,${this.state.creator.img}`} />
                                 <AvatarStack size='32px' users={this.state.members} allowDelete={true} onAvatarDelete={this.dropItem} />
                             </div>
-                            <SearchBar itemSelectedCallback={this.addItem} />
+                            <SearchBar searchCandidateUpdate={this.updateCandidate} searchCandidates={this.state.searchCandidates} itemSelectedCallback={this.addItem} />
                         </div>
                     }
                     onCardbtnClick={this.submit}

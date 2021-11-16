@@ -12,34 +12,16 @@ class SearchBar extends Component {
 
     state = {
         showCandidates: false,
-        searchCandidates: [
-        ]
     }
 
     updateCandidates = (text) => {
         if (text === '') {
-            this.setState({ searchCandidates: [] })
+            this.setState({ showCandidates: false })
             return
+        } else {
+            this.setState({ showCandidates: true })
+            this.props.searchCandidateUpdate(text)
         }
-
-
-        let searchCandidates = []
-
-        fetch(`${global.host}/getUsers?keyword=${text}`).then(v => v.json())
-            .then(v => {
-                if (v.code == 200) {
-                    for (const u of v.data.users)
-                        searchCandidates.push({
-                            name: u.name,
-                            img: `data:image/png;base64,${u.img}`,
-                            uid: u.uid
-                        })
-                }
-                this.setState({
-                    showCandidates: true,
-                    searchCandidates
-                })
-            })
     }
 
     render() {
@@ -54,19 +36,15 @@ class SearchBar extends Component {
                         onChange={(e) => {
                             this.updateCandidates(e.target.value)
                         }}
-                        onFocus={(e) => {
-                            this.setState({ showCandidates: true })
-                            this.updateCandidates(e.target.value)
-                        }}
                         ref={this.inputRef}
                     />
                 </div>
 
                 {
-                    this.state.showCandidates && this.state.searchCandidates.length > 0 &&
+                    this.state.showCandidates && this.props.searchCandidates.length > 0 &&
                     <SimpleList
                         list={
-                            this.state.searchCandidates.map(c => {
+                            this.props.searchCandidates.map(c => {
                                 return (
                                     <div onClick={() => {
                                         // After an item is clicked
