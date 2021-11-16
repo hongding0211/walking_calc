@@ -9,6 +9,7 @@ const Input = props => {
             <input 
                 className='input-field'
                 placeholder={props.placeHolder}
+                ref={props.inputRef}
             />
         </div>
     )

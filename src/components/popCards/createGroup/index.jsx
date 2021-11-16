@@ -6,15 +6,16 @@ import './index.css'
 import SearchBar from '../../searchBar';
 import Avatar from '../../avatar';
 
-class CreateGroupContent extends Component {
+class CreateGroupCard extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             creator: props.creator,
-            members: []
+            members: [],
+            feedback: ''
         }
-
+        this.groupNameRef = React.createRef()
     }
 
     addItem = (item) => {
@@ -31,25 +32,29 @@ class CreateGroupContent extends Component {
         })
     }
 
-    render() {
-        return (
-            <div className='create-group-content'>
-                <Input title='群名' />
-                <span className='small-title margin-top-20'>组内成员</span>
-                <div className='create-group-avatar-stack-container'>
-                    <Avatar size='32px' img={`data:image/png;base64,${this.state.creator.img}`} />
-                    <AvatarStack size='32px' users={this.state.members} allowDelete={true} onAvatarDelete={this.dropItem} />
-                </div>
-                <SearchBar itemSelectedCallback={this.addItem} />
-            </div>
-        )
-    }
-}
-
-class CreateGroupCard extends Component {
-
     submit = () => {
-
+        let feedback = ''
+        const groupName = this.groupNameRef.current.value
+        const members = this.state.members
+        const creator = this.state.creator.uid
+        if (members.length === 0) {
+            feedback = '* 群组至少需要两名成员'
+        } else if (groupName === '') {
+            feedback = '* 群组名称不能为空'
+        } else {
+            // try to submit
+            let membersStr = ''
+            for (const i in members)
+                membersStr += `&member${Number(i) + 1}=${members[i].uid}`
+            fetch(`${global.host}/createGroup?groupName=${groupName}&creator=${creator}${membersStr}`)
+                .then(v => v.json())
+                .then(v => {
+                    // TODO Group 创建成功后的callback 操作
+                })
+        }
+        this.setState({
+            feedback
+        })
     }
 
     render() {
@@ -57,7 +62,20 @@ class CreateGroupCard extends Component {
             <div>
                 <PopCard
                     title='创建一个群组'
-                    children={<CreateGroupContent creator={this.props.creator} />}
+                    children={
+                        <div className='create-group-content'>
+                            <div className='feedback-text'>
+                                {this.state.feedback}
+                            </div>
+                            <Input title='群名' inputRef={this.groupNameRef} />
+                            <span className='small-title margin-top-20'>组内成员</span>
+                            <div className='create-group-avatar-stack-container'>
+                                <Avatar size='32px' img={`data:image/png;base64,${this.state.creator.img}`} />
+                                <AvatarStack size='32px' users={this.state.members} allowDelete={true} onAvatarDelete={this.dropItem} />
+                            </div>
+                            <SearchBar itemSelectedCallback={this.addItem} />
+                        </div>
+                    }
                     onCardbtnClick={this.submit}
                 />
             </div>

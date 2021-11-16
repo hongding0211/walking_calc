@@ -14,3 +14,10 @@
 .create-group-avatar-stack-container :nth-child(1){
     margin-right: 5px;
 }
+
+.feedback-text {
+    color: #bd0000;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
