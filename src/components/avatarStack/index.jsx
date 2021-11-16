@@ -2,6 +2,16 @@ import React from 'react';
 import Avatar from '../avatar';
 import './index.css'
 
+/*
+ * @Project    : walking_calc
+ * @Created    : hong 2021/11/16 21:10
+ * @Component  : AvatarStack
+ * @Props      : users: []
+ *               allowDelete: Boolean
+ *               onAvatarDelete: Function(user)
+ * @Description: A horizon avatar stack
+*/
+
 
 const AvatarStack = props => {
     return (

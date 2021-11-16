@@ -3,6 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 
+/*
+ * @Project    : walking_calc
+ * @Created    : hong 2021/11/16 21:15
+ * @Component  : CardButton
+ * @Props      : text:          String
+ *               type:          String { normal, warning }
+ *               pending:       Boolean
+ *               width:         Number
+ *               height:        Number
+ *               loadingIcon:   Boolean  
+ *               
+ * @Description: A button with 2 different styles used in a pop-out card.
+*/
+
 class CardButton extends Component {
 
     static defaultProps = {

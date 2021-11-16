@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import './index.css'
 import defaultAvatar from './blank_user.png'
 
+/*
+ * @Project    : walking_calc
+ * @Created    : hong 2021/11/16 21:08
+ * @Component  : Avatar
+ * @Props      : size, alt
+ * @Description: A simple avatar
+*/
+
 class Avatar extends Component {
 
     static defaultProps = {

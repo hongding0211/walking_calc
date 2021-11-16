@@ -5,6 +5,15 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 import AvatarTag from '../avatarTag';
 
+/*
+ * @Project    : walking_calc
+ * @Created    : hong 2021/11/16 21:23
+ * @Component  : SearchBar
+ * @Props      : searchCandidateUpdate: Function(text)  -> A call back fn for invoking a request for updating the searching candidates.
+ *               searchCandidates:      [...Components] -> A list of components who can be put into a SimpleList component.
+ *               
+ * @Description: A gernal search bar.
+*/
 
 class SearchBar extends Component {
 
@@ -43,6 +52,7 @@ class SearchBar extends Component {
                 {
                     this.state.showCandidates && this.props.searchCandidates.length > 0 &&
                     <SimpleList
+                        {/* TODO 继续解耦 */}
                         list={
                             this.props.searchCandidates.map(c => {
                                 return (

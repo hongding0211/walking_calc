@@ -6,6 +6,14 @@ import TransparentMask from '../../components/transparentMask'
 import '../../config'
 import './index.css'
 
+/*
+ * @Project    : walking_calc
+ * @Created    : hong 2021/11/16 21:34
+ * @Component  : Main
+ * @Props      : uid: String 
+ * @Description: The main page of the App.
+*/
+
 class Main extends Component {
 
     state = {

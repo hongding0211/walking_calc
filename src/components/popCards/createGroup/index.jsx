@@ -6,6 +6,14 @@ import './index.css'
 import SearchBar from '../../searchBar';
 import Avatar from '../../avatar';
 
+/*
+ * @Project    : walking_calc
+ * @Created    : hong 2021/11/16 21:22
+ * @Component  : CreateGroup
+ * @Props      : creator:   Object { uid, img, name }
+ * @Description: Card for creating a new group.
+*/
+
 class CreateGroupCard extends Component {
 
     constructor(props) {

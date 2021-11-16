@@ -4,6 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 
+/*
+ * @Project    : walking_calc
+ * @Created    : hong 2021/11/16 21:18
+ * @Component  : PopCard
+ * @Props      : title:          String
+ *               btnType:        String { normal, warning, none }
+ *               loadingIcon:    Boolean
+ *               closeCallback:  Function() -> To close the card itself.
+ *               children:       Component -> Content in the card
+ * @Description: A blank and basic pop-out card with an optional button.
+*/
+
 class PopCard extends Component {
 
     static defaultProps = {
