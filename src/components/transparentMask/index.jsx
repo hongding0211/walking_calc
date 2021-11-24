@@ -9,7 +9,7 @@ import './index.css'
  * @Description: A simple full-screened mask.
 */
 
-const TransparentMask=props=> {
+const TransparentMask = () => {
     return (
         <div className='transparent-mask'></div>
     );

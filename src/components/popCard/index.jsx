@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CardButton from './cardButton'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 
 /*
@@ -11,47 +11,54 @@ import './index.css'
  * @Props      : title:          String
  *               btnType:        String { normal, warning, none }
  *               loadingIcon:    Boolean
- *               closeCallback:  Function() -> To close the card itself.
+ *               onSubmit:       Function() -> To submit.
  *               children:       Component -> Content in the card
  * @Description: A blank and basic pop-out card with an optional button.
 */
 
-class PopCard extends Component {
+function PopCard({
+                     title,
+                     children,
+                     btnType = 'normal',
+                     loadingIcon = false,
+                     onSubmit = ()=>{
+                         console.error('Popcard does not have a submit callback.')
+                     }
+                 }) {
 
-    static defaultProps = {
-        btnType: 'normal',
-        loadingIcon: false,
-        closeCallback: () => {
-            console.error('Popcard does not have a close callback.')
-        }
+    function closeCard(){
+        // TODO 利用路由回退
+        console.log('todo: close card')
     }
 
-    render() {
-        const { title, btnType, loadingIcon, closeCallback, children } = this.props
+    function submit(){
+        // TODO 通知父组件，如果结果成功则关闭
+        onSubmit()
+    }
 
-        return (
-            <div className='pop-card'>
+    return (
+        <div className='pop-card'>
 
-                <div className='pop-card-header'>
-                    <div>{title}</div>
-                    <div onClick={closeCallback}>
-                        <FontAwesomeIcon icon={faTimes} transform="shrink-6" />
-                    </div>
+            <div className='pop-card-header'>
+                <div>{title}</div>
+                <div onClick={closeCard}>
+                    <FontAwesomeIcon icon={faTimes} transform="shrink-6"/>
                 </div>
-
-                <div className='pop-card-content'>
-                    {children}
-                </div>
-
-                {btnType !== 'none' &&
-                    <div onClick={this.props.onCardbtnClick} style={{ width: '100%' }}>
-                        <CardButton type={btnType} loadingIcon={loadingIcon} />
-                    </div>
-                }
-
             </div>
-        )
-    }
+
+            <div className='pop-card-content'>
+                {children}
+            </div>
+
+            {btnType !== 'none' &&
+            <div onClick={submit} style={{width: '100%'}}>
+                <CardButton type={btnType} loadingIcon={loadingIcon}/>
+            </div>
+            }
+
+        </div>
+    )
+
 }
 
 export default PopCard

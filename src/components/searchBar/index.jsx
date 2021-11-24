@@ -1,80 +1,46 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import SimpleList from '../simpleList'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import './index.css'
-import AvatarTag from '../avatarTag';
 
 /*
  * @Project    : walking_calc
  * @Created    : hong 2021/11/16 21:23
  * @Component  : SearchBar
- * @Props      : searchCandidateUpdate: Function(text)  -> A call back fn for invoking a request for updating the searching candidates.
- *               searchCandidates:      [...Components] -> A list of components who can be put into a SimpleList component.
+ * @Props      : onSearchContentUpdate: Function(text)  -> A callback fn invoked when search content changes.
+ *               list:                  [...Components] -> A list of components who can be put into a SimpleList component.
+ *               alt:                   String
  *               
- * @Description: A gernal search bar.
+ * @Description: A general search bar.
 */
 
-class SearchBar extends Component {
+function SearchBar(props) {
+    const [showCandidates, setShowCandidates] = useState(false)
 
-    inputRef = React.createRef()
-
-    state = {
-        showCandidates: false,
-    }
-
-    updateCandidates = (text) => {
-        if (text === '') {
-            this.setState({ showCandidates: false })
-            return
-        } else {
-            this.setState({ showCandidates: true })
-            this.props.searchCandidateUpdate(text)
-        }
-    }
-
-    render() {
-        return (
-            <div style={{ width: '100%', position: 'relative' }}>
-                <div className='searcbar-container'>
+    return (
+        <div style={{width: '100%', position: 'relative'}}>
+            <div className='searcbar-container'>
                     <span className='search-icon'>
-                        <FontAwesomeIcon icon={faSearch} transform="shrink-5" />
+                        <FontAwesomeIcon icon={faSearch} transform="shrink-5"/>
                     </span>
-                    <input
-                        alt={this.props.alt}
-                        onChange={(e) => {
-                            this.updateCandidates(e.target.value)
-                        }}
-                        ref={this.inputRef}
-                    />
-                </div>
-
-                {
-                    this.state.showCandidates && this.props.searchCandidates.length > 0 &&
-                    <SimpleList
-                        {/* TODO 继续解耦 */}
-                        list={
-                            this.props.searchCandidates.map(c => {
-                                return (
-                                    <div onClick={() => {
-                                        // After an item is clicked
-                                        this.props.itemSelectedCallback(c)
-                                        this.setState({
-                                            showCandidates: false
-                                        })
-                                        this.inputRef.current.value = ''
-                                    }}>
-                                        <AvatarTag size='18px' text={`${c.uid} (${c.name})`} img={c.img} uid={c.uid} />
-                                    </div>
-                                )
-                            })
+                <input
+                    placeholder={props.placeHolder}
+                    onChange={(e) => {
+                        const text = e.target.value
+                        if (text === '') {
+                            setShowCandidates(false)
+                        } else {
+                            setShowCandidates(true)
+                            props.onSearchContentUpdate(text)
                         }
-                    />
-                }
+                    }}
+                />
             </div>
-        );
-    }
 
+            {showCandidates && props.list.length > 0 && <SimpleList>{props.list}</SimpleList>}
+        </div>
+    )
 }
 
 export default SearchBar;

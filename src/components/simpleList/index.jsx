@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './index.css'
 
 /*
@@ -9,26 +9,21 @@ import './index.css'
  * @Description: A simple list which cna contains basically any component.
 */
 
-class SimpleList extends Component {
-
-    render() {
-        const { list } = this.props
-
-        return (
-            <div className='simple-list-container'>
-                {list.map((l, i) => {
-                    return (
-                        <div key={i}>
-                            <div className='simple-list-item'>
-                                {l}
-                            </div>
-                            <div className='split' />
+function SimpleList(props) {
+    return (
+        <div className='simple-list-container'>
+            {props.children.map((l, i) => {
+                return (
+                    <div key={i}>
+                        <div className='simple-list-item'>
+                            {l}
                         </div>
-                    )
-                })}
-            </div>
-        );
-    }
+                        <div className='split'/>
+                    </div>
+                )
+            })}
+        </div>
+    )
 }
 
 export default SimpleList;

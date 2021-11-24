@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import React, {useEffect, useState} from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import Avatar from '../../components/avatar'
-import TransparentMask from '../../components/transparentMask'
 import '../../config'
 import './index.css'
 
@@ -14,62 +13,57 @@ import './index.css'
  * @Description: The main page of the App.
 */
 
-class Main extends Component {
+const Main = props => {
+    const [imgSrc, setImgSrc] = useState(null)
 
-    state = {
-        imgSrc: null,
-        popCard: false
+    function onAddBtnClick() {
+        // TODO
+        console.log('todo')
     }
 
-    async componentDidMount() {
-        const uid = this.props.uid
+    useEffect(() => {
+        async function fetchAvatar() {
+            const uid = props.uid
 
-        let avatarImg = await fetch(global.host + '/getUserAvatar?uid=' + uid)
-        avatarImg = await avatarImg.json()
-        if (avatarImg.code === 200) {
-            this.setState({
-                imgSrc: 'data:image/png;base64,' + avatarImg.data.img
-            })
+            let avatarImg = await fetch(global.host + '/getUserAvatar?uid=' + uid)
+            avatarImg = await avatarImg.json()
+            if (avatarImg.code === 200) {
+                setImgSrc('data:image/png;base64,' + avatarImg.data.img)
+            }
         }
-    }
+
+        fetchAvatar()
+    }, [props.uid])
 
 
-    closeCard = () => {
-        this.setState({
-            popCard: false
-        })
-    }
+    return (
+        <div className='main'>
+            <div className='main-page-container'>
 
-
-    render() {
-        return (
-            <div className='main'>
-                <div className='main-page-container'>
-
-                    <div className='main-title'>
-                        <div className='main-title-l'>
-                            <span>群组</span>
-                            <FontAwesomeIcon icon={faPlusCircle} />
-                        </div>
-                        <Avatar size='40px' img={this.state.imgSrc} />
+                <div className='main-title'>
+                    <div className='main-title-l' onClick={onAddBtnClick}>
+                        <span>群组</span>
+                        <FontAwesomeIcon icon={faPlusCircle}/>
                     </div>
-
-                    <div className='main-card'>
-                        <div className='main-card-top'>
-                            债务统计
-                        </div>
-                        <div className='main-card-bottom'>
-                            xxxx
-                        </div>
-                    </div>
-
+                    <Avatar size='40px' img={imgSrc}/>
                 </div>
 
-                {this.state.popCard && <div onClick={this.closeCard}> <TransparentMask /></div>}
+                <div className='main-card'>
+                    <div className='main-card-top'>
+                        债务统计
+                    </div>
+                    <div className='main-card-bottom'>
+                        xxxx
+                    </div>
+                </div>
 
             </div>
-        );
-    }
+
+            {/*TODO router*/}
+            {/*{popCard && <div onClick={this.closeCard}> <TransparentMask /></div>}*/}
+
+        </div>
+    )
 }
 
-export default Main;
+export default Main

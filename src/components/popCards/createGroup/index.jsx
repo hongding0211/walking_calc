@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, {useRef, useState} from 'react';
 import Input from '../../input';
 import PopCard from '../../popCard';
 import AvatarStack from '../../avatarStack'
 import './index.css'
 import SearchBar from '../../searchBar';
 import Avatar from '../../avatar';
+import AvatarTag from "../../avatarTag";
 
 /*
  * @Project    : walking_calc
@@ -14,64 +15,52 @@ import Avatar from '../../avatar';
  * @Description: Card for creating a new group.
 */
 
-class CreateGroupCard extends Component {
+const CreateGroupCard = props => {
+    const creator = props.creator
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            creator: props.creator,
-            members: [],
-            feedback: '',
-            searchCandidates: []
-        }
-        this.groupNameRef = React.createRef()
-    }
+    const [members, setMembers] = useState([])
+    const [feedbackMsg, setFeedbackMsg] = useState('')
+    const [searchCandidates, setSearchCandidates] = useState([])
 
-    updateCandidate = (text) => {
-        let searchCandidates = []
+    const groupNameRef = useRef()
+
+    function updateCandidate(text) {
+        let newSearchCandidates = []
 
         fetch(`${global.host}/getUsers?keyword=${text}`).then(v => v.json())
             .then(v => {
                 if (v.code === 200) {
                     for (const u of v.data.users)
-                        searchCandidates.push({
+                        newSearchCandidates.push({
                             name: u.name,
                             img: `data:image/png;base64,${u.img}`,
                             uid: u.uid
                         })
                 }
-                this.setState({
-                    searchCandidates
-                })
+                setSearchCandidates(newSearchCandidates)
             })
     }
 
-    addItem = (item) => {
-        let feedback = ''
-        console.log(item)
-        if (this.state.members.find(m => item.uid === m.uid) || this.state.creator.uid === item.uid)
-            feedback = '不能重复添加成员'
+    function addItem(item) {
+        let newFeedbackMsg = ''
+        if (members.find(m => item.uid === m.uid) || creator.uid === item.uid)
+            newFeedbackMsg = '不能重复添加成员'
         else {
-            this.setState({
-                members: [...this.state.members, item]
-            })
+            setMembers([...members, item])
         }
-        this.setState({ feedback })
+        setFeedbackMsg(newFeedbackMsg)
+        setSearchCandidates([])
     }
 
-    dropItem = (item) => {
-        this.setState({
-            members: this.state.members.filter(i => i.uid !== item.uid)
-        })
+    function dropItem(item) {
+        setMembers(members.filter(i => i.uid !== item.uid))
     }
 
-    submit = () => {
-        let feedback = ''
-        const groupName = this.groupNameRef.current.value
-        const members = this.state.members
-        const creator = this.state.creator.uid
+    function submit() {
+        let newFeedbackMsg = ''
+        const groupName = groupNameRef.current.value
         if (groupName === '') {
-            feedback = '* 群组名称不能为空'
+            newFeedbackMsg = '* 群组名称不能为空'
         } else {
             // try to submit
             let membersStr = ''
@@ -82,37 +71,51 @@ class CreateGroupCard extends Component {
                 .then(v => {
                     // TODO Group 创建成功后的callback 操作
                     // TODO 返回 code feedback
+                    console.log('todo create group response', v)
                 })
         }
-        this.setState({
-            feedback
-        })
+        setFeedbackMsg(newFeedbackMsg)
     }
 
-    render() {
-        return (
-            <div>
-                <PopCard
-                    title='创建一个群组'
-                    children={
-                        <div className='create-group-content'>
-                            <div className='feedback-text'>
-                                {this.state.feedback}
-                            </div>
-                            <Input title='群名' inputRef={this.groupNameRef} />
-                            <span className='small-title margin-top-20'>组内成员</span>
-                            <div className='create-group-avatar-stack-container'>
-                                <Avatar size='32px' img={`data:image/png;base64,${this.state.creator.img}`} />
-                                <AvatarStack size='32px' users={this.state.members} allowDelete={true} onAvatarDelete={this.dropItem} />
-                            </div>
-                            <SearchBar searchCandidateUpdate={this.updateCandidate} searchCandidates={this.state.searchCandidates} itemSelectedCallback={this.addItem} />
-                        </div>
-                    }
-                    onCardbtnClick={this.submit}
-                />
-            </div>
-        );
-    }
+    return (
+        <div>
+            <PopCard
+                title='创建一个群组'
+                onSubmit={submit}
+            >
+                <div className='create-group-content'>
+                    <div className='feedback-text'>
+                        {feedbackMsg}
+                    </div>
+                    <Input title='群名' inputRef={groupNameRef}/>
+                    <span className='small-title margin-top-20'>组内成员</span>
+                    <div className='create-group-avatar-stack-container'>
+                        <Avatar size='32px' img={`data:image/png;base64,${creator.img}`}/>
+                        <AvatarStack size='32px' users={members} allowDelete={true}
+                                     onAvatarDelete={dropItem}/>
+                    </div>
+                    <SearchBar
+                        placeHolder='搜索添加用户'
+                        onSearchContentUpdate={updateCandidate}
+                        list={
+                            searchCandidates.map(c => {
+                                return (
+                                    <div
+                                        onClick={() => {
+                                            addItem(c)
+                                        }}
+                                        key={c.uid}
+                                    >
+                                        <AvatarTag size='18px' text={`${c.uid} (${c.name})`} img={c.img} uid={c.uid}/>
+                                    </div>
+                                )
+                            })
+                        }
+                    />
+                </div>
+            </PopCard>
+        </div>
+    )
 }
 
 export default CreateGroupCard;
