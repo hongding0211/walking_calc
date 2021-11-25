@@ -3,6 +3,7 @@ import CardButton from './cardButton'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import './index.css'
+import TransparentMask from "../transparentMask";
 
 /*
  * @Project    : walking_calc
@@ -37,25 +38,28 @@ function PopCard({
     }
 
     return (
-        <div className='pop-card'>
+        <div>
+            <TransparentMask />
+            <div className='pop-card'>
 
-            <div className='pop-card-header'>
-                <div>{title}</div>
-                <div onClick={closeCard}>
-                    <FontAwesomeIcon icon={faTimes} transform="shrink-6"/>
+                <div className='pop-card-header'>
+                    <div>{title}</div>
+                    <div onClick={closeCard}>
+                        <FontAwesomeIcon icon={faTimes} transform="shrink-6"/>
+                    </div>
                 </div>
-            </div>
 
-            <div className='pop-card-content'>
-                {children}
-            </div>
+                <div className='pop-card-content'>
+                    {children}
+                </div>
 
-            {btnType !== 'none' &&
-            <div onClick={submit} style={{width: '100%'}}>
-                <CardButton type={btnType} loadingIcon={loadingIcon}/>
-            </div>
-            }
+                {btnType !== 'none' &&
+                <div onClick={submit} style={{width: '100%'}}>
+                    <CardButton type={btnType} loadingIcon={loadingIcon}/>
+                </div>
+                }
 
+            </div>
         </div>
     )
 

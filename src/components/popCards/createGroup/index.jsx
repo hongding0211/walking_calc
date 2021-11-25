@@ -17,6 +17,7 @@ import AvatarTag from "../../avatarTag";
 
 const CreateGroupCard = props => {
     const creator = props.creator
+    const imgSrc = creator ? 'data:image/png;base64' + creator.img : null
 
     const [members, setMembers] = useState([])
     const [feedbackMsg, setFeedbackMsg] = useState('')
@@ -90,7 +91,7 @@ const CreateGroupCard = props => {
                     <Input title='群名' inputRef={groupNameRef}/>
                     <span className='small-title margin-top-20'>组内成员</span>
                     <div className='create-group-avatar-stack-container'>
-                        <Avatar size='32px' img={`data:image/png;base64,${creator.img}`}/>
+                        <Avatar size='32px' img={imgSrc}/>
                         <AvatarStack size='32px' users={members} allowDelete={true}
                                      onAvatarDelete={dropItem}/>
                     </div>

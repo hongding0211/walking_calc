@@ -4,6 +4,7 @@ import {faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import Avatar from '../../components/avatar'
 import '../../config'
 import './index.css'
+import {Outlet} from "react-router-dom";
 
 /*
  * @Project    : walking_calc
@@ -58,10 +59,7 @@ const Main = props => {
                 </div>
 
             </div>
-
-            {/*TODO router*/}
-            {/*{popCard && <div onClick={this.closeCard}> <TransparentMask /></div>}*/}
-
+            <Outlet />
         </div>
     )
 }
