@@ -1,19 +1,19 @@
 import './App.css'
-import React, {Component} from 'react'
-import Main from './pages/main'
-import CreateGroupCard from "./components/popCards/createGroup";
+import React from 'react'
+import { Route, Routes} from "react-router-dom";
+import Main from "./pages/main";
+import NoMatch from "./components/noMatch";
 
+export default function App() {
+    const uid = '0000'
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                {/*<Main uid='0000'/>*/}
-                <CreateGroupCard creator={{uid: '0000', name: 'hong', img: null}}/>
-            </div>
-        )
-    }
+    return (
+        <Routes>
+            <Route path='/'>
+                <Route path='home' element={<Main uid={uid}/>}/>
+            </Route>
+
+            <Route path='*' element={<NoMatch/>}/>
+        </Routes>
+    )
 }
-
-export default App
-
