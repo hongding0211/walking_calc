@@ -1,8 +1,6 @@
 import './App.css'
 import React, {useEffect, useState} from 'react'
-import {Outlet, Route, Routes, useNavigate} from "react-router-dom";
-import Main from "./pages/main";
-import CreateGroupCard from "./components/popCards/createGroup";
+import {Outlet, useNavigate} from "react-router-dom";
 
 export default function App() {
 
@@ -31,14 +29,8 @@ export default function App() {
     }, [uid, navigate])
 
     return (
-        <Routes>
-            <Route path='/' element={<Outlet/>}>
-                <Route path='home' element={<Main uid={uid}/>}>
-                    <Route path='addGroup'>
-                        <Route path='createGroup' element={<CreateGroupCard creator={user}/>}/>
-                    </Route>
-                </Route>
-            </Route>
-        </Routes>
+       <div>
+           <Outlet />
+       </div>
     )
 }
