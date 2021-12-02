@@ -1,11 +1,13 @@
 import React, {useRef, useState} from 'react';
-import Input from '../../input';
-import PopCard from '../../popCard';
-import AvatarStack from '../../avatarStack'
+import Input from '../../../components/input';
+import PopCard from '../../../components/popCard';
+import AvatarStack from '../../../components/avatarStack'
 import './index.css'
-import SearchBar from '../../searchBar';
-import Avatar from '../../avatar';
-import AvatarTag from "../../avatarTag";
+import SearchBar from '../../../components/searchBar';
+import Avatar from '../../../components/avatar';
+import AvatarTag from "../../../components/avatarTag";
+import {useSelector} from "react-redux";
+import {selectUserData} from "../../../features/authentication/authenticationSlice";
 
 /*
  * @Project    : walking_calc
@@ -15,15 +17,15 @@ import AvatarTag from "../../avatarTag";
  * @Description: Card for creating a new group.
 */
 
-const CreateGroupCard = props => {
-    const creator = props.creator
-    const imgSrc = creator ? 'data:image/png;base64' + creator.img : null
+const CreateGroupCard = () => {
 
     const [members, setMembers] = useState([])
     const [feedbackMsg, setFeedbackMsg] = useState('')
     const [searchCandidates, setSearchCandidates] = useState([])
 
     const groupNameRef = useRef()
+
+    const creator = useSelector(selectUserData)
 
     function updateCandidate(text) {
         let newSearchCandidates = []
@@ -91,7 +93,7 @@ const CreateGroupCard = props => {
                     <Input title='群名' inputRef={groupNameRef}/>
                     <span className='small-title margin-top-20'>组内成员</span>
                     <div className='create-group-avatar-stack-container'>
-                        <Avatar size='32px' img={imgSrc}/>
+                        <Avatar size='32px' img={creator.img}/>
                         <AvatarStack size='32px' users={members} allowDelete={true}
                                      onAvatarDelete={dropItem}/>
                     </div>

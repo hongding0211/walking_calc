@@ -1,36 +1,25 @@
 import './App.css'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {Outlet, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {fetchUserData} from "./features/authentication/authenticationSlice";
 
 export default function App() {
 
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [uid, setUid] = useState(null)
-    const [user, setUser] = useState(null)
-
-    function getUser(uid) {
-        fetch(global.host + `/getUsers?uid=${uid}`)
-            .then(v => v.json())
-            .then(v => {
-                if (v.code === 200) {
-                    setUser(v.data.users[0])
-                }
-            })
-    }
-
-
     useEffect(() => {
-        // TODO 登陆逻辑
-        setUid('0000')
-
-        getUser(uid)
-        navigate('/home')
-    }, [uid, navigate])
+            // TODO 暂时写死 UID
+            dispatch(fetchUserData('0000'))
+            navigate('/home')
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [])
 
     return (
-       <div>
-           <Outlet />
-       </div>
+        <div>
+            <Outlet/>
+        </div>
     )
 }

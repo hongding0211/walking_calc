@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 import TransparentMask from "../transparentMask";
+import {useNavigate} from "react-router-dom";
 
 /*
  * @Project    : walking_calc
@@ -27,9 +28,10 @@ function PopCard({
                      }
                  }) {
 
+    const navigate = useNavigate()
+
     function closeCard(){
-        // TODO 利用路由回退
-        console.log('todo: close card')
+        navigate(-1)
     }
 
     function submit(){
@@ -39,7 +41,7 @@ function PopCard({
 
     return (
         <div>
-            <TransparentMask />
+            <div onClick={closeCard}><TransparentMask /></div>
             <div className='pop-card'>
 
                 <div className='pop-card-header'>

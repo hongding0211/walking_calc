@@ -5,24 +5,28 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Main from "./pages/main";
-import CreateGroupCard from "./components/popCards/createGroup";
+import CreateGroupCard from "./pages/popCards/createGroup";
+import {Provider} from "react-redux";
+import store from './app/store'
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<App/>}>
-                    <Route path='home' element={<Main uid='0000'/>}>
-                        <Route path='addGroup'>
-                            <Route path='createGroup'
-                                   element={<CreateGroupCard creator={{uid: '0000', name: 'foo', img: null}}/>}/>
+        <Provider store={store}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<App/>}>
+                        <Route path='home' element={<Main/>}>
+                            <Route path='addGroup'>
+                                <Route path='createGroup'
+                                       element={<CreateGroupCard />}/>
+                            </Route>
                         </Route>
                     </Route>
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
+                </Routes>
+            </BrowserRouter>
+        </Provider>
+    </React.StrictMode>
+    , document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
