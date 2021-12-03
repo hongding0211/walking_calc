@@ -1,3 +1,25 @@
+.transparent-mask {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    z-index: 10;
+    cursor: pointer;
+    animation: mask-display 0.5s ease-out forwards;
+}
+
+@keyframes mask-display {
+    from {
+        background: rgba(122, 122, 122, 0);
+        backdrop-filter: saturate(100%) blur(0px);
+    }
+    to {
+        background: rgba(122, 122, 122, 0.2);
+        backdrop-filter: saturate(180%) blur(20px);
+    }
+}
+
 .pop-card {
     position: absolute;
     left: 20px;

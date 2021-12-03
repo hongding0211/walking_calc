@@ -1,1 +1,1 @@
-global.host = 'http://localhost:3000'
+global.host = 'http://192.168.50.44:3000'

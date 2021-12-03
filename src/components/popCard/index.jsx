@@ -1,9 +1,8 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import CardButton from './cardButton'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import './index.css'
-import TransparentMask from "../transparentMask";
 import {useNavigate} from "react-router-dom";
 
 /*
@@ -23,26 +22,33 @@ function PopCard({
                      children,
                      btnType = 'normal',
                      loadingIcon = false,
-                     onSubmit = ()=>{
+                     onSubmit = () => {
                          console.error('Popcard does not have a submit callback.')
                      }
                  }) {
 
     const navigate = useNavigate()
 
-    function closeCard(){
+    const maskRef = useRef()
+    const cardRef = useRef()
+
+    function closeCard() {
         navigate(-1)
     }
 
-    function submit(){
+    function submit() {
         // TODO 通知父组件，如果结果成功则关闭
         onSubmit()
     }
 
     return (
         <div>
-            <div onClick={closeCard}><TransparentMask /></div>
-            <div className='pop-card'>
+            <div
+                ref={maskRef}
+                className='transparent-mask'
+                onClick={closeCard}
+            />
+            <div ref={cardRef} className='pop-card'>
 
                 <div className='pop-card-header'>
                     <div>{title}</div>

@@ -1,0 +1,37 @@
+.add-group-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 120px;
+}
+
+.icon-text-container {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #316FE2;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out;
+}
+
+@media(hover: hover) and (pointer: fine) {
+    .icon-text-container:hover {
+        background-color: #f4f4f4;
+    }
+}
+
+
+.icon-text-container span {
+    margin-top: 15px;
+}
+
+.vertical-splitter {
+    width: 2px;
+    background-color: #e4e4e4;
+    height: 100%;
+}

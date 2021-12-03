@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
-import Input from '../../../components/input';
-import PopCard from '../../../components/popCard';
-import './index.css'
+import Input from '../../../../components/input';
+import PopCard from '../../../../components/popCard';
 
 /*
  * @Project    : walking_calc

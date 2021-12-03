@@ -1,13 +1,13 @@
 import React, {useRef, useState} from 'react';
-import Input from '../../../components/input';
-import PopCard from '../../../components/popCard';
-import AvatarStack from '../../../components/avatarStack'
+import Input from '../../../../components/input';
+import PopCard from '../../../../components/popCard';
+import AvatarStack from '../../../../components/avatarStack'
 import './index.css'
-import SearchBar from '../../../components/searchBar';
-import Avatar from '../../../components/avatar';
-import AvatarTag from "../../../components/avatarTag";
+import SearchBar from '../../../../components/searchBar';
+import Avatar from '../../../../components/avatar';
+import AvatarTag from "../../../../components/avatarTag";
 import {useSelector} from "react-redux";
-import {selectUserData} from "../../../features/authentication/authenticationSlice";
+import {selectUserData} from "../../../../features/authentication/authenticationSlice";
 
 /*
  * @Project    : walking_calc

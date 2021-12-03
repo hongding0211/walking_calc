@@ -5,9 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Main from "./pages/main";
-import CreateGroupCard from "./pages/popCards/createGroup";
+import CreateGroupCard from "./pages/popCards/addGroup/createGroup";
 import {Provider} from "react-redux";
 import store from './app/store'
+import JoinGroupCard from "./pages/popCards/addGroup/joinGroup";
+import AddGroupCard from "./pages/popCards/addGroup";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -16,9 +18,9 @@ ReactDOM.render(
                 <Routes>
                     <Route path='/' element={<App/>}>
                         <Route path='home' element={<Main/>}>
-                            <Route path='addGroup'>
-                                <Route path='createGroup'
-                                       element={<CreateGroupCard />}/>
+                            <Route path='addGroup' element={<AddGroupCard />}>
+                                <Route path='createGroup' element={<CreateGroupCard />}/>
+                                <Route path='joinGroup' element={<JoinGroupCard />}/>
                             </Route>
                         </Route>
                     </Route>

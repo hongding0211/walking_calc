@@ -23,7 +23,7 @@ const Main = () => {
     const navigate = useNavigate()
 
     function onAddBtnClick() {
-        navigate('/home/addGroup/createGroup')
+        navigate('/home/addGroup')
     }
 
     return (

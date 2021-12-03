@@ -14,6 +14,7 @@ export default function App() {
             dispatch(fetchUserData('0000'))
             navigate('/home')
         },
+        // TODO 寻求有没有更好的解决方法
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [])
 
