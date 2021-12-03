@@ -13,7 +13,7 @@ import {selectUserData} from "../../../features/authentication/authenticationSli
  * @Project    : walking_calc
  * @Created    : hong 2021/11/16 21:22
  * @Component  : CreateGroup
- * @Props      : creator:   Object { uid, img, name }
+ * @Props      : n/a
  * @Description: Card for creating a new group.
 */
 
@@ -69,6 +69,7 @@ const CreateGroupCard = () => {
             let membersStr = ''
             for (const i in members)
                 membersStr += `&member${Number(i) + 1}=${members[i].uid}`
+            // TODO 参数错误
             fetch(`${global.host}/createGroup?groupName=${groupName}&creator=${creator}${membersStr}`)
                 .then(v => v.json())
                 .then(v => {
