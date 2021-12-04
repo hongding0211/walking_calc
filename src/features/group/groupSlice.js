@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-import {getGroupsByUid} from "../../api/client";
+import {getGroupsByUid, getOneUserById} from "../../api/client";
 
 const initialState = []
 
@@ -25,17 +25,20 @@ const groupSlice = createSlice({
                 // calculate latest edited time
                 if (recordLength > 0)
                     latestEdit = group.records[recordLength - 1].time
-                // TODO calculate debt
-                for (const record of group.records) {
-                    // user paid the bill
+                // resort records by latest edited time
+                group.records.sort((x, y) => y.time - x.time)
+                for (let record of group.records) {
+                    record.myPart = 0
+                    // users paid the bill
                     const dividedBill = record.paid / record.forWhom.length
                     const totalBill = Number(record.paid)
                     if (uid === record.who) {
                         debt += totalBill
                     }
-                    // someone paid for user
+                    // someone paid for users
                     if (record.forWhom.find(e => e === uid)) {
                         debt -= dividedBill
+                        record.myPart = dividedBill
                     }
                 }
                 group = {...group, latestEdit, debt}

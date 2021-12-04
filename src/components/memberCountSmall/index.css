@@ -1,0 +1,12 @@
+.member-count-small {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    color: #A3A3A3;
+}
+
+.member-count-small-number {
+    font-weight: 600;
+    font-size: 12px;
+    padding-left: 2px;
+}

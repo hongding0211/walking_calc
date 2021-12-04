@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './index.css'
 import {faChevronLeft, faCog, faPlusCircle, faQrcode} from "@fortawesome/free-solid-svg-icons";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectGroupById} from "../../features/group/groupSlice";
 import {formatDebt} from "../../module/module";
-import {getOneUserById} from "../../api/client";
 import AvatarStack from "../../components/avatarStack";
+import RecordCard from "./recordCard";
+import {fetchMemberData, selectMembersByUids} from "../../features/users/usersSlice";
 
 // TODO 解决刷新问题
 // 应该是刷新后 redux 没法重新读取新数据导致
@@ -18,9 +19,11 @@ function Group() {
     const navigate = useNavigate()
     const location = useLocation()
 
+    const dispatch = useDispatch()
+
     const group = useSelector(selectGroupById(groupId))
 
-    const [members, setMembers] = useState([])
+    const membersDetail = useSelector(selectMembersByUids(group.members))
 
     function navBack() {
         navigate(-1)
@@ -31,17 +34,10 @@ function Group() {
     }
 
     useEffect(() => {
-        let newMembers = []
-        const fetchAllMembersDetail = async () => {
-            for (const uid of group.members) {
-                let u = await getOneUserById(uid)
-                u.img = 'data:image/png;base64,' + u.img
-                newMembers.push(u)
-            }
-        }
-
-        fetchAllMembersDetail().then(_ => setMembers(newMembers))
+        // 缓存所有成员的相信数据
+        group.members.every(member => dispatch(fetchMemberData(member)))
     }, [group.members])
+
 
     return (
         <div>
@@ -63,7 +59,7 @@ function Group() {
                     </div>
                     <div>
                         <div className='group-main-card-sub-text' style={{'marginBottom': '5px'}}>成员</div>
-                        <AvatarStack users={members} size='22px'/>
+                        <AvatarStack users={membersDetail} size='22px'/>
                     </div>
                     <div className='group-container-main-card-row'>
                     <span className='small-hover-btn'
@@ -79,9 +75,9 @@ function Group() {
                         </div>
                     </div>
                 </div>
+                {group.records.map(record => <RecordCard key={record.recordID} record={record}/>)}
             </div>
             <FontAwesomeIcon className='group-add-btn' icon={faPlusCircle}/>
-
             <Outlet/>
         </div>
     );

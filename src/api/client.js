@@ -11,6 +11,7 @@ export async function getOneUserById(uid) {
     try {
         res = await fetchAndDump(`${global.host}/getUsers?uid=${uid}`)
         res = res.data.users[0]
+        res.img = 'data:image/png;base64,' + res.img
     } catch (e) {
         res = null
     }
@@ -22,6 +23,8 @@ export async function getUsersById(keyword) {
     try {
         res = await fetchAndDump(`${global.host}/getUsers?keyword=${keyword}`)
         res = res.data.users
+        for(let user of res)
+            user.img = 'data:image/png;base64,' + user.img
     } catch (e) {
         res = []
     }

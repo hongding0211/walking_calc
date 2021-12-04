@@ -53,3 +53,13 @@ body {
     background-color: #e0e0e0;
   }
 }
+
+.flex-vertical-split {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-align-center {
+  align-items: center;
+}

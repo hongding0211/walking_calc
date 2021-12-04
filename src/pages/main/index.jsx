@@ -6,7 +6,7 @@ import '../../config'
 import './index.css'
 import {Outlet, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {selectUserData} from "../../features/authentication/authenticationSlice";
+import {selectUserData} from "../../features/users/usersSlice";
 import MainCard from './mainCard';
 import GroupCard from "./groupCard";
 import {selectGroups, selectTotalDebt} from "../../features/group/groupSlice";
@@ -43,7 +43,7 @@ const Main = () => {
                 <div className='main-title'>
                     <div className='main-title-l' onClick={onAddBtnClick}>
                         <span>群组</span>
-                        <FontAwesomeIcon className='small-hover-btn-deep' icon={faPlusCircle} />
+                        <FontAwesomeIcon className='small-hover-btn-deep' icon={faPlusCircle}/>
                     </div>
                     <Avatar size='40px' img={userData.img}/>
                 </div>

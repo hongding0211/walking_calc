@@ -8,7 +8,7 @@ import './index.css'
  * @Component  : AvatarStack
  * @Props      : users: []
  *               allowDelete: Boolean
- *               onAvatarDelete: Function(user)
+ *               onAvatarDelete: Function(users)
  * @Description: A horizon avatar stack
 */
 

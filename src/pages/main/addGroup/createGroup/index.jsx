@@ -7,7 +7,7 @@ import SearchBar from '../../../../components/searchBar';
 import Avatar from '../../../../components/avatar';
 import AvatarTag from "../../../../components/avatarTag";
 import {useSelector} from "react-redux";
-import {selectUserData} from "../../../../features/authentication/authenticationSlice";
+import {selectUserData} from "../../../../features/users/usersSlice";
 import {getUsersById} from "../../../../api/client";
 
 /*
@@ -33,7 +33,7 @@ const CreateGroupCard = () => {
         for (const u of await getUsersById(text)) {
             newSearchCandidates.push({
                 name: u.name,
-                img: `data:image/png;base64,${u.img}`,
+                img: u.img,
                 uid: u.uid
             })
         }

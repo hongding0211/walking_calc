@@ -2,8 +2,9 @@ import './App.css'
 import React, {useEffect} from 'react'
 import {Outlet, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {fetchUserData} from "./features/authentication/authenticationSlice";
+import {fetchUserData} from "./features/users/usersSlice";
 import {fetchGroups} from "./features/group/groupSlice";
+import {Toaster} from "react-hot-toast";
 
 export default function App() {
 
@@ -12,7 +13,7 @@ export default function App() {
 
     useEffect(() => {
             // TODO 暂时写死 UID
-            const uid = '0000'
+            const uid = '1111'
 
             dispatch(fetchUserData(uid))
             dispatch(fetchGroups(uid))
@@ -24,6 +25,7 @@ export default function App() {
 
     return (
         <div>
+            <Toaster />
             <Outlet/>
         </div>
     )
