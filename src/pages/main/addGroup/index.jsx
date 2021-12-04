@@ -25,7 +25,6 @@ function AddGroupCard() {
                     </div>
                 </div>
             </PopCard>
-            {/*TODO 怎么让他直接挂载到父节点的 outlet 上*/}
             <Outlet/>
         </div>
     );

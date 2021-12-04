@@ -7,6 +7,9 @@ import './index.css'
 import {Outlet, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectUserData} from "../../features/authentication/authenticationSlice";
+import MainCard from './mainCard';
+import GroupCard from "./groupCard";
+import {selectGroups, selectTotalDebt} from "../../features/group/groupSlice";
 
 /*
  * @Project    : walking_calc
@@ -19,11 +22,18 @@ import {selectUserData} from "../../features/authentication/authenticationSlice"
 const Main = () => {
 
     const userData = useSelector(selectUserData)
+    const groups = useSelector(selectGroups)
+    const totalDebt = useSelector(selectTotalDebt)
 
     const navigate = useNavigate()
 
+
     function onAddBtnClick() {
         navigate('/home/addGroup')
+    }
+
+    function groupCardClickedHandler(groupId) {
+        navigate(`/home/group/${groupId}`)
     }
 
     return (
@@ -33,22 +43,27 @@ const Main = () => {
                 <div className='main-title'>
                     <div className='main-title-l' onClick={onAddBtnClick}>
                         <span>群组</span>
-                        <FontAwesomeIcon icon={faPlusCircle}/>
+                        <FontAwesomeIcon className='small-hover-btn-deep' icon={faPlusCircle} />
                     </div>
                     <Avatar size='40px' img={userData.img}/>
                 </div>
-
-                <div className='main-card'>
-                    <div className='main-card-top'>
-                        债务统计
-                    </div>
-                    <div className='main-card-bottom'>
-                        xxxx
-                    </div>
-                </div>
-
+                <MainCard debt={totalDebt}/>
+                {groups.map(group => {
+                    return (
+                        <div key={group.groupID}
+                             onClick={() => groupCardClickedHandler(group.groupID)}
+                        >
+                            <GroupCard
+                                groupName={group.groupName}
+                                memberCnt={group.members.length}
+                                latestEdit={group.latestEdit}
+                                debt={group.debt}
+                            />
+                        </div>
+                    )
+                })}
             </div>
-            <Outlet />
+            <Outlet/>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import Avatar from '../../../../components/avatar';
 import AvatarTag from "../../../../components/avatarTag";
 import {useSelector} from "react-redux";
 import {selectUserData} from "../../../../features/authentication/authenticationSlice";
+import {getUsersById} from "../../../../api/client";
 
 /*
  * @Project    : walking_calc
@@ -27,21 +28,16 @@ const CreateGroupCard = () => {
 
     const creator = useSelector(selectUserData)
 
-    function updateCandidate(text) {
+    async function updateCandidate(text) {
         let newSearchCandidates = []
-
-        fetch(`${global.host}/getUsers?keyword=${text}`).then(v => v.json())
-            .then(v => {
-                if (v.code === 200) {
-                    for (const u of v.data.users)
-                        newSearchCandidates.push({
-                            name: u.name,
-                            img: `data:image/png;base64,${u.img}`,
-                            uid: u.uid
-                        })
-                }
-                setSearchCandidates(newSearchCandidates)
+        for (const u of await getUsersById(text)) {
+            newSearchCandidates.push({
+                name: u.name,
+                img: `data:image/png;base64,${u.img}`,
+                uid: u.uid
             })
+        }
+        setSearchCandidates(newSearchCandidates)
     }
 
     function addItem(item) {
@@ -70,6 +66,7 @@ const CreateGroupCard = () => {
             for (const i in members)
                 membersStr += `&member${Number(i) + 1}=${members[i].uid}`
             // TODO 参数错误
+            // TODO API 调用分离
             fetch(`${global.host}/createGroup?groupName=${groupName}&creator=${creator}${membersStr}`)
                 .then(v => v.json())
                 .then(v => {

@@ -10,6 +10,7 @@ const initialState = {
 export const fetchUserData = createAsyncThunk(
     'authentication/fetchUserData',
     async (uid) => {
+        // TODO API 调用分离
         let fetchRes = await fetch(global.host + `/getUsers?uid=${uid}`)
         return await fetchRes.json()
     }

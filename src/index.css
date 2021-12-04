@@ -27,3 +27,29 @@ body {
   height: 1px;
   background-color: #F5F4F7;
 }
+
+.small-hover-btn {
+  border-radius: 8px;
+  padding: 5px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+@media(hover: hover) and (pointer: fine) {
+  .small-hover-btn:hover {
+    background-color: #f1f1f1;
+  }
+}
+
+.small-hover-btn-deep {
+  padding: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .small-hover-btn-deep:hover {
+    background-color: #e0e0e0;
+  }
+}

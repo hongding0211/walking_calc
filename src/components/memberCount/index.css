@@ -1,0 +1,11 @@
+.member-count {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #336FE9;
+}
+
+.member-count-number {
+    font-weight: 600;
+    padding-left: 5px;
+}

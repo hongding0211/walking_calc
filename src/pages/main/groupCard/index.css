@@ -1,0 +1,54 @@
+.group-card-container {
+    display: flex;
+    box-sizing: border-box;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    height: 135px;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px 20px -10px rgba(0, 0, 0, 0.35);
+    transition: box-shadow 0.3s ease-out;
+}
+
+@media(hover: hover) and (pointer: fine) {
+    .group-card-container:hover {
+        box-shadow: 3px 3px 20px 2px rgba(0, 0, 0, 0.10);
+    }
+}
+
+
+.group-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.group-card-group-name {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.group-card-last-edit {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-card-sub-text {
+    font-size: 9px;
+    font-weight: 600;
+    color: #A3A3A3;
+    margin-bottom: 2px;
+}
+
+.group-card-main-text {
+    font-weight: 600;
+}
+
+.group-card-debt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
