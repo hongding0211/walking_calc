@@ -6,6 +6,6 @@ export const formatDebt = debt => {
 }
 
 export const formatPrice = price => {
-    return '￥' + Number(price).toFixed(2)
+    return '￥' + parseFloat(price).toLocaleString()
 }
 

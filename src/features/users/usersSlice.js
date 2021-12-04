@@ -50,6 +50,11 @@ export default usersSlice.reducer
 
 export const selectUserData = state => state.users.user
 
+// export const selectMemberByUid = uid => state => {
+//     const m = state.users.otherMembers.find(e => e.uid === uid)
+//     return m ? m : null
+// }
+
 export const selectMembersByUids = uids => state => {
     let members = []
     for (const uid of uids) {

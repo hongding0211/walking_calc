@@ -1,0 +1,34 @@
+.debt-transfer-container {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.avatar-name {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-name-text {
+    font-weight: 500;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+.right-arrow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: #A3A3A3;
+}
+
+.debt-transfer-due {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    height: 28px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1) inset;
+}

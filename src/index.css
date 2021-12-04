@@ -1,65 +1,76 @@
 body {
-  margin: 0px;
-  border: 0px;
-  padding: 0px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  box-sizing: border-box;
-  color: #1e1f1f;
-  background-color: #F5F4F7;
+    box-sizing: border-box;
+    color: #1e1f1f;
+    background-color: #F5F4F7;
 }
 
 .small-title {
-  margin-bottom: 5px;
-  font-size: 14px;
-  font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .margin-top-20 {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .split {
-  height: 1px;
-  background-color: #F5F4F7;
+    height: 1px;
+    background-color: #F5F4F7;
 }
 
 .small-hover-btn {
-  border-radius: 8px;
-  padding: 5px;
-  transition: background-color 0.2s;
-  cursor: pointer;
-}
-
-@media(hover: hover) and (pointer: fine) {
-  .small-hover-btn:hover {
-    background-color: #f1f1f1;
-  }
-}
-
-.small-hover-btn-deep {
-  padding: 5px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+    border-radius: 8px;
+    padding: 5px;
+    transition: background-color 0.2s;
+    cursor: pointer;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .small-hover-btn-deep:hover {
-    background-color: #e0e0e0;
-  }
+    .small-hover-btn:hover {
+        background-color: #f1f1f1;
+    }
+}
+
+.small-hover-btn-deep {
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .small-hover-btn-deep:hover {
+        background-color: #e0e0e0;
+    }
 }
 
 .flex-vertical-split {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flex-horizon-split {
+    display: flex;
+    justify-content: space-between;
 }
 
 .flex-align-center {
-  align-items: center;
+    align-items: center;
+}
+
+.horizon-split {
+    height: 1px;
+    width: 100%;
+    background-color: #e4e4e4;
 }

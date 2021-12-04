@@ -1,0 +1,34 @@
+.transaction-top {
+    margin-top: 20px;
+    margin-bottom: 45px;
+}
+
+.transaction-date {
+    font-weight: 500;
+    margin-top: 3px;
+}
+
+.transaction-date-sub {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.transaction-record {
+    margin-bottom: 30px;
+}
+
+.transaction-sub-text {
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.transaction-single-detail {
+    margin-bottom: 15px;
+}
+
+.transaction-for-whom {
+    margin-bottom: 45px;
+    max-height: 150px;
+    overflow: auto;
+}

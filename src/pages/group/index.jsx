@@ -30,13 +30,21 @@ function Group() {
     }
 
     function shareGroup() {
-        navigate(`${location.pathname}/share/${groupId}`)
+        navigate(`${location.pathname}/share`)
+    }
+
+    function showDebtDetail() {
+        navigate(`${location.pathname}/debtDetail`)
+    }
+
+    function showTransactionDetail(transactionId) {
+        navigate(`${location.pathname}/${transactionId}`)
     }
 
     useEffect(() => {
         // 缓存所有成员的相信数据
         group.members.every(member => dispatch(fetchMemberData(member)))
-    }, [group.members])
+    }, [group.members, dispatch])
 
 
     return (
@@ -62,10 +70,11 @@ function Group() {
                         <AvatarStack users={membersDetail} size='22px'/>
                     </div>
                     <div className='group-container-main-card-row'>
-                    <span className='small-hover-btn'
+                    <span className='small-hover-btn group-debt-detail-btn'
                           style={{
                               'fontWeight': '600', 'fontSize': '14px', 'marginLeft': '-5px'
                           }}
+                          onClick={showDebtDetail}
                     >
                         债务详细 >
                     </span>
@@ -75,7 +84,13 @@ function Group() {
                         </div>
                     </div>
                 </div>
-                {group.records.map(record => <RecordCard key={record.recordID} record={record}/>)}
+                {group.records.map(record => {
+                    return (
+                        <div key={record.recordID} onClick={() => showTransactionDetail(record.recordID)}>
+                            <RecordCard record={record}/>
+                        </div>
+                    )
+                })}
             </div>
             <FontAwesomeIcon className='group-add-btn' icon={faPlusCircle}/>
             <Outlet/>

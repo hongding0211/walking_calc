@@ -1,0 +1,21 @@
+.single-transaction-detail-text {
+    font-weight: 500;
+}
+
+.single-transaction-content {
+    margin-bottom: 12px;
+}
+
+.single-transaction-name {
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.single-transaction-price-p {
+    color: #33A81C;
+}
+
+.single-transaction-price-n {
+    color: #FB4A3E;
+}

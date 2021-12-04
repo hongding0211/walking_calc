@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-import {getGroupsByUid, getOneUserById} from "../../api/client";
+import {getGroupsByUid} from "../../api/client";
 
 const initialState = []
 
@@ -63,3 +63,8 @@ export const selectTotalDebt = ({group}) => {
 }
 
 export const selectGroupById = groupId => state => state.group.find(e => e.groupID === groupId)
+
+export const selectTransactionById = (groupId, transactionId) => state => {
+    const group = state.group.find(e => e.groupID === groupId)
+    return group.records.find(e => e.recordID === transactionId)
+}

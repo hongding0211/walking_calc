@@ -73,4 +73,7 @@
     .group-add-btn:hover {
         box-shadow: 3px 3px 20px 3px rgba(0, 58, 255, 0.2);
     }
+    .group-debt-detail-btn:hover{
+        color: #2f6fdc;
+    }
 }

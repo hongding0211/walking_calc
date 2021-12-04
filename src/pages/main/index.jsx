@@ -33,7 +33,7 @@ const Main = () => {
     }
 
     function groupCardClickedHandler(groupId) {
-        navigate(`/home/group/${groupId}`)
+        navigate(`/home/${groupId}`)
     }
 
     return (
