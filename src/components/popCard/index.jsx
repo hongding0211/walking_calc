@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-hot-toast";
 
 /*
  * @Project    : walking_calc
@@ -36,9 +37,13 @@ function PopCard({
         navigate(-1)
     }
 
-    function submit() {
-        // TODO 通知父组件，如果结果成功则关闭
-        onSubmit()
+    async function submit() {
+        try {
+            toast.success(await onSubmit())
+            closeCard()
+        } catch (e) {
+            toast.error(e)
+        }
     }
 
     return (

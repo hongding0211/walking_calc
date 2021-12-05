@@ -19,7 +19,7 @@ function TransactionDetailCard() {
 
     return (
         <Fragment>
-            {/*TODO 删除操作*/}
+            {/*TODO onsubmit 删除操作*/}
             <PopCard title='交易详情' btnType='delete'>
                 <div className='transaction-top flex-horizon-split flex-align-center'>
                     <div className='flex-vertical-split'>
@@ -43,6 +43,10 @@ function TransactionDetailCard() {
                             />
                         </div>
                     })}
+                </div>
+                <div className='transaction-id flex-vertical-split'>
+                    <span><strong>Record ID:</strong></span>
+                    <span><i>{transaction.recordID}</i></span>
                 </div>
             </PopCard>
         </Fragment>

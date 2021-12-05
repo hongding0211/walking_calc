@@ -6,9 +6,10 @@ import './index.css'
 import SearchBar from '../../../../components/searchBar';
 import Avatar from '../../../../components/avatar';
 import AvatarTag from "../../../../components/avatarTag";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectUserData} from "../../../../features/users/usersSlice";
-import {getUsersById} from "../../../../api/client";
+import {createGroup, getUsersById} from "../../../../api/client";
+import {fetchGroups} from "../../../../features/group/groupSlice";
 
 /*
  * @Project    : walking_calc
@@ -27,6 +28,8 @@ const CreateGroupCard = () => {
     const groupNameRef = useRef()
 
     const creator = useSelector(selectUserData)
+
+    const dispatch = useDispatch()
 
     async function updateCandidate(text) {
         let newSearchCandidates = []
@@ -55,27 +58,25 @@ const CreateGroupCard = () => {
         setMembers(members.filter(i => i.uid !== item.uid))
     }
 
-    function submit() {
-        let newFeedbackMsg = ''
+    async function submit() {
+        setFeedbackMsg('')
         const groupName = groupNameRef.current.value
         if (groupName === '') {
-            newFeedbackMsg = '* 群组名称不能为空'
+            setFeedbackMsg('* 群组名称不能为空')
         } else {
             // try to submit
-            let membersStr = ''
-            for (const i in members)
-                membersStr += `&member${Number(i) + 1}=${members[i].uid}`
-            // TODO 参数错误
-            // TODO API 调用分离
-            fetch(`${global.host}/createGroup?groupName=${groupName}&creator=${creator}${membersStr}`)
-                .then(v => v.json())
-                .then(v => {
-                    // TODO Group 创建成功后的callback 操作
-                    // TODO 返回 code feedback
-                    console.log('todo create group response', v)
-                })
+            try {
+                let res = await createGroup(groupName, creator.uid, members)
+                if (res.code === 200) {
+                    return new Promise(resolve => resolve('操作成功'))
+                } else
+                    return new Promise((_, reject) => reject('操作失败，稍后再试'))
+            } catch (e) {
+                return new Promise((_, reject) => reject('操作失败，稍后再试'))
+            } finally {
+                dispatch(fetchGroups(creator.uid))
+            }
         }
-        setFeedbackMsg(newFeedbackMsg)
     }
 
     return (

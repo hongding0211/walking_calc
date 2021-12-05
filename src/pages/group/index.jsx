@@ -9,6 +9,7 @@ import {formatDebt} from "../../module/module";
 import AvatarStack from "../../components/avatarStack";
 import RecordCard from "./recordCard";
 import {fetchMemberData, selectMembersByUids} from "../../features/users/usersSlice";
+import {toast} from "react-hot-toast";
 
 // TODO 解决刷新问题
 // 应该是刷新后 redux 没法重新读取新数据导致
@@ -37,9 +38,21 @@ function Group() {
         navigate(`${location.pathname}/debtDetail`)
     }
 
+    function showAddRecordCard() {
+        navigate(`${location.pathname}/addRecord`)
+    }
+
     function showTransactionDetail(transactionId) {
         navigate(`${location.pathname}/${transactionId}`)
     }
+
+    function showGroupConfig() {
+        // TODO
+        toast('IN DEVELOPING', {
+            icon: '😋'
+        })
+    }
+
 
     useEffect(() => {
         // 缓存所有成员的相信数据
@@ -55,7 +68,7 @@ function Group() {
                         <FontAwesomeIcon icon={faChevronLeft}/>
                         <span className='group-container-title-bar-text'>群组</span>
                     </div>
-                    <div className='small-hover-btn-deep'>
+                    <div className='small-hover-btn-deep' onClick={showGroupConfig}>
                         <FontAwesomeIcon icon={faCog}/>
                     </div>
                 </div>
@@ -92,7 +105,9 @@ function Group() {
                     )
                 })}
             </div>
-            <FontAwesomeIcon className='group-add-btn' icon={faPlusCircle}/>
+            <div onClick={showAddRecordCard}>
+                <FontAwesomeIcon className='group-add-btn' icon={faPlusCircle}/>
+            </div>
             <Outlet/>
         </div>
     );

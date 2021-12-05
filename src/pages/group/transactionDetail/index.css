@@ -3,6 +3,12 @@
     margin-bottom: 45px;
 }
 
+.transaction-id {
+    font-weight: 500;
+    font-size: 8px;
+    color: #a3a3a3;
+}
+
 .transaction-date {
     font-weight: 500;
     margin-top: 3px;
@@ -28,7 +34,7 @@
 }
 
 .transaction-for-whom {
-    margin-bottom: 45px;
+    margin-bottom: 20px;
     max-height: 150px;
     overflow: auto;
 }

@@ -25,7 +25,7 @@ export default function App() {
 
     return (
         <div>
-            <Toaster />
+            <Toaster/>
             <Outlet/>
         </div>
     )

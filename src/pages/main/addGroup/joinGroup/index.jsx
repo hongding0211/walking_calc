@@ -1,6 +1,10 @@
 import React, {useRef} from 'react';
 import Input from '../../../../components/input';
 import PopCard from '../../../../components/popCard';
+import {joinGroup} from "../../../../api/client";
+import {useDispatch, useSelector} from "react-redux";
+import {selectUserData} from "../../../../features/users/usersSlice";
+import {fetchGroups} from "../../../../features/group/groupSlice";
 
 /*
  * @Project    : walking_calc
@@ -14,9 +18,17 @@ const JoinGroupCard = () => {
 
     const groupIDRef = useRef()
 
-    function submit() {
-        // TODO
-        console.log('join group submit')
+    const dispatch = useDispatch()
+
+    const {uid} = useSelector(selectUserData)
+
+    async function submit() {
+        let res = await joinGroup(uid, groupIDRef.current.value)
+        if (res?.code === 200) {
+            dispatch(fetchGroups(uid))
+            return new Promise(resolve => resolve('加入成功'))
+        }
+        return new Promise((_, reject) => reject('操作失败，检查群组 ID'))
     }
 
     return (

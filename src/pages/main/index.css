@@ -25,3 +25,10 @@
     color: #226df8;
 }
 
+.main-info-msg {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #A3A3A3;
+}

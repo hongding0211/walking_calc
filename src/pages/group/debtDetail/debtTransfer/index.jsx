@@ -10,7 +10,6 @@ function DebtTransfer(props) {
     return (
         <Fragment>
             <div className='flex-horizon-split flex-align-center debt-transfer-container'>
-                {/* TODO 传入参数 */}
                 <div className='avatar-name'>
                     <Avatar img={from.img} size='24px'/>
                     <div className='avatar-name-text'>{from.name}</div>

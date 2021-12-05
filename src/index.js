@@ -14,6 +14,7 @@ import Group from "./pages/group";
 import ShareGroup from "./pages/group/shareGroup";
 import TransactionDetailCard from "./pages/group/transactionDetail";
 import DebtDetailCard from "./pages/group/debtDetail";
+import AddRecordCard from "./pages/group/addRecord";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -29,7 +30,8 @@ ReactDOM.render(
                         </Route>
                         <Route path='home/:groupId' element={<Group/>}>
                             <Route path='share' element={<ShareGroup/>}/>
-                            <Route path='debtDetail' element={<DebtDetailCard />}/>
+                            <Route path='debtDetail' element={<DebtDetailCard/>}/>
+                            <Route path='addRecord' element={<AddRecordCard/>}/>
                             <Route path=':transactionId' element={<TransactionDetailCard/>}/>
                         </Route>
                     </Route>

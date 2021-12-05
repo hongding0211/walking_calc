@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import './index.css'
 import defaultAvatar from './blank_user.png'
 
@@ -12,14 +12,14 @@ import defaultAvatar from './blank_user.png'
 
 function Avatar({ img = null, size = '48px', alt = 'avatar' }) {
     return(
-        <Fragment>
+        <div>
             <img
                 src={img ? img : defaultAvatar}
                 style={{ width: size, height: size }}
                 className='avatar'
                 alt={alt}
             />
-        </Fragment >
+        </div >
     )
 }
 

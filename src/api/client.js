@@ -23,7 +23,7 @@ export async function getUsersById(keyword) {
     try {
         res = await fetchAndDump(`${global.host}/getUsers?keyword=${keyword}`)
         res = res.data.users
-        for(let user of res)
+        for (let user of res)
             user.img = 'data:image/png;base64,' + user.img
     } catch (e) {
         res = []
@@ -40,4 +40,15 @@ export async function getGroupsByUid(uid) {
         res = []
     }
     return wrapPromise(res)
+}
+
+export async function createGroup(groupName, creator, members) {
+    let membersStr = ''
+    for (const i in members)
+        membersStr += `&member${Number(i) + 1}=${members[i].uid}`
+    return await fetchAndDump(`${global.host}/createGroup?groupName=${groupName}&creator=${creator}${membersStr}`)
+}
+
+export async function joinGroup(uid, groupId) {
+    return await fetchAndDump(`${global.host}/joinGroup?groupID=${groupId}&uid=${uid}`)
 }

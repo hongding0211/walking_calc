@@ -36,6 +36,7 @@ const Main = () => {
         navigate(`/home/${groupId}`)
     }
 
+
     return (
         <div className='main'>
             <div className='main-page-container'>
@@ -48,6 +49,7 @@ const Main = () => {
                     <Avatar size='40px' img={userData.img}/>
                 </div>
                 <MainCard debt={totalDebt}/>
+                {groups.length === 0 && <div className='main-info-msg'>加入或创建一个群组</div>}
                 {groups.map(group => {
                     return (
                         <div key={group.groupID}
