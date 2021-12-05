@@ -1,0 +1,40 @@
+.main-card {
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 145px;
+    margin-bottom: 30px;
+    box-shadow: 3px 3px 20px -10px rgba(0, 0, 0, 0.35);
+}
+
+.color-p {
+    color: #30981a;
+}
+
+.color-n {
+    color: #FB4A3E;
+}
+
+.main-card-top {
+    display: flex;
+    align-items: center;
+}
+
+.main-card-top-l {
+    font-size: 25px;
+}
+
+.main-card-top-r {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.main-card-bottom {
+    font-size: 35px;
+    font-weight: 500;
+}
