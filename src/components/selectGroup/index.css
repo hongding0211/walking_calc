@@ -1,0 +1,4 @@
+.select-group {
+    display: flex;
+    flex-wrap: wrap;
+}

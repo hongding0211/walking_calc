@@ -9,3 +9,6 @@ export const formatPrice = price => {
     return '￥' + parseFloat(price).toLocaleString()
 }
 
+export const newFulfilledPromise = value => new Promise(resolve => resolve(value))
+
+export const newRejectedPromise = reason => new Promise((_, reject) => reject(reason))

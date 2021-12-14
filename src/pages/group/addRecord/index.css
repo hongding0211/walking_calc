@@ -1,0 +1,94 @@
+.add-record-card-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-record-card-price {
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.05) inset;
+    font-size: 32px;
+    font-weight: 600;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    border: 1px solid #f1f1f1;
+    transition: border 0.1s;
+}
+
+@media(hover: hover) and (pointer: fine) {
+    .add-record-card-price:hover {
+        border: 1px solid #dddddd;
+    }
+}
+
+.add-record-card-price:focus {
+    border: 1px solid #dddddd;
+}
+
+
+.add-record-card-price-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 32px;
+    font-weight: 600;
+    text-align: right;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.add-record-card-sub-text {
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.add-record-card-member-group {
+    margin-bottom: 25px;
+}
+
+
+.add-record-card-icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-record-card-icons-container:after {
+    content: "";
+    flex: auto;
+}
+
+.add-record-card-icons {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 10px 10px 10px;
+    border-radius: 8px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.add-record-card-icons-selected {
+    border: 2px solid #2f6fdc;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .add-record-card-icons:hover {
+        border: 2px solid #2f6fdc;
+    }
+}
+
+

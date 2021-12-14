@@ -2,12 +2,14 @@ import React, {Fragment} from 'react';
 import {useParams} from "react-router-dom";
 import PopCard from "../../../components/popCard";
 import {format} from 'date-fns'
-import {useSelector} from "react-redux";
-import {selectTransactionById} from "../../../features/group/groupSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchGroups, selectTransactionById} from "../../../features/group/groupSlice";
 import './index.css'
 import MemberCount from "../../../components/memberCount";
-import {selectMembersByUids} from "../../../features/users/usersSlice";
+import {selectMembersByUids, selectUserData} from "../../../features/users/usersSlice";
 import SingleTransactionDetail from "./singleTransactionDetaili";
+import {deleteRecord} from "../../../api/client";
+import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
 
 function TransactionDetailCard() {
 
@@ -17,10 +19,29 @@ function TransactionDetailCard() {
 
     const members = useSelector(selectMembersByUids([transaction.who, ...transaction.forWhom]))
 
+    const uid = useSelector(selectUserData).uid
+
+    const dispatch = useDispatch()
+
+    async function submit() {
+        try {
+            const res = await deleteRecord(groupId, transactionId)
+            if (res.code === 200) {
+                // TODO 优化 slice 直接删除
+                dispatch(fetchGroups(uid))
+                return newFulfilledPromise('删除成功')
+            } else {
+                return newRejectedPromise('操作失败，请稍后操作')
+            }
+        } catch (e) {
+            return newRejectedPromise('操作失败，请稍后操作')
+        }
+    }
+
     return (
         <Fragment>
             {/*TODO onsubmit 删除操作*/}
-            <PopCard title='交易详情' btnType='delete'>
+            <PopCard title='交易详情' btnType='delete' onSubmit={submit}>
                 <div className='transaction-top flex-horizon-split flex-align-center'>
                     <div className='flex-vertical-split'>
                         <span className='transaction-date-sub'>{format(new Date(transaction.time), 'yyyy年M月d日')}</span>

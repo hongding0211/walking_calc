@@ -62,6 +62,9 @@ function Group() {
 
     return (
         <div>
+            <div onClick={showAddRecordCard}>
+                <FontAwesomeIcon className='group-add-btn' icon={faPlusCircle}/>
+            </div>
             <div className='group-container'>
                 <div className='group-container-title-bar'>
                     <div className='small-hover-btn-deep' onClick={navBack}>
@@ -97,16 +100,16 @@ function Group() {
                         </div>
                     </div>
                 </div>
-                {group.records.map(record => {
-                    return (
-                        <div key={record.recordID} onClick={() => showTransactionDetail(record.recordID)}>
-                            <RecordCard record={record}/>
-                        </div>
-                    )
-                })}
-            </div>
-            <div onClick={showAddRecordCard}>
-                <FontAwesomeIcon className='group-add-btn' icon={faPlusCircle}/>
+                {/*TODO 记录卡片流需要根据时间分割*/}
+                <div className='group-cards-container'>
+                    {group.records.map(record => {
+                        return (
+                            <div key={record.recordID} onClick={() => showTransactionDetail(record.recordID)}>
+                                <RecordCard record={record}/>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
             <Outlet/>
         </div>

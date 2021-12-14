@@ -1,0 +1,28 @@
+.radio-container {
+    display: flex;
+    align-items: center;
+    margin-right: 14px;
+}
+
+.radio-box {
+    border-radius: 100%;
+    width: 14px; height: 14px;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.1) inset;
+    margin-right: 6px;
+    cursor: pointer;
+    transition: box-shadow 0.1s, background-color 0.1s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .radio-box:hover{
+        box-shadow: 0 0 3px 1px rgba(0,0,0,0.1) inset;
+    }
+}
+
+.radio-box-selected {
+    background-color: #316FE2;
+}
+
+.radio-text {
+    font-weight: 500;
+}

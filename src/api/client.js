@@ -1,9 +1,7 @@
+import {newFulfilledPromise} from "../module/module";
+
 const fetchAndDump = async (url) => {
     return (await fetch(url)).json()
-}
-
-const wrapPromise = (data) => {
-    return new Promise((resolve => resolve(data)))
 }
 
 export async function getOneUserById(uid) {
@@ -15,7 +13,7 @@ export async function getOneUserById(uid) {
     } catch (e) {
         res = null
     }
-    return wrapPromise(res)
+    return newFulfilledPromise(res)
 }
 
 export async function getUsersById(keyword) {
@@ -28,7 +26,7 @@ export async function getUsersById(keyword) {
     } catch (e) {
         res = []
     }
-    return wrapPromise(res)
+    return newFulfilledPromise(res)
 }
 
 export async function getGroupsByUid(uid) {
@@ -39,7 +37,7 @@ export async function getGroupsByUid(uid) {
     } catch (e) {
         res = []
     }
-    return wrapPromise(res)
+    return newFulfilledPromise(res)
 }
 
 export async function createGroup(groupName, creator, members) {
@@ -51,4 +49,15 @@ export async function createGroup(groupName, creator, members) {
 
 export async function joinGroup(uid, groupId) {
     return await fetchAndDump(`${global.host}/joinGroup?groupID=${groupId}&uid=${uid}`)
+}
+
+export async function addRecord(groupId, who, paid, forWhom, type) {
+    let forWhomStr = ''
+    for (const i in forWhom)
+        forWhomStr += `&forWhom${Number(i) + 1}=${forWhom[i]}`
+    return await fetchAndDump(`${global.host}/addRecord?groupID=${groupId}&who=${who}&paid=${paid}&type=${type}${forWhomStr}`)
+}
+
+export async function deleteRecord(groupId, recordId) {
+    return await fetchAndDump(`${global.host}/deleteRecord?groupID=${groupId}&recordID=${recordId}`)
 }

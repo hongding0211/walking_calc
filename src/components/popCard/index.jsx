@@ -25,6 +25,7 @@ function PopCard({
                      loadingIcon = false,
                      onSubmit = () => {
                          console.error('Popcard does not have a submit callback.')
+                         return new Promise(resolve => (resolve('Nothing Changed')))
                      }
                  }) {
 

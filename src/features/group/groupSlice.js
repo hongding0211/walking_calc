@@ -53,6 +53,8 @@ const groupSlice = createSlice({
 
 export default groupSlice.reducer
 
+export const {addRecord} = groupSlice.actions
+
 export const selectGroups = state => state.group
 
 export const selectTotalDebt = ({group}) => {

@@ -68,7 +68,7 @@ const CreateGroupCard = () => {
             try {
                 let res = await createGroup(groupName, creator.uid, members)
                 if (res.code === 200) {
-                    return new Promise(resolve => resolve('操作成功'))
+                    return new Promise(resolve => resolve('添加成功'))
                 } else
                     return new Promise((_, reject) => reject('操作失败，稍后再试'))
             } catch (e) {

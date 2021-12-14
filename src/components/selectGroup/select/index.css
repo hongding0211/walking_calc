@@ -1,0 +1,32 @@
+.select-container {
+    display: flex;
+    align-items: center;
+    margin-right: 14px;
+}
+
+.select-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    width: 14px; height: 14px;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.1) inset;
+    margin-right: 6px;
+    cursor: pointer;
+    transition: box-shadow 0.1s, background-color 0.1s;
+    color: white;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .select-box:hover{
+        box-shadow: 0 0 3px 1px rgba(0,0,0,0.1) inset;
+    }
+}
+
+.select-box-selected {
+    background-color: #316FE2;
+}
+
+.select-text {
+    font-weight: 500;
+}
