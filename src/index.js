@@ -16,6 +16,7 @@ import TransactionDetailCard from "./pages/group/transactionDetail";
 import DebtDetailCard from "./pages/group/debtDetail";
 import AddRecordCard from "./pages/group/addRecord";
 import Login from "./pages/login";
+import RegisterCard from "./pages/login/register";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -23,7 +24,9 @@ ReactDOM.render(
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<App/>}>
-                        <Route path='login' element={<Login/>}/>
+                        <Route path='login' element={<Login/>}>
+                            <Route path='register' element={<RegisterCard/>}/>
+                        </Route>
                         <Route path='home' element={<Main/>}>
                             <Route path='addGroup' element={<AddGroupCard/>}>
                                 <Route path='createGroup' element={<CreateGroupCard/>}/>

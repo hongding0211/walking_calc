@@ -57,7 +57,7 @@
     font-size: 14px;
 }
 
-.input-container {
+.login-input-container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -67,13 +67,14 @@
     border: 1px solid #F5F4F7;
     border-radius: 6px;
     transition: border 0.1s;
+    width: 100%;
 }
 
-.input-container-valid {
+.login-input-container-valid {
     border: 1px solid #33A81C;
 }
 
-.input-container-invalid {
+.login-input-container-invalid {
     border: 1px solid #c92121;
 }
 

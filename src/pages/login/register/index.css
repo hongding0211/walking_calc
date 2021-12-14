@@ -1,0 +1,19 @@
+.register-card-sub-text{
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.register-card-main-text {
+    font-weight: 500;
+    margin-bottom: 10px;
+
+}
+
+.register-card-split {
+    margin-bottom: 20px;
+}
+
+.register-input {
+    margin-bottom: 20px;
+}
