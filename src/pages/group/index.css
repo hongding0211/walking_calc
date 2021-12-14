@@ -58,6 +58,14 @@
     margin-bottom: 2px;
 }
 
+.group-main-card-time-stamp {
+    font-size: 9px;
+    font-weight: 500;
+    color: #a3a3a3;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
 .group-main-card-main-text {
     font-weight: 600;
 }

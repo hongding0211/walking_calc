@@ -10,6 +10,8 @@ import AvatarStack from "../../components/avatarStack";
 import RecordCard from "./recordCard";
 import {fetchMemberData, selectMembersByUids} from "../../features/users/usersSlice";
 import {toast} from "react-hot-toast";
+import {format} from "date-fns";
+
 
 // TODO 解决刷新问题
 // 应该是刷新后 redux 没法重新读取新数据导致
@@ -25,6 +27,23 @@ function Group() {
     const group = useSelector(selectGroupById(groupId))
 
     const membersDetail = useSelector(selectMembersByUids(group.members))
+
+    function recordCards() {
+        let components = []
+        let lastestTimestamp = 0
+        for(const record of group.records){
+            if(Math.abs(record.time-lastestTimestamp)>24*3600*1000){
+                lastestTimestamp = record.time
+                components.push(<div key={record.time} className='group-main-card-time-stamp'>{format(new Date(record.time),'M月d日')}</div>)
+            }
+            components.push(
+                <div key={record.recordID} onClick={() => showTransactionDetail(record.recordID)}>
+                    <RecordCard record={record}/>
+                </div>
+            )
+        }
+        return components
+    }
 
     function navBack() {
         navigate(-1)
@@ -58,7 +77,6 @@ function Group() {
         // 缓存所有成员的相信数据
         group.members.every(member => dispatch(fetchMemberData(member)))
     }, [group.members, dispatch])
-
 
     return (
         <div>
@@ -100,16 +118,7 @@ function Group() {
                         </div>
                     </div>
                 </div>
-                {/*TODO 记录卡片流需要根据时间分割*/}
-                <div className='group-cards-container'>
-                    {group.records.map(record => {
-                        return (
-                            <div key={record.recordID} onClick={() => showTransactionDetail(record.recordID)}>
-                                <RecordCard record={record}/>
-                            </div>
-                        )
-                    })}
-                </div>
+                <div className='group-cards-container'>{recordCards()}</div>
             </div>
             <Outlet/>
         </div>
