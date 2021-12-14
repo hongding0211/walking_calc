@@ -3,6 +3,11 @@ import './index.css'
 import CardButton from "../../components/popCard/cardButton";
 import {toast} from "react-hot-toast";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {login} from "../../api/client";
+import {fetchUserData} from "../../features/users/usersSlice";
+import {fetchGroups} from "../../features/group/groupSlice";
+import {useDispatch} from "react-redux";
+import {useCookies} from "react-cookie";
 
 
 function Login() {
@@ -10,7 +15,11 @@ function Login() {
     const [uidValid, setUidValid] = useState(false)
     const [inputFocus, setInputFocus] = useState(false)
 
+    const [, setCookie,] = useCookies(['authentication'])
+
     const inputRef = useRef()
+
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -31,12 +40,26 @@ function Login() {
             submit()
     }
 
-    function submit() {
+    async function submit() {
         if (!uidValid) {
             toast.error('手机号不合法')
         } else {
-            // todo
-            navigate(`${location.pathname}/register?uid=${inputRef.current.value}`)
+            const uid = inputRef.current.value
+            const res = await login(uid)
+            if (res?.code === 200) {
+                // login ok
+                toast.success('登录成功')
+                setCookie('uid', uid)
+                dispatch(fetchUserData(uid))
+                dispatch(fetchGroups(uid))
+                navigate('/home', {replace: true})
+            } else {
+                // failed to login
+                toast('请先创建用户', {
+                    icon: '😋'
+                })
+                navigate(`${location.pathname}/register?uid=${uid}`)
+            }
         }
     }
 

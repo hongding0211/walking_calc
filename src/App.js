@@ -1,25 +1,38 @@
 import './App.css'
 import React, {useEffect} from 'react'
 import {Outlet, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {Toaster} from "react-hot-toast";
+import {useCookies} from "react-cookie";
+import {login} from "./api/client";
 import {fetchUserData} from "./features/users/usersSlice";
 import {fetchGroups} from "./features/group/groupSlice";
-import {Toaster} from "react-hot-toast";
+import {useDispatch} from "react-redux";
 
 export default function App() {
 
-    const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    useEffect(() => {
-            // TODO 暂时写死 UID
-            const uid = '1111'
+    const dispatch = useDispatch()
 
-            dispatch(fetchUserData(uid))
-            dispatch(fetchGroups(uid))
-            navigate('/login')
+    const [cookies, , removeCookies] = useCookies(['authentication']);
+
+    useEffect(() => {
+            const uid = cookies.uid
+            if (!uid) {
+                navigate('/login')
+            }
+            login(uid).then(v => {
+                if (v?.code === 200) {
+                    // cookie valid
+                    dispatch(fetchUserData(uid))
+                    dispatch(fetchGroups(uid))
+                    navigate('/home')
+                } else {
+                    removeCookies('uid')
+                    navigate('/login')
+                }
+            })
         },
-        // TODO 寻求有没有更好的解决方法
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [])
 

@@ -61,3 +61,7 @@ export async function addRecord(groupId, who, paid, forWhom, type) {
 export async function deleteRecord(groupId, recordId) {
     return await fetchAndDump(`${global.host}/deleteRecord?groupID=${groupId}&recordID=${recordId}`)
 }
+
+export async function login(uid) {
+    return await fetchAndDump(`${global.host}/login?uid=${uid}`)
+}

@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import {getOneUserById} from "../../api/client";
 
 const initialState = {
+    isLogin: false,
     user: {
         uid: '',
         name: '',
@@ -35,8 +36,10 @@ const usersSlice = createSlice({
     reducers: {},
     extraReducers: {
         [fetchUserData.fulfilled]: (state, action) => {
-            if (action.payload != null)
+            if (action.payload != null) {
                 state.user = action.payload
+                state.isLogin = true
+            }
         },
         [fetchMemberData.fulfilled]: (state, action) => {
             if (action.payload != null)
@@ -47,6 +50,8 @@ const usersSlice = createSlice({
 
 
 export default usersSlice.reducer
+
+export const selectLoginStatus = state => state.users.isLogin
 
 export const selectUserData = state => state.users.user
 
