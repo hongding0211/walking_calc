@@ -17,7 +17,7 @@ export default function App() {
 
             dispatch(fetchUserData(uid))
             dispatch(fetchGroups(uid))
-            navigate('/home')
+            navigate('/login')
         },
         // TODO 寻求有没有更好的解决方法
         // eslint-disable-next-line react-hooks/exhaustive-deps
