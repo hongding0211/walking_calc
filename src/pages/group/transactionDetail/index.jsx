@@ -27,7 +27,6 @@ function TransactionDetailCard() {
         try {
             const res = await deleteRecord(groupId, transactionId)
             if (res.code === 200) {
-                // TODO 优化 slice 直接删除
                 dispatch(fetchGroups(uid))
                 return newFulfilledPromise('删除成功')
             } else {

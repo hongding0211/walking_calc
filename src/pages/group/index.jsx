@@ -13,8 +13,7 @@ import {toast} from "react-hot-toast";
 import {format} from "date-fns";
 
 
-// TODO 解决刷新问题
-// 应该是刷新后 redux 没法重新读取新数据导致
+// TODO 解决刷新问题 应该是刷新后 redux 没法重新读取新数据导致
 
 function Group() {
     const {groupId} = useParams()
@@ -69,7 +68,6 @@ function Group() {
     }
 
     function showGroupConfig() {
-        // TODO
         toast('IN DEVELOPING', {
             icon: '😋'
         })

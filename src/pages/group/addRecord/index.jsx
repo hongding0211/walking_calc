@@ -64,7 +64,6 @@ function AddRecordCard() {
                 global.categories[selectedCategoryIdx][0]
             )
             if (res?.code === 200) {
-                // TODO 操作 slice 直接写入，不用重新抓取
                 dispatch(fetchGroups(uid))
                 return newFulfilledPromise('添加成功')
             }

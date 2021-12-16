@@ -3,6 +3,7 @@ import {getOneUserById} from "../../api/client";
 
 const initialState = {
     isLogin: false,
+    joinGroup: null,
     user: {
         uid: '',
         name: '',
@@ -36,7 +37,11 @@ const usersSlice = createSlice({
     reducers: {
         quitLogin: state => {
             state.isLogin = false
-        }
+        },
+        request2JoinGroup: (state, action) => {
+            state.joinGroup = action.payload
+        },
+        finishJoinGroup: state => state.joinGroup = null
     },
     extraReducers: {
         [fetchUserData.fulfilled]: (state, action) => {
@@ -55,11 +60,13 @@ const usersSlice = createSlice({
 
 export default usersSlice.reducer
 
-export const {quitLogin} = usersSlice.actions
+export const {quitLogin, request2JoinGroup, finishJoinGroup} = usersSlice.actions
 
 export const selectLoginStatus = state => state.users.isLogin
 
 export const selectUserData = state => state.users.user
+
+export const selectJoinGroup = state => state.users.joinGroup
 
 // export const selectMemberByUid = uid => state => {
 //     const m = state.users.otherMembers.find(e => e.uid === uid)

@@ -1,4 +1,5 @@
-global.host = 'http://192.168.50.44:3000'
+global.host = 'http://192.168.50.44:3001'
+global.srvHost = 'http://192.168.50.44:3000'
 global.backgroundRefreshRate = 2
 global.categories = [
     ['🍙', '食物'],

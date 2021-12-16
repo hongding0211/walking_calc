@@ -6,11 +6,13 @@ import '../../config'
 import './index.css'
 import {Outlet, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {quitLogin, selectUserData} from "../../features/users/usersSlice";
+import {finishJoinGroup, quitLogin, selectJoinGroup, selectUserData} from "../../features/users/usersSlice";
 import MainCard from './mainCard';
 import GroupCard from "./groupCard";
 import {fetchGroups, selectGroups, selectTotalDebt} from "../../features/group/groupSlice";
 import {useCookies} from "react-cookie";
+import {joinGroup} from "../../api/client";
+import {toast} from "react-hot-toast";
 
 /*
  * @Project    : walking_calc
@@ -25,6 +27,7 @@ const Home = () => {
     const userData = useSelector(selectUserData)
     const groups = useSelector(selectGroups)
     const totalDebt = useSelector(selectTotalDebt)
+    const joinGroupId = useSelector(selectJoinGroup)
 
     const navigate = useNavigate()
 
@@ -50,6 +53,21 @@ const Home = () => {
         const timer = setInterval(() => dispatch(fetchGroups(userData.uid)), global.backgroundRefreshRate * 1000)
         return () => clearInterval(timer)
     }, [dispatch, userData.uid])
+
+    // check if there's a request for joining a new group
+    useEffect(() => {
+        if (joinGroupId) {
+            joinGroup(userData.uid, joinGroupId).then(v => {
+                if (v?.code === 200) {
+                    dispatch(fetchGroups(userData.uid))
+                    toast.success('加入成功')
+                    dispatch(finishJoinGroup)
+                } else if(v?.code===4006){
+                    toast.error('你已经在群组中')
+                }
+            })
+        }
+    }, [dispatch, joinGroupId, userData.uid])
 
     return (
         <div className='main'>

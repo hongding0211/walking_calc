@@ -7,7 +7,7 @@ const fetchAndDump = async (url) => {
 export async function getOneUserById(uid) {
     let res
     try {
-        res = await fetchAndDump(`${global.host}/getUsers?uid=${uid}`)
+        res = await fetchAndDump(`${global.srvHost}/getUsers?uid=${uid}`)
         res = res.data.users[0]
         res.img = 'data:image/png;base64,' + res.img
     } catch (e) {
@@ -19,7 +19,7 @@ export async function getOneUserById(uid) {
 export async function getUsersById(keyword) {
     let res
     try {
-        res = await fetchAndDump(`${global.host}/getUsers?keyword=${keyword}`)
+        res = await fetchAndDump(`${global.srvHost}/getUsers?keyword=${keyword}`)
         res = res.data.users
         for (let user of res)
             user.img = 'data:image/png;base64,' + user.img
@@ -32,7 +32,7 @@ export async function getUsersById(keyword) {
 export async function getGroupsByUid(uid) {
     let res
     try {
-        res = await fetchAndDump(`${global.host}/getGroups?uid=${uid}`)
+        res = await fetchAndDump(`${global.srvHost}/getGroups?uid=${uid}`)
         res = res.data.groups
     } catch (e) {
         res = []
@@ -44,26 +44,26 @@ export async function createGroup(groupName, creator, members) {
     let membersStr = ''
     for (const i in members)
         membersStr += `&member${Number(i) + 1}=${members[i].uid}`
-    return await fetchAndDump(`${global.host}/createGroup?groupName=${groupName}&creator=${creator}${membersStr}`)
+    return await fetchAndDump(`${global.srvHost}/createGroup?groupName=${groupName}&creator=${creator}${membersStr}`)
 }
 
 export async function joinGroup(uid, groupId) {
-    return await fetchAndDump(`${global.host}/joinGroup?groupID=${groupId}&uid=${uid}`)
+    return await fetchAndDump(`${global.srvHost}/joinGroup?groupID=${groupId}&uid=${uid}`)
 }
 
 export async function addRecord(groupId, who, paid, forWhom, type) {
     let forWhomStr = ''
     for (const i in forWhom)
         forWhomStr += `&forWhom${Number(i) + 1}=${forWhom[i]}`
-    return await fetchAndDump(`${global.host}/addRecord?groupID=${groupId}&who=${who}&paid=${paid}&type=${type}${forWhomStr}`)
+    return await fetchAndDump(`${global.srvHost}/addRecord?groupID=${groupId}&who=${who}&paid=${paid}&type=${type}${forWhomStr}`)
 }
 
 export async function deleteRecord(groupId, recordId) {
-    return await fetchAndDump(`${global.host}/deleteRecord?groupID=${groupId}&recordID=${recordId}`)
+    return await fetchAndDump(`${global.srvHost}/deleteRecord?groupID=${groupId}&recordID=${recordId}`)
 }
 
 export async function login(uid) {
-    return await fetchAndDump(`${global.host}/login?uid=${uid}`)
+    return await fetchAndDump(`${global.srvHost}/login?uid=${uid}`)
 }
 
 export async function register(uid, name, avatar) {
@@ -71,7 +71,7 @@ export async function register(uid, name, avatar) {
     formData.append('uid',uid)
     formData.append('name',name)
     formData.append('avatar',avatar)
-    return await (await fetch(`${global.host}/register`, {
+    return await (await fetch(`${global.srvHost}/register`, {
         method: 'POST',
         body: formData
     })).json()
