@@ -40,7 +40,6 @@ function TransactionDetailCard() {
 
     return (
         <Fragment>
-            {/*TODO onsubmit 删除操作*/}
             <PopCard title='交易详情' btnType='delete' onSubmit={submit}>
                 <div className='transaction-top flex-horizon-split flex-align-center'>
                     <div className='flex-vertical-split'>

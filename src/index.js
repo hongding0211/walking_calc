@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Main from "./pages/main";
-import CreateGroupCard from "./pages/main/addGroup/createGroup";
+import Home from "./pages/home";
+import CreateGroupCard from "./pages/home/addGroup/createGroup";
 import {Provider} from "react-redux";
 import store from './app/store'
-import JoinGroupCard from "./pages/main/addGroup/joinGroup";
-import AddGroupCard from "./pages/main/addGroup";
+import JoinGroupCard from "./pages/home/addGroup/joinGroup";
+import AddGroupCard from "./pages/home/addGroup";
 import Group from "./pages/group";
 import ShareGroup from "./pages/group/shareGroup";
 import TransactionDetailCard from "./pages/group/transactionDetail";
@@ -27,7 +27,7 @@ ReactDOM.render(
                         <Route path='login' element={<Login/>}>
                             <Route path='register' element={<RegisterCard/>}/>
                         </Route>
-                        <Route path='home' element={<Main/>}>
+                        <Route path='home' element={<Home/>}>
                             <Route path='addGroup' element={<AddGroupCard/>}>
                                 <Route path='createGroup' element={<CreateGroupCard/>}/>
                                 <Route path='joinGroup' element={<JoinGroupCard/>}/>

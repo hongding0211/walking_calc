@@ -4,11 +4,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './index.css'
 import {faChevronLeft, faCog, faPlusCircle, faQrcode} from "@fortawesome/free-solid-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
-import {selectGroupById} from "../../features/group/groupSlice";
+import {fetchGroups, selectGroupById} from "../../features/group/groupSlice";
 import {formatDebt} from "../../module/module";
 import AvatarStack from "../../components/avatarStack";
 import RecordCard from "./recordCard";
-import {fetchMemberData, selectMembersByUids} from "../../features/users/usersSlice";
+import {fetchMemberData, selectMembersByUids, selectUserData} from "../../features/users/usersSlice";
 import {toast} from "react-hot-toast";
 import {format} from "date-fns";
 
@@ -28,13 +28,16 @@ function Group() {
 
     const membersDetail = useSelector(selectMembersByUids(group.members))
 
+    const uid = useSelector(selectUserData).uid
+
     function recordCards() {
         let components = []
         let lastestTimestamp = 0
-        for(const record of group.records){
-            if(Math.abs(record.time-lastestTimestamp)>24*3600*1000){
+        for (const record of group.records) {
+            if (Math.abs(record.time - lastestTimestamp) > 24 * 3600 * 1000) {
                 lastestTimestamp = record.time
-                components.push(<div key={record.time} className='group-main-card-time-stamp'>{format(new Date(record.time),'M月d日')}</div>)
+                components.push(<div key={record.time}
+                                     className='group-main-card-time-stamp'>{format(new Date(record.time), 'M月d日')}</div>)
             }
             components.push(
                 <div key={record.recordID} onClick={() => showTransactionDetail(record.recordID)}>
@@ -72,11 +75,17 @@ function Group() {
         })
     }
 
-
     useEffect(() => {
-        // 缓存所有成员的相信数据
-        group.members.every(member => dispatch(fetchMemberData(member)))
-    }, [group.members, dispatch])
+            // cache member detail info
+            group.members.every(member => dispatch(fetchMemberData(member)))
+            const timer = setInterval(() => {
+                dispatch(fetchGroups(uid))
+                group.members.every(member => dispatch(fetchMemberData(member)))
+            }, global.backgroundRefreshRate * 1000)
+            return () => clearInterval(timer)
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [])
 
     return (
         <div>

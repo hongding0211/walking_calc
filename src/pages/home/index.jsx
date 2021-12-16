@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import Avatar from '../../components/avatar'
@@ -9,20 +9,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {quitLogin, selectUserData} from "../../features/users/usersSlice";
 import MainCard from './mainCard';
 import GroupCard from "./groupCard";
-import {selectGroups, selectTotalDebt} from "../../features/group/groupSlice";
+import {fetchGroups, selectGroups, selectTotalDebt} from "../../features/group/groupSlice";
 import {useCookies} from "react-cookie";
 
 /*
  * @Project    : walking_calc
  * @Created    : hong 2021/11/16 21:34
  * @Component  : Main
- * @Props      : uid: String 
- * @Description: The main page of the App.
+ * @Props      : uid: String
+ * @Description: The home page of the App.
 */
 
-const Main = () => {
-
-    // TODO 同步刷新 or 间隔刷新
+const Home = () => {
 
     const userData = useSelector(selectUserData)
     const groups = useSelector(selectGroups)
@@ -32,7 +30,7 @@ const Main = () => {
 
     const dispatch = useDispatch()
 
-    const [,,removeCookie] = useCookies()
+    const [, , removeCookie] = useCookies()
 
     function onAddBtnClick() {
         navigate('/home/addGroup')
@@ -42,11 +40,16 @@ const Main = () => {
         navigate(`/home/${groupId}`)
     }
 
-    function avatarClickerHandler(){
+    function avatarClickerHandler() {
         dispatch(quitLogin())
         removeCookie('uid')
         navigate('/login')
     }
+
+    useEffect(() => {
+        const timer = setInterval(() => dispatch(fetchGroups(userData.uid)), global.backgroundRefreshRate * 1000)
+        return () => clearInterval(timer)
+    }, [dispatch, userData.uid])
 
     return (
         <div className='main'>
@@ -83,4 +86,4 @@ const Main = () => {
     )
 }
 
-export default Main
+export default Home

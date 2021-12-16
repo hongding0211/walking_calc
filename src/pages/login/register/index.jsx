@@ -53,7 +53,6 @@ function RegisterCard() {
 
     return (
         <Fragment>
-            {/*TODO onsubmit*/}
             <PopCard title='注册' loadingIcon={true} onSubmit={submit} autoPopout={false}>
                 <div className='register-card-sub-text'>UID</div>
                 <div className='register-card-main-text'>{uid}</div>

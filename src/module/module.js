@@ -1,5 +1,5 @@
 export const formatDebt = debt => {
-    let res = parseFloat(debt).toLocaleString()
+    let res = parseFloat(debt).toFixed(2).toLocaleString()
     if (debt > 0)
         res = '+' + res
     return res
