@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import CardButton from './cardButton'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
@@ -26,8 +26,11 @@ function PopCard({
                      onSubmit = () => {
                          console.error('Popcard does not have a submit callback.')
                          return new Promise(resolve => (resolve('Nothing Changed')))
-                     }
+                     },
+                     autoPopout = true
                  }) {
+
+    const [pending, setPending] = useState(false)
 
     const navigate = useNavigate()
 
@@ -39,11 +42,15 @@ function PopCard({
     }
 
     async function submit() {
+        setPending(true)
         try {
             toast.success(await onSubmit())
-            closeCard()
+            if (autoPopout)
+                closeCard()
         } catch (e) {
             toast.error(e)
+        } finally {
+            setPending(false)
         }
     }
 
@@ -69,7 +76,7 @@ function PopCard({
 
                 {btnType !== 'none' &&
                 <div onClick={submit} style={{width: '100%'}}>
-                    <CardButton type={btnType} loadingIcon={loadingIcon}/>
+                    <CardButton type={btnType} loadingIcon={loadingIcon} pending={pending}/>
                 </div>
                 }
 

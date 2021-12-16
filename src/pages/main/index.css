@@ -32,3 +32,7 @@
     letter-spacing: 1px;
     color: #A3A3A3;
 }
+
+.main-avatar-container{
+    cursor: pointer;
+}

@@ -33,7 +33,11 @@ export const fetchMemberData = createAsyncThunk(
 const usersSlice = createSlice({
     name: 'users',
     initialState,
-    reducers: {},
+    reducers: {
+        quitLogin: state => {
+            state.isLogin = false
+        }
+    },
     extraReducers: {
         [fetchUserData.fulfilled]: (state, action) => {
             if (action.payload != null) {
@@ -50,6 +54,8 @@ const usersSlice = createSlice({
 
 
 export default usersSlice.reducer
+
+export const {quitLogin} = usersSlice.actions
 
 export const selectLoginStatus = state => state.users.isLogin
 

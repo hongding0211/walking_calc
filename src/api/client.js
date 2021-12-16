@@ -65,3 +65,14 @@ export async function deleteRecord(groupId, recordId) {
 export async function login(uid) {
     return await fetchAndDump(`${global.host}/login?uid=${uid}`)
 }
+
+export async function register(uid, name, avatar) {
+    let formData = new FormData()
+    formData.append('uid',uid)
+    formData.append('name',name)
+    formData.append('avatar',avatar)
+    return await (await fetch(`${global.host}/register`, {
+        method: 'POST',
+        body: formData
+    })).json()
+}

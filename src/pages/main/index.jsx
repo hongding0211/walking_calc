@@ -5,11 +5,12 @@ import Avatar from '../../components/avatar'
 import '../../config'
 import './index.css'
 import {Outlet, useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {selectUserData} from "../../features/users/usersSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {quitLogin, selectUserData} from "../../features/users/usersSlice";
 import MainCard from './mainCard';
 import GroupCard from "./groupCard";
 import {selectGroups, selectTotalDebt} from "../../features/group/groupSlice";
+import {useCookies} from "react-cookie";
 
 /*
  * @Project    : walking_calc
@@ -21,12 +22,17 @@ import {selectGroups, selectTotalDebt} from "../../features/group/groupSlice";
 
 const Main = () => {
 
+    // TODO 同步刷新 or 间隔刷新
+
     const userData = useSelector(selectUserData)
     const groups = useSelector(selectGroups)
     const totalDebt = useSelector(selectTotalDebt)
 
     const navigate = useNavigate()
 
+    const dispatch = useDispatch()
+
+    const [,,removeCookie] = useCookies()
 
     function onAddBtnClick() {
         navigate('/home/addGroup')
@@ -36,6 +42,11 @@ const Main = () => {
         navigate(`/home/${groupId}`)
     }
 
+    function avatarClickerHandler(){
+        dispatch(quitLogin())
+        removeCookie('uid')
+        navigate('/login')
+    }
 
     return (
         <div className='main'>
@@ -46,7 +57,9 @@ const Main = () => {
                         <span>群组</span>
                         <FontAwesomeIcon className='small-hover-btn-deep' icon={faPlusCircle}/>
                     </div>
-                    <Avatar size='40px' img={userData.img}/>
+                    <div className='main-avatar-container' onClick={avatarClickerHandler}>
+                        <Avatar size='40px' img={userData.img}/>
+                    </div>
                 </div>
                 <MainCard debt={totalDebt}/>
                 {groups.length === 0 && <div className='main-info-msg'>加入或创建一个群组</div>}
