@@ -14,6 +14,12 @@
     margin: 0 -20px 0 -20px;
 }
 
+@media (prefers-color-scheme: dark) {
+    .group-container-title-bar {
+        background-color: rgb(10, 10, 10, 0.7);
+    }
+}
+
 .group-container-title-bar-text {
     margin-left: 5px;
     font-weight: 500;
@@ -31,6 +37,13 @@
     justify-content: space-between;
     background-color: #ffffff;
     box-shadow: 3px 3px 15px -7px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+    .group-container-main-card {
+        background-color: #000;
+        box-shadow: 3px 3px 20px -10px rgba(52, 52, 52, 0.35);
+    }
 }
 
 .group-container-main-card-row {
@@ -82,11 +95,18 @@
     transition: box-shadow 0.3s;
 }
 
+@media (prefers-color-scheme: dark) {
+    .group-add-btn{
+        background-color: #0a0a0a;
+    }
+}
+
 @media (hover: hover) and (pointer: fine) {
     .group-add-btn:hover {
         box-shadow: 3px 3px 20px 3px rgba(0, 58, 255, 0.2);
     }
-    .group-debt-detail-btn:hover{
+
+    .group-debt-detail-btn:hover {
         color: #2f6fdc;
     }
 }

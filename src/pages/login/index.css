@@ -70,15 +70,6 @@
     width: 100%;
 }
 
-.login-input-container-valid {
-    border: 1px solid #33A81C;
-}
-
-.login-input-container-invalid {
-    border: 1px solid #c92121;
-}
-
-
 .login-input {
     border: 0;
     outline: 0;
@@ -86,6 +77,26 @@
     font-size: 15px;
     letter-spacing: 0.1rem;
     width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+    .login-input-container {
+        color: #fff;
+        border: 1px solid #343434;
+        background-color: #080808;
+    }
+    .login-input {
+        color: #fff;
+        background-color: #080808;
+    }
+}
+
+.login-input-container-valid {
+    border: 1px solid #33A81C;
+}
+
+.login-input-container-invalid {
+    border: 1px solid #c92121;
 }
 
 .login-footer {

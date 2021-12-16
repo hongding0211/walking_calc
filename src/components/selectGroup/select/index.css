@@ -23,6 +23,13 @@
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    .select-box {
+        background-color: #333;
+    }
+}
+
+
 .select-box-selected {
     background-color: #316FE2;
 }

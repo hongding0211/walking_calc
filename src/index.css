@@ -13,6 +13,13 @@ body {
     background-color: #F5F4F7;
 }
 
+@media (prefers-color-scheme: dark) {
+    body{
+        color: #fff;
+        background-color: #0a0a0a;
+    }
+}
+
 .small-title {
     margin-bottom: 5px;
     font-size: 14px;
@@ -21,11 +28,6 @@ body {
 
 .margin-top-20 {
     margin-top: 20px;
-}
-
-.split {
-    height: 1px;
-    background-color: #F5F4F7;
 }
 
 .small-hover-btn {
@@ -41,6 +43,13 @@ body {
     }
 }
 
+@media (prefers-color-scheme: dark){
+    .small-hover-btn:hover {
+        background-color: #222;
+    }
+}
+
+
 .small-hover-btn-deep {
     padding: 5px;
     border-radius: 8px;
@@ -53,6 +62,13 @@ body {
         background-color: #e0e0e0;
     }
 }
+
+@media (prefers-color-scheme: dark){
+    .small-hover-btn-deep:hover {
+        background-color: #222;
+    }
+}
+
 
 .flex-vertical-split {
     display: flex;
@@ -73,4 +89,10 @@ body {
     height: 1px;
     width: 100%;
     background-color: #e4e4e4;
+}
+
+@media (prefers-color-scheme: dark) {
+    .horizon-split {
+        background-color: #282828;
+    }
 }

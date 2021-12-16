@@ -17,11 +17,10 @@
     padding: 0 10px 0 10px;
     font-size: 14px;
     font-weight: 600;
-
     transition: border 0.3s;
 }
 
-@media(hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) {
     .input-field:hover {
         border: 1px solid #dddddd;
     }
@@ -29,4 +28,20 @@
 
 .input-field:focus {
     border: 1px solid #dddddd;
+}
+
+@media (prefers-color-scheme: dark) {
+    .input-field {
+        border: 1px solid #343434;
+        color: #fff;
+        background-color: #080808;
+    }
+
+    .input-field:hover {
+        border: 1px solid #606060;
+    }
+
+    .input-field:focus {
+        border: 1px solid #606060;
+    }
 }

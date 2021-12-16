@@ -32,3 +32,16 @@
     color: #1e1e1f;
     margin-right: 10px;
 }
+
+@media (prefers-color-scheme: dark) {
+    .searcbar-container {
+        border: 1px solid #343434;
+    }
+    .searcbar-container:hover {
+        border: 1px solid #606060;
+    }
+    .searcbar-container input {
+        color: #fff;
+        background-color: #080808;
+    }
+}

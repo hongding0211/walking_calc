@@ -27,11 +27,26 @@
     }
 }
 
+
 .file-input-field:focus {
     border: 1px solid #dddddd;
 }
 
-.file-input-text{
+@media (prefers-color-scheme: dark) {
+    .file-input-field {
+        border: 1px solid #343434;
+    }
+
+    .file-input-field:hover {
+        border: 1px solid #606060;
+    }
+
+    .file-input-field:focus {
+        border: 1px solid #606060;
+    }
+}
+
+.file-input-text {
     font-size: 12px;
     font-weight: 500;
     color: #a3a3a3;

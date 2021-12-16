@@ -12,6 +12,17 @@
     box-shadow: 3px 3px 17px -13px rgba(0, 0, 0, 0.35);
 }
 
+@media (prefers-color-scheme: dark){
+    .record-card-container{
+        background-color: #000;
+        box-shadow: 3px 3px 20px -10px rgba(52, 52, 52, 0.35);
+    }
+
+    .record-card-container:hover{
+        box-shadow: 3px 3px 20px 2px rgba(52, 52, 52, 0.10);
+    }
+}
+
 @media (hover: hover) and (pointer: fine) {
     .record-card-container:hover {
         box-shadow: 1px 1px 20px 2px rgba(0, 0, 0, 0.10);

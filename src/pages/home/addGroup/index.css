@@ -18,9 +18,15 @@
     transition: background-color 0.3s ease-out;
 }
 
-@media(hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) {
     .icon-text-container:hover {
         background-color: #f4f4f4;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .icon-text-container:hover {
+        background-color: #222;
     }
 }
 
@@ -33,4 +39,10 @@
     width: 2px;
     background-color: #e4e4e4;
     height: 100px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .vertical-splitter {
+        background-color: #282828;
+    }
 }

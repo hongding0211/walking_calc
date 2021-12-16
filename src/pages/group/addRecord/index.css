@@ -18,7 +18,7 @@
     transition: border 0.1s;
 }
 
-@media(hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) {
     .add-record-card-price:hover {
         border: 1px solid #dddddd;
     }
@@ -28,6 +28,18 @@
     border: 1px solid #dddddd;
 }
 
+
+@media (prefers-color-scheme: dark) {
+    .add-record-card-price{
+        border: 1px solid #343434;
+    }
+    .add-record-card-price:hover {
+        border: 1px solid #606060;
+    }
+    .add-record-card-price:focus {
+        border: 1px solid #606060;
+    }
+}
 
 .add-record-card-price-input {
     border: none;
@@ -42,6 +54,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .add-record-card-price-input {
+        background-color: #080808;
+        color: #fff;
+    }
 }
 
 .add-record-card-sub-text {

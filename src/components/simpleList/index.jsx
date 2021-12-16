@@ -18,7 +18,7 @@ function SimpleList(props) {
                         <div className='simple-list-item'>
                             {l}
                         </div>
-                        <div className='split'/>
+                        <div className='horizon-split'/>
                     </div>
                 )
             })}

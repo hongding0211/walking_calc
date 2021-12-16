@@ -20,6 +20,19 @@
     }
 }
 
+@media (prefers-color-scheme: dark){
+    @keyframes mask-display {
+        from {
+            background: rgba(100, 100, 100, 0);
+            backdrop-filter: saturate(100%) blur(0px);
+        }
+        to {
+            background: rgba(100, 100, 100, 0.2);
+            backdrop-filter: saturate(180%) blur(20px);
+        }
+    }
+}
+
 .pop-card {
     position: fixed;
     left: 20px;
@@ -36,6 +49,13 @@
     align-items: center;
     background-color: #ffffff;
     box-shadow: 3px 3px 15px -7px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+    .pop-card {
+        background-color: #000;
+        box-shadow: 3px 3px 20px -10px rgba(52, 52, 52, 0.35);
+    }
 }
 
 .pop-card-header {
@@ -63,9 +83,21 @@ div .pop-card-header :nth-child(2) {
     cursor: pointer;
 }
 
-@media(hover: hover) and (pointer: fine) {
+@media (prefers-color-scheme: dark) {
+    div .pop-card-header :nth-child(2) {
+        color: #bdbdbd;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
     div .pop-card-header :nth-child(2):hover {
         background-color: #e7e7e7;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    div .pop-card-header :nth-child(2):hover {
+        background-color: #222;
     }
 }
 

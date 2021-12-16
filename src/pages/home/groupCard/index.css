@@ -13,6 +13,17 @@
     transition: box-shadow 0.3s ease-out;
 }
 
+@media (prefers-color-scheme: dark) {
+    .group-card-container{
+        background-color: #000;
+        box-shadow: 3px 3px 20px -10px rgba(52, 52, 52, 0.35);
+    }
+
+    .group-card-container:hover {
+        box-shadow: 3px 3px 20px 2px rgba(52, 52, 52, 0.10);
+    }
+}
+
 @media(hover: hover) and (pointer: fine) {
     .group-card-container:hover {
         box-shadow: 3px 3px 20px 2px rgba(0, 0, 0, 0.10);

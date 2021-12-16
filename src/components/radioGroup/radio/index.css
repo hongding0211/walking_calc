@@ -19,6 +19,12 @@
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    .radio-box {
+        background-color: #333;
+    }
+}
+
 .radio-box-selected {
     background-color: #316FE2;
 }

@@ -31,3 +31,9 @@
         color: #fff;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    .simple-list-container {
+        background-color: #080808;
+    }
+}
