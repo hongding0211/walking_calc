@@ -1,7 +1,5 @@
 # Walking Calculator
 
-> 🚧 Still Under Constructing...
-
 ## 👀 Preview
 
 **一个辅助你在朋友之间记账的 App 。记录好每笔开销的明细，并帮你计算出最终的债务去向。已适配深色模式。**
@@ -11,6 +9,8 @@
 ![IMG_1838](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1838.JPEG)
 
 ![IMG_1856](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1856.JPEG)
+
+![IMG_1857](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1857.JPEG)
 
 ## ⛏ 技术栈
 
