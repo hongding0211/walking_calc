@@ -66,6 +66,8 @@ function AddRecordCard() {
             if (res?.code === 200) {
                 dispatch(fetchGroups(uid))
                 return newFulfilledPromise('添加成功')
+            } else if (res?.code === 4008){
+                return newRejectedPromise('支付方和被支付方不能为同一个人')
             }
         } catch (e) {
             return newRejectedPromise('操作失败，请稍后尝试')

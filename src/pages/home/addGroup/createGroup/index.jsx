@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectUserData} from "../../../../features/users/usersSlice";
 import {createGroup, getUsersById} from "../../../../api/client";
 import {fetchGroups} from "../../../../features/group/groupSlice";
+import {newRejectedPromise} from "../../../../module/module";
 
 /*
  * @Project    : walking_calc
@@ -62,7 +63,7 @@ const CreateGroupCard = () => {
         setFeedbackMsg('')
         const groupName = groupNameRef.current.value
         if (groupName === '') {
-            setFeedbackMsg('* 群组名称不能为空')
+            return newRejectedPromise('群组名不能为空')
         } else {
             // try to submit
             try {
