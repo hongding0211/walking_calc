@@ -1,12 +1,11 @@
 export const formatDebt = debt => {
-    let res = parseFloat(debt).toFixed(2).toLocaleString()
     if (debt > -1e-6)
-        res = '+' + Math.abs(res)
-    return res
+        return '+' + Math.abs(parseFloat(debt)).toLocaleString('en-US', {maximumFractionDigits: 2})
+    return parseFloat(debt).toLocaleString('en-US', {maximumFractionDigits: 2})
 }
 
 export const formatPrice = price => {
-    return '￥' + parseFloat(price).toFixed(2).toLocaleString()
+    return '￥' + parseFloat(price).toLocaleString('en-US', {maximumFractionDigits: 2})
 }
 
 export const newFulfilledPromise = value => new Promise(resolve => resolve(value))
