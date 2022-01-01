@@ -19,3 +19,12 @@
 - React Route v6
 - Node.js + Express (https://github.com/HongDing97/walking_calc_srv)
 
+## 🌟 Build & Run
+
+在 **/src/config.js** 中修改 `host` 地址
+
+```js
+global.host = 'http://192.168.50.44:3001'				// 前端 host
+global.srvHost = 'http://192.168.50.44:3000'		// 后端 host
+```
+
