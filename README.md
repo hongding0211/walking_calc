@@ -4,13 +4,13 @@
 
 ## 👀 Preview
 
-**一个辅助你在朋友之间记账的小 App 。记录好每笔开销的明细，并帮你计算出最终的债务去向。**
+**一个辅助你在朋友之间记账的 App 。记录好每笔开销的明细，并帮你计算出最终的债务去向。已适配深色模式。**
 
 ![IMG_1837](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1837.JPEG)
 
 ![IMG_1838](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1838.JPEG)
 
-![IMG_1839](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1839.JPEG)
+![IMG_1856](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1856.JPEG)
 
 ## ⛏ 技术栈
 
