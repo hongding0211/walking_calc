@@ -24,7 +24,7 @@
 在 **/src/config.js** 中修改 `host` 地址
 
 ```js
-global.host = 'http://192.168.50.44:3001'				// 前端 host
+global.host = 'http://192.168.50.44:3001'		// 前端 host
 global.srvHost = 'http://192.168.50.44:3000'		// 后端 host
 ```
 
