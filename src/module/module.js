@@ -6,7 +6,7 @@ export const formatDebt = debt => {
 }
 
 export const formatPrice = price => {
-    return '￥' + parseFloat(price).toLocaleString()
+    return '￥' + parseFloat(price).toFixed(2).toLocaleString()
 }
 
 export const newFulfilledPromise = value => new Promise(resolve => resolve(value))

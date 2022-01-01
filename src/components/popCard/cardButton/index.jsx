@@ -25,7 +25,7 @@ function CardButton({
                         height = '35px',
                         loadingIcon = false
                     }) {
-    if (type === 'delete')
+    if (type === 'delete' && text === '确认')
         text = '删除'
     return (
         <button

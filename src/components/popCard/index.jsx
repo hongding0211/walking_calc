@@ -21,6 +21,7 @@ import {toast} from "react-hot-toast";
 function PopCard({
                      title,
                      children,
+                     btnText,
                      btnType = 'normal',
                      loadingIcon = false,
                      onSubmit = () => {
@@ -74,10 +75,11 @@ function PopCard({
                     {children}
                 </div>
 
-                {btnType !== 'none' &&
-                <div onClick={submit} style={{width: '100%'}}>
-                    <CardButton type={btnType} loadingIcon={loadingIcon} pending={pending}/>
-                </div>
+                {
+                    btnType !== 'none' &&
+                    <div onClick={submit} style={{width: '100%'}}>
+                        <CardButton text={btnText} type={btnType} loadingIcon={loadingIcon} pending={pending}/>
+                    </div>
                 }
 
             </div>
