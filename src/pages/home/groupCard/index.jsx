@@ -17,7 +17,7 @@ import {format} from 'date-fns'
 function GroupCard(props) {
     let {groupName, memberCnt, latestEdit, debt} = props
 
-    latestEdit = latestEdit===0?'暂无记录':format(new Date(latestEdit), 'MM月dd日')
+    latestEdit = latestEdit === 0 ? '暂无记录' : format(new Date(latestEdit), 'MM月dd日')
 
     return (
         <div className='group-card-container'>
@@ -31,7 +31,7 @@ function GroupCard(props) {
                     <span className='group-card-main-text'>{latestEdit}</span>
                 </div>
                 <div className='group-card-debt'>
-                    <span className='group-card-sub-text'>{debt >= 0 ? '别人欠我的' : '我欠别人的'}</span>
+                    <span className='group-card-sub-text'>{debt > -1e-2 ? '别人欠我的' : '我欠别人的'}</span>
                     <span className='group-card-main-text'>{formatDebt(debt)}</span>
                 </div>
             </div>

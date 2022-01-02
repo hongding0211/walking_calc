@@ -6,20 +6,20 @@
  * @Description: MainCard
 */
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle, faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCircle, faCreditCard} from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 import {formatDebt} from "../../../module/module";
 
 const MainCard = (props) => {
-    const { debt } = props
+    const {debt} = props
 
     return (
         <div className='main-card'>
-            <div className={`main-card-top ${debt >= 0 ? 'color-p' : 'color-n'}`}>
+            <div className={`main-card-top ${debt > -1e-2 ? 'color-p' : 'color-n'}`}>
                 <span className="fa-layers fa-fw main-card-top-l">
-                    <FontAwesomeIcon icon={faCircle} />
-                    <FontAwesomeIcon icon={faCreditCard} inverse transform="shrink-8" />
+                    <FontAwesomeIcon icon={faCircle}/>
+                    <FontAwesomeIcon icon={faCreditCard} inverse transform="shrink-8"/>
                 </span>
                 <span className='main-card-top-r'>债务统计</span>
             </div>

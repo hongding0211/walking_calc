@@ -49,7 +49,7 @@ function DebtDetailCard() {
         }
         setDebts(newDebts)
         setCalcedDebt({
-            from: newDebts.filter(debt => debt.debt < -1e-6),
+            from: newDebts.filter(debt => debt.debt < -1e-2),
             to: newDebts.filter(debt => debt.debt >= 0)[0]
         })
     }

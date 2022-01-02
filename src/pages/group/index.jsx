@@ -120,7 +120,7 @@ function Group() {
                         债务详细 >
                     </span>
                         <div className='group-main-card-debt'>
-                            <span className='group-main-card-sub-text'>{group.debt >= 0 ? '别人欠我的' : '我欠别人的'}</span>
+                            <span className='group-main-card-sub-text'>{group.debt > -1e-2 ? '别人欠我的' : '我欠别人的'}</span>
                             <span className='group-main-card-main-text'>{formatDebt(group.debt)}</span>
                         </div>
                     </div>
