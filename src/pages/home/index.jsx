@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import Avatar from '../../components/avatar'
@@ -13,6 +13,7 @@ import {fetchGroups, selectGroups, selectTotalDebt} from "../../features/group/g
 import {useCookies} from "react-cookie";
 import {joinGroup} from "../../api/client";
 import {toast} from "react-hot-toast";
+import SimpleList from "../../components/simpleList";
 
 /*
  * @Project    : walking_calc
@@ -35,6 +36,8 @@ const Home = () => {
 
     const [, , removeCookie] = useCookies()
 
+    const [showAvatarList, setShowAvatarList] = useState(false)
+
     function onAddBtnClick() {
         navigate('/home/addGroup')
     }
@@ -43,10 +46,14 @@ const Home = () => {
         navigate(`/home/${groupId}`)
     }
 
-    function avatarClickerHandler() {
+    function logOut() {
         dispatch(quitLogin())
         removeCookie('uid')
         navigate('/login')
+    }
+
+    function avatarClickerHandler() {
+        setShowAvatarList(!showAvatarList)
     }
 
     useEffect(() => {
@@ -62,7 +69,7 @@ const Home = () => {
                     dispatch(fetchGroups(userData.uid))
                     toast.success('加入成功')
                     dispatch(finishJoinGroup)
-                } else if(v?.code===4006){
+                } else if (v?.code === 4006) {
                     toast.error('你已经在群组中')
                 }
             })
@@ -71,15 +78,23 @@ const Home = () => {
 
     return (
         <div className='main'>
-            <div className='main-page-container'>
+            <div className='main-page-container' onClick={() => showAvatarList && setShowAvatarList(false)}>
 
                 <div className='main-title'>
                     <div className='main-title-l' onClick={onAddBtnClick}>
                         <span>群组</span>
                         <FontAwesomeIcon className='small-hover-btn-deep' icon={faPlusCircle}/>
                     </div>
-                    <div className='main-avatar-container' onClick={avatarClickerHandler}>
-                        <Avatar size='40px' img={userData.img}/>
+                    <div className='main-avatar-container'>
+                        <div className='main-avatar' onClick={avatarClickerHandler}>
+                            <Avatar size='40px' img={userData.img}/>
+                        </div>
+                        {showAvatarList && <SimpleList>
+                            {[
+                                <div key='0' className='main-avatar-list-text'>{userData.name}</div>,
+                                <div key='1' className='main-avatar-list-text' onClick={logOut}>登出</div>
+                            ]}
+                        </SimpleList>}
                     </div>
                 </div>
                 <MainCard debt={totalDebt}/>
