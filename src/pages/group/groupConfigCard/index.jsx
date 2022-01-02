@@ -23,6 +23,7 @@ function GroupConfigCard() {
 
     const dispatch = useDispatch()
 
+
     async function submitHandler() {
         if (uid !== creator.uid)
             return newRejectedPromise('只有群主才可以解散')
@@ -30,8 +31,8 @@ function GroupConfigCard() {
             try {
                 const res = await dismissGroup(uid, groupId)
                 if (res?.code === 200) {
-                    navigate(-1)
                     dispatch(fetchGroups(uid))
+                    navigate(-2)
                     return newFulfilledPromise('解散成功')
                 } else
                     return newRejectedPromise('出现错误，稍后再试')
@@ -48,6 +49,7 @@ function GroupConfigCard() {
                 btnType='delete'
                 btnText='解散群组'
                 onSubmit={submitHandler}
+                autoPopout={false}
             >
                 <div className='group-config-group'>
                     <div className='group-config-text-sub'>群名</div>
