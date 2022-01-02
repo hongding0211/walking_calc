@@ -30,8 +30,8 @@ function GroupConfigCard() {
             try {
                 const res = await dismissGroup(uid, groupId)
                 if (res?.code === 200) {
-                    dispatch(fetchGroups(uid))
                     navigate(-1)
+                    dispatch(fetchGroups(uid))
                     return newFulfilledPromise('解散成功')
                 } else
                     return newRejectedPromise('出现错误，稍后再试')
