@@ -19,6 +19,10 @@
 - React Route v6
 - Node.js + Express (https://github.com/HongDing97/walking_calc_srv)
 
+### 原型图
+
+![h4gv5G](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/h4gv5G.png)
+
 ## 🌟 Build & Run
 
 在 **/src/config.js** 中修改 `host` 地址
