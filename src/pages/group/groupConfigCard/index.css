@@ -1,0 +1,30 @@
+.group-config-group {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+
+.group-config-text {
+    font-weight: 600;
+}
+
+.group-config-text-sub {
+    font-weight: 500;
+    font-size: 10px;
+    margin-bottom: 5px;
+    color: #a3a3a3;
+}
+
+.group-config-avatar {
+    display: flex;
+    align-items: center;
+}
+
+.group-config-avatar-name {
+    margin-left: 5px;
+    font-weight: 600;
+}
+
+.group-config-last-group {
+    margin-bottom: 20px;
+}

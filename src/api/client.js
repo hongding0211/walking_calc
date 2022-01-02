@@ -68,11 +68,15 @@ export async function login(uid) {
 
 export async function register(uid, name, avatar) {
     let formData = new FormData()
-    formData.append('uid',uid)
-    formData.append('name',name)
-    formData.append('avatar',avatar)
+    formData.append('uid', uid)
+    formData.append('name', name)
+    formData.append('avatar', avatar)
     return await (await fetch(`${global.srvHost}/register`, {
         method: 'POST',
         body: formData
     })).json()
+}
+
+export async function dismissGroup(uid, groupId) {
+    return await fetchAndDump(`${global.srvHost}/dissmissGroup?uid=${uid}&groupID=${groupId}`)
 }

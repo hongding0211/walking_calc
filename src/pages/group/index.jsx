@@ -9,7 +9,6 @@ import {formatDebt} from "../../module/module";
 import AvatarStack from "../../components/avatarStack";
 import RecordCard from "./recordCard";
 import {fetchMemberData, selectMembersByUids, selectUserData} from "../../features/users/usersSlice";
-import {toast} from "react-hot-toast";
 import {format} from "date-fns";
 
 
@@ -68,9 +67,7 @@ function Group() {
     }
 
     function showGroupConfig() {
-        toast('IN DEVELOPING', {
-            icon: '😋'
-        })
+        navigate(`${location.pathname}/groupConfig`)
     }
 
     useEffect(() => {
