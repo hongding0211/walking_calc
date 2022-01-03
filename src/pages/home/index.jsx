@@ -63,18 +63,20 @@ const Home = () => {
 
     // check if there's a request for joining a new group
     useEffect(() => {
-        if (joinGroupId) {
-            joinGroup(userData.uid, joinGroupId).then(v => {
-                if (v?.code === 200) {
-                    dispatch(fetchGroups(userData.uid))
-                    toast.success('加入成功')
-                } else if (v?.code === 4005 || v?.code === 4006) {
-                    toast.error('你已经在群组中')
-                }
-                dispatch(finishJoinGroup())
-            })
-        }
-    }, [dispatch, userData.uid])
+            if (joinGroupId) {
+                joinGroup(userData.uid, joinGroupId).then(v => {
+                    if (v?.code === 200) {
+                        dispatch(fetchGroups(userData.uid))
+                        toast.success('加入成功')
+                    } else if (v?.code === 4005 || v?.code === 4006) {
+                        toast.error('你已经在群组中')
+                    }
+                    dispatch(finishJoinGroup())
+                })
+            }
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [dispatch, userData.uid])
 
     return (
         <div className='main'>
