@@ -1,12 +1,22 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import {getGroupsByUid} from "../../api/client";
+import {newFulfilledPromise, newRejectedPromise} from "../../module/module";
+import _ from 'lodash'
 
 const initialState = []
+
+let lastGroupsData = null
 
 export const fetchGroups = createAsyncThunk(
     'group/fetchGroups',
     async (uid) => {
-        return await getGroupsByUid(uid)
+        const res = await getGroupsByUid(uid)
+        if (_.isEqual(lastGroupsData, res)) {
+            return newRejectedPromise('cached')
+        } else {
+            lastGroupsData = res
+            return newFulfilledPromise(res)
+        }
     }
 )
 
@@ -18,7 +28,9 @@ const groupSlice = createSlice({
         [fetchGroups.fulfilled]: (state, action) => {
             const uid = action.meta.arg
             state.length = 0
-            for (let group of action.payload) {
+            // must use deep copy
+            let groups = JSON.parse(JSON.stringify(action.payload))
+            for (let group of groups) {
                 const recordLength = group.records.length
                 let latestEdit = 0
                 let debt = 0

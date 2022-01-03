@@ -30,10 +30,10 @@ function Group() {
 
     function recordCards() {
         let components = []
-        let lastestTimestamp = 0
+        let latestTimeStamp = 0
         for (const record of group.records) {
-            if (Math.abs(record.time - lastestTimestamp) > 24 * 3600 * 1000) {
-                lastestTimestamp = record.time
+            if (Math.abs(record.time - latestTimeStamp) > 24 * 3600 * 1000) {
+                latestTimeStamp = record.time
                 components.push(<div key={record.time}
                                      className='group-main-card-time-stamp'>{format(new Date(record.time), 'M月d日')}</div>)
             }
