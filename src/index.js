@@ -46,6 +46,7 @@ ReactDOM.render(
                                 <Route path='groupConfig' element={<GroupConfigCard/>}/>
                                 <Route path=':transactionId' element={<TransactionDetailCard/>}/>
                             </Route>
+                            <Route path='join/:joinGroupId' element={<App/>}/>
                         </Route>
                         <Route path='/*' element={<App/>}/>
                     </Routes>

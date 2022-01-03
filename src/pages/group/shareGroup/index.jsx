@@ -8,7 +8,7 @@ const QRCode = require('qrcode.react');
 function ShareGroup() {
     const {groupId} = useParams()
 
-    const shareLink = `${global.host}?share=${groupId}`
+    const shareLink = `${global.host}/#/join/${groupId}`
 
     return (
         <div>

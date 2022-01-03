@@ -1,6 +1,6 @@
 import './App.css'
 import React, {useEffect} from 'react'
-import {Outlet, useNavigate, useSearchParams} from "react-router-dom";
+import {Outlet, useNavigate, useParams} from "react-router-dom";
 import {Toaster} from "react-hot-toast";
 import {useCookies} from "react-cookie";
 import {login} from "./api/client";
@@ -16,12 +16,11 @@ export default function App() {
 
     const [cookies, , removeCookies] = useCookies(['authentication']);
 
-    const [searchParams] = useSearchParams()
+    const {joinGroupId} = useParams()
 
     useEffect(() => {
-            const requestJoinGroupId = searchParams.get('share')
-            if (requestJoinGroupId) {
-                dispatch(request2JoinGroup(requestJoinGroupId))
+            if (joinGroupId) {
+                dispatch(request2JoinGroup(joinGroupId))
             }
 
             const uid = cookies.uid

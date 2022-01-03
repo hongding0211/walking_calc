@@ -68,10 +68,10 @@ const Home = () => {
                 if (v?.code === 200) {
                     dispatch(fetchGroups(userData.uid))
                     toast.success('加入成功')
-                    dispatch(finishJoinGroup)
-                } else if (v?.code === 4006) {
+                } else if (v?.code === 4005) {
                     toast.error('你已经在群组中')
                 }
+                dispatch(finishJoinGroup())
             })
         }
     }, [dispatch, joinGroupId, userData.uid])

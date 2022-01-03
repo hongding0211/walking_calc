@@ -41,7 +41,9 @@ const usersSlice = createSlice({
         request2JoinGroup: (state, action) => {
             state.joinGroup = action.payload
         },
-        finishJoinGroup: state => state.joinGroup = null
+        finishJoinGroup: state => {
+            state.joinGroup = null
+        }
     },
     extraReducers: {
         [fetchUserData.fulfilled]: (state, action) => {
