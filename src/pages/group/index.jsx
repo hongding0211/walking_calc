@@ -32,7 +32,7 @@ function Group() {
         let components = []
         let latestTimeStamp = 0
         for (const record of group.records) {
-            if (Math.abs(record.time - latestTimeStamp) > 24 * 3600 * 1000) {
+            if (latestTimeStamp === 0 || new Date(record.time).getDate() !== new Date(latestTimeStamp).getDate()) {
                 latestTimeStamp = record.time
                 components.push(<div key={record.time}
                                      className='group-main-card-time-stamp'>{format(new Date(record.time), 'M月d日')}</div>)
