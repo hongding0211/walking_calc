@@ -18,7 +18,7 @@ const AvatarStack = props => {
         <div className='avatar-stack-container'>
             {props.users.map(user => {
                 return (
-                    <span key={user.uid} style={{'height': props.size, 'margin-right': '5px'}} onClick={() => {
+                    <span key={user.uid} style={{'height': props.size, 'marginRight': '5px'}} onClick={() => {
                         if (props.allowDelete) {
                             props.onAvatarDelete(user)
                         }

@@ -22,11 +22,12 @@ function Group() {
 
     const dispatch = useDispatch()
 
-    const group = useSelector(selectGroupById(groupId))
 
-    const membersDetail = useSelector(selectMembersByUids(group.members))
+    let group = useSelector(selectGroupById(groupId))
 
-    const uid = useSelector(selectUserData).uid
+    let membersDetail = useSelector(selectMembersByUids(group.members))
+
+    let uid = useSelector(selectUserData).uid
 
     function recordCards() {
         let components = []

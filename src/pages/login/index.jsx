@@ -49,7 +49,7 @@ function Login() {
             if (res?.code === 200) {
                 // login ok
                 toast.success('登录成功')
-                setCookie('uid', uid)
+                setCookie('uid', uid, {expires: new Date(Date.now() + 30 * 24 * 3600 * 1000)})
                 dispatch(fetchUserData(uid))
                 dispatch(fetchGroups(uid))
                 navigate('/home', {replace: true})

@@ -42,6 +42,7 @@ ReactDOM.render(
                             <Route path=':transactionId' element={<TransactionDetailCard/>}/>
                         </Route>
                     </Route>
+                    <Route path='*' element={<App/>}/>
                 </Routes>
             </BrowserRouter>
         </Provider>
