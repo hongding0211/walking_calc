@@ -11,9 +11,6 @@ import RecordCard from "./recordCard";
 import {fetchMemberData, selectMembersByUids, selectUserData} from "../../features/users/usersSlice";
 import {format} from "date-fns";
 
-
-// TODO 解决刷新问题 应该是刷新后 redux 没法重新读取新数据导致
-
 function Group() {
     const {groupId} = useParams()
 
