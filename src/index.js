@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import Home from "./pages/home";
 import CreateGroupCard from "./pages/home/addGroup/createGroup";
 import {Provider} from "react-redux";
@@ -27,7 +27,7 @@ ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-                <BrowserRouter>
+                <HashRouter>
                     <Routes>
                         <Route path='/' element={<App/>}>
                             <Route path='login' element={<Login/>}>
@@ -47,9 +47,9 @@ ReactDOM.render(
                                 <Route path=':transactionId' element={<TransactionDetailCard/>}/>
                             </Route>
                         </Route>
-                        <Route path='*' element={<App/>}/>
+                        <Route path='/*' element={<App/>}/>
                     </Routes>
-                </BrowserRouter>
+                </HashRouter>
             </PersistGate>
         </Provider>
     </React.StrictMode>
