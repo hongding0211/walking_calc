@@ -18,33 +18,39 @@ import AddRecordCard from "./pages/group/addRecord";
 import Login from "./pages/login";
 import RegisterCard from "./pages/login/register";
 import GroupConfigCard from "./pages/group/groupConfigCard";
+import {PersistGate} from "redux-persist/integration/react";
+import persistStore from "redux-persist/es/persistStore";
+
+let persistor = persistStore(store)
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/' element={<App/>}>
-                        <Route path='login' element={<Login/>}>
-                            <Route path='register' element={<RegisterCard/>}/>
-                        </Route>
-                        <Route path='home' element={<Home/>}>
-                            <Route path='addGroup' element={<AddGroupCard/>}>
-                                <Route path='createGroup' element={<CreateGroupCard/>}/>
-                                <Route path='joinGroup' element={<JoinGroupCard/>}/>
+            <PersistGate loading={null} persistor={persistor}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path='/' element={<App/>}>
+                            <Route path='login' element={<Login/>}>
+                                <Route path='register' element={<RegisterCard/>}/>
+                            </Route>
+                            <Route path='home' element={<Home/>}>
+                                <Route path='addGroup' element={<AddGroupCard/>}>
+                                    <Route path='createGroup' element={<CreateGroupCard/>}/>
+                                    <Route path='joinGroup' element={<JoinGroupCard/>}/>
+                                </Route>
+                            </Route>
+                            <Route path='home/:groupId' element={<Group/>}>
+                                <Route path='share' element={<ShareGroup/>}/>
+                                <Route path='debtDetail' element={<DebtDetailCard/>}/>
+                                <Route path='addRecord' element={<AddRecordCard/>}/>
+                                <Route path='groupConfig' element={<GroupConfigCard/>}/>
+                                <Route path=':transactionId' element={<TransactionDetailCard/>}/>
                             </Route>
                         </Route>
-                        <Route path='home/:groupId' element={<Group/>}>
-                            <Route path='share' element={<ShareGroup/>}/>
-                            <Route path='debtDetail' element={<DebtDetailCard/>}/>
-                            <Route path='addRecord' element={<AddRecordCard/>}/>
-                            <Route path='groupConfig' element={<GroupConfigCard/>}/>
-                            <Route path=':transactionId' element={<TransactionDetailCard/>}/>
-                        </Route>
-                    </Route>
-                    <Route path='*' element={<App/>}/>
-                </Routes>
-            </BrowserRouter>
+                        <Route path='*' element={<App/>}/>
+                    </Routes>
+                </BrowserRouter>
+            </PersistGate>
         </Provider>
     </React.StrictMode>
     , document.getElementById('root')
