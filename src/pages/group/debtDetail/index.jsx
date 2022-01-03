@@ -82,8 +82,8 @@ function DebtDetailCard() {
     return (
         <Fragment>
             <PopCard title='债务详细' btnType='delete' btnText='清空债务' onSubmit={clearDebt}>
+                <div className='debt-detail-text-sub'>债务列表</div>
                 <div className='debt-detail-members'>
-                    <div className='debt-detail-text-sub'>债务列表</div>
                     {
                         debts.map(debt => {
                             return (
@@ -100,15 +100,17 @@ function DebtDetailCard() {
                 </div>
                 <div className='debt-detail-simplify flex-vertical-split'>
                     <div className='debt-detail-text-sub'>{calcedDebt.from.length > 0 ? '债务和解' : '所有债务已和解'}</div>
-                    {
-                        calcedDebt.from.map(debt => {
-                            return (
-                                <div key={debt.uid} className='transaction-single-detail'>
-                                    <DebtTransfer from={debt} to={calcedDebt.to} due={debt.debt}/>
-                                </div>
-                            )
-                        })
-                    }
+                    <div className='debt-detail-transfer-container'>
+                        {
+                            calcedDebt.from.map(debt => {
+                                return (
+                                    <div key={debt.uid} className='transaction-single-detail'>
+                                        <DebtTransfer from={debt} to={calcedDebt.to} due={debt.debt}/>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </PopCard>
         </Fragment>

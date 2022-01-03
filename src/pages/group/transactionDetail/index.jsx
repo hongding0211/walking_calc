@@ -47,13 +47,13 @@ function TransactionDetailCard() {
                     </div>
                     <MemberCount count={transaction.forWhom.length}/>
                 </div>
+                <div className='transaction-sub-text'>谁付的钱</div>
                 <div className='transaction-record'>
-                    <div className='transaction-sub-text'>谁付的钱</div>
                     <SingleTransactionDetail user={members.find(e => e.uid === transaction.who)}
                                              due={transaction.paid}/>
                 </div>
+                <div className='transaction-sub-text'>为谁</div>
                 <div className='transaction-record transaction-for-whom'>
-                    <div className='transaction-sub-text'>为谁</div>
                     {transaction.forWhom.map(uid => {
                         return <div key={uid} className='transaction-single-detail'>
                             <SingleTransactionDetail
