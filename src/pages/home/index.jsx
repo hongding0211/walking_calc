@@ -74,7 +74,7 @@ const Home = () => {
                 dispatch(finishJoinGroup())
             })
         }
-    }, [dispatch, joinGroupId, userData.uid])
+    }, [dispatch, userData.uid])
 
     return (
         <div className='main'>
