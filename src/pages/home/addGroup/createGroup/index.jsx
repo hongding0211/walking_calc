@@ -93,7 +93,8 @@ const CreateGroupCard = () => {
                     <Input title='群名' inputRef={groupNameRef}/>
                     <span className='small-title margin-top-20'>组内成员</span>
                     <div className='create-group-avatar-stack-container'>
-                        <Avatar size='32px' img={creator.img}/>
+                        <div className='create-group-avatar-stack-container-1'><Avatar size='32px' img={creator.img}/>
+                        </div>
                         <AvatarStack size='32px' users={members} allowDelete={true}
                                      onAvatarDelete={dropItem}/>
                     </div>
