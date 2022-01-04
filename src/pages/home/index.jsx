@@ -56,6 +56,10 @@ const Home = () => {
         setShowAvatarList(!showAvatarList)
     }
 
+    function about() {
+        navigate('/home/about')
+    }
+
     useEffect(() => {
         const timer = setInterval(() => dispatch(fetchGroups(userData.uid)), global.backgroundRefreshRate * 1000)
         return () => clearInterval(timer)
@@ -94,7 +98,8 @@ const Home = () => {
                         {showAvatarList && <SimpleList>
                             {[
                                 <div key='0' className='main-avatar-list-text'>{userData.name}</div>,
-                                <div key='1' className='main-avatar-list-text' onClick={logOut}>登出</div>
+                                <div key='1' className='main-avatar-list-text' onClick={logOut}>登出</div>,
+                                <div key='2' className='main-avatar-list-text' onClick={about}>关于</div>
                             ]}
                         </SimpleList>}
                     </div>

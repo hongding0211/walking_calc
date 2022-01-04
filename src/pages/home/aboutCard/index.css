@@ -1,0 +1,28 @@
+.about-container {
+    display: flex;
+    margin: 0 10px;
+}
+
+.about-text-container {
+    display: flex;
+    margin-left: 40px;
+    flex-direction: column;
+}
+
+.about-text-main {
+    font-weight: 700;
+}
+
+.about-text-2 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.about-text-sub {
+    color: #a3a3a3;
+    font-size: 12px;
+}
+
+.about-text-container a {
+    color: #a3a3a3;
+}

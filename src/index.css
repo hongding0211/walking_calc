@@ -34,6 +34,15 @@ body {
     margin-right: 10px;
 }
 
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+
 .small-hover-btn {
     border-radius: 8px;
     padding: 5px;

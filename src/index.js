@@ -20,6 +20,7 @@ import RegisterCard from "./pages/login/register";
 import GroupConfigCard from "./pages/group/groupConfigCard";
 import {PersistGate} from "redux-persist/integration/react";
 import persistStore from "redux-persist/es/persistStore";
+import About from "./pages/home/aboutCard";
 
 let persistor = persistStore(store)
 
@@ -38,6 +39,7 @@ ReactDOM.render(
                                     <Route path='createGroup' element={<CreateGroupCard/>}/>
                                     <Route path='joinGroup' element={<JoinGroupCard/>}/>
                                 </Route>
+                                <Route path='about' element={<About/>}/>
                             </Route>
                             <Route path='home/:groupId' element={<Group/>}>
                                 <Route path='share' element={<ShareGroup/>}/>
