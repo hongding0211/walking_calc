@@ -23,6 +23,7 @@ function GroupConfigCard() {
 
     const dispatch = useDispatch()
 
+    const members = useSelector(selectMembersByUids(group.members.slice(1)))
 
     async function submitHandler() {
         if (uid !== creator.uid)
@@ -61,6 +62,18 @@ function GroupConfigCard() {
                     <div className='group-config-avatar'>
                         <Avatar img={creator.img} size='20px'/>
                         <div className='group-config-avatar-name'>{creator.name}</div>
+                    </div>
+                </div>
+                <div className='horizon-split'/>
+                <div className='group-config-group'>
+                    <div className='group-config-text-sub'>组员({members.length})</div>
+                    <div className='group-config-member'>
+                        {members.map(member => (
+                            <div className='group-config-avatar'>
+                                <Avatar img={member.img} size='16px'/>
+                                <div className='group-config-avatar-name'>{member.name}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className='horizon-split'/>

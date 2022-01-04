@@ -38,3 +38,11 @@
     max-height: 150px;
     overflow: auto;
 }
+
+.transaction-type {
+    margin-top: -5px;
+}
+
+.transaction-top-l {
+    align-items: center;
+}

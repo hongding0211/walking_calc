@@ -32,8 +32,10 @@ function Group() {
         for (const record of group.records) {
             if (latestTimeStamp === 0 || new Date(record.time).getDate() !== new Date(latestTimeStamp).getDate()) {
                 latestTimeStamp = record.time
-                components.push(<div key={record.time}
-                                     className='group-main-card-time-stamp'>{format(new Date(record.time), 'M月d日')}</div>)
+                components.push(
+                    <div key={record.time} className='group-main-card-time-stamp'>
+                        {format(new Date(record.time), 'M月d日')}
+                    </div>)
             }
             components.push(
                 <div key={record.recordID} onClick={() => showTransactionDetail(record.recordID)}>

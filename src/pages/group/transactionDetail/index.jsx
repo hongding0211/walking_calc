@@ -10,6 +10,7 @@ import {selectMembersByUids, selectUserData} from "../../../features/users/users
 import SingleTransactionDetail from "./singleTransactionDetaili";
 import {deleteRecord} from "../../../api/client";
 import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
+import CategoryIcon from "../addRecord/categoryIcon";
 
 function TransactionDetailCard() {
 
@@ -41,9 +42,17 @@ function TransactionDetailCard() {
         <Fragment>
             <PopCard title='交易详情' btnType='delete' onSubmit={submit}>
                 <div className='transaction-top flex-horizon-split flex-align-center'>
-                    <div className='flex-vertical-split'>
-                        <span className='transaction-date-sub'>{format(new Date(transaction.time), 'yyyy年M月d日')}</span>
-                        <span className='transaction-date'>{format(new Date(transaction.time), 'HH:mm')}</span>
+                    <div className='flex-horizon-split transaction-top-l'>
+                        <div className='transaction-type margin-right-10'>
+                            <CategoryIcon icon={transaction.type}
+                                          text={global.categories.find(e => e[0] === transaction.type)[1]}/>
+                        </div>
+                        <div className='vertical-splitter margin-right-10' style={{'height': '40px'}}/>
+                        <div className='flex-vertical-split'>
+                            <span
+                                className='transaction-date-sub'>{format(new Date(transaction.time), 'yyyy年M月d日')}</span>
+                            <span className='transaction-date'>{format(new Date(transaction.time), 'HH:mm')}</span>
+                        </div>
                     </div>
                     <MemberCount count={transaction.forWhom.length}/>
                 </div>
@@ -52,7 +61,7 @@ function TransactionDetailCard() {
                     <SingleTransactionDetail user={members.find(e => e.uid === transaction.who)}
                                              due={transaction.paid}/>
                 </div>
-                <div className='transaction-sub-text'>为谁</div>
+                <div className='transaction-sub-text'>为谁({transaction.forWhom.length})</div>
                 <div className='transaction-record transaction-for-whom'>
                     {transaction.forWhom.map(uid => {
                         return <div key={uid} className='transaction-single-detail'>

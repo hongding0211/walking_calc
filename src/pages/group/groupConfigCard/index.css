@@ -18,6 +18,7 @@
 .group-config-avatar {
     display: flex;
     align-items: center;
+    margin-right: 5px;
 }
 
 .group-config-avatar-name {
@@ -27,4 +28,10 @@
 
 .group-config-last-group {
     margin-bottom: 20px;
+}
+
+.group-config-member {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px !important;
 }
