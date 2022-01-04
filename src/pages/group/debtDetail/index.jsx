@@ -20,7 +20,7 @@ function DebtDetailCard() {
     const members = useSelector(selectMembersByUids(group.members))
 
     const [debts, setDebts] = useState([])
-    const [calcedDebt, setCalcedDebt] = useState({from: [], to: []})
+    const [calcedDebt, setCalcedDebt] = useState([])
 
     function calculateOnesDebt(uid) {
         let debt = 0
@@ -48,10 +48,24 @@ function DebtDetailCard() {
             })
         }
         setDebts(newDebts)
-        setCalcedDebt({
-            from: newDebts.filter(debt => debt.debt < -1e-2),
-            to: newDebts.filter(debt => debt.debt >= 0)[0]
-        })
+
+
+        let debts = {
+            from: newDebts.filter(debt => debt.debt < -1e-2).sort((x, y) => y.debt - x.debt),
+            to: newDebts.filter(debt => debt.debt >= 0).sort((x, y) => y.debt - x.debt)
+        }
+        debts = JSON.parse(JSON.stringify(debts))
+        let newCalcDebts = []
+        for (let pay of debts.from) {
+            let payAmount = Math.abs(pay.debt)
+            for (let i = 0; payAmount > 0 && i < debts.to.length; i++) {
+                const payDue = payAmount <= debts.to[i].debt ? payAmount : debts.to[i].debt
+                payAmount -= payDue
+                debts.to[i].debt -= payDue
+                newCalcDebts.push({from: pay, to: debts.to[i], due: payDue})
+            }
+        }
+        setCalcedDebt(newCalcDebts)
     }
 
     async function clearDebt() {
@@ -99,13 +113,13 @@ function DebtDetailCard() {
                     }
                 </div>
                 <div className='debt-detail-simplify flex-vertical-split'>
-                    <div className='debt-detail-text-sub'>{calcedDebt.from.length > 0 ? '债务和解' : '所有债务已和解'}</div>
+                    <div className='debt-detail-text-sub'>{-1 > 0 ? '债务和解' : '所有债务已和解'}</div>
                     <div className='debt-detail-transfer-container'>
                         {
-                            calcedDebt.from.map(debt => {
+                            calcedDebt.map(debt => {
                                 return (
-                                    <div key={debt.uid} className='transaction-single-detail'>
-                                        <DebtTransfer from={debt} to={calcedDebt.to} due={debt.debt}/>
+                                    <div key={debt.from.uid + debt.to.uid} className='transaction-single-detail'>
+                                        <DebtTransfer from={debt.from} to={debt.to} due={debt.due}/>
                                     </div>
                                 )
                             })

@@ -6,7 +6,7 @@ import './index.css'
 import {formatPrice} from "../../../../module/module";
 
 function DebtTransfer(props) {
-    const {from, to} = props
+    const {from, to, due} = props
     return (
         <Fragment>
             <div className='flex-horizon-split flex-align-center debt-transfer-container'>
@@ -20,7 +20,7 @@ function DebtTransfer(props) {
                     <div className='avatar-name-text'>{to.name}</div>
                 </div>
             </div>
-            <div className='debt-transfer-due'>{formatPrice(-Number(from.debt))}</div>
+            <div className='debt-transfer-due'>{formatPrice(due)}</div>
         </Fragment>
     );
 }

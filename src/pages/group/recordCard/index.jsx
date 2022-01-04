@@ -28,7 +28,7 @@ function RecordCard(props) {
                     <span className='record-card-date'>{format(new Date(record.time), 'MM月dd日 HH:mm')}</span>
                 </div>
             </div>
-            <div className='flex-vertical-split record-card-right '>
+            <div className='record-card-right'>
                 <span className='record-card-price'>{formatPrice(record.paid)}</span>
                 <span className='record-card-price-sub'>我的那份: {formatPrice(record.myPart)}</span>
             </div>
