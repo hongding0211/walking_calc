@@ -2,8 +2,8 @@ import React, {Fragment, useEffect, useState} from 'react';
 import PopCard from "../../../components/popCard";
 import {useParams} from "react-router-dom";
 import './index.css'
-import {useSelector} from "react-redux";
-import {selectGroupById} from "../../../features/group/groupSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchGroups, selectGroupById} from "../../../features/group/groupSlice";
 import {selectMembersByUids, selectUserData} from "../../../features/users/usersSlice";
 import SingleTransactionDetail from "../transactionDetail/singleTransactionDetaili";
 import DebtTransfer from "./debtTransfer";
@@ -21,6 +21,8 @@ function DebtDetailCard() {
 
     const [debts, setDebts] = useState([])
     const [calcedDebt, setCalcedDebt] = useState([])
+
+    const dispatch = useDispatch()
 
     function calculateOnesDebt(uid) {
         let debt = 0
@@ -82,9 +84,10 @@ function DebtDetailCard() {
                 if (res?.code === 200)
                     flag = flag && true
             }
-            if (flag)
+            if (flag) {
+                dispatch(fetchGroups(uid))
                 return newFulfilledPromise('债务已和解')
-            else
+            } else
                 return newRejectedPromise('操作失败')
         } catch (e) {
             return newRejectedPromise('操作失败')
