@@ -9,7 +9,7 @@ function About() {
         <Fragment>
             <PopCard title='About' btnType='none'>
                 <div className='about-container'>
-                    <img src={logo} alt='logo' style={{'height': '68px', 'width': '68px'}}/>
+                    <img src={logo} alt='logo' style={{'height': '70px', 'width': '70px'}}/>
                     <div className='about-text-container'>
                         <span className='about-text-main margin-bottom-5'>Walking Calculator</span>
                         <span className='about-text-2 margin-bottom-15'>Build with React</span>
