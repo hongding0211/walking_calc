@@ -14,7 +14,7 @@ function SingleTransactionDetail({user, due, colored = false}) {
                 </div>
                 {!colored && <span className='single-transaction-detail-text'>{formatPrice(due)}</span>}
                 {colored && <span
-                    className={`single-transaction-detail-text ${Number(due) >= 0 ? 'single-transaction-price-p' : 'single-transaction-price-n'}`}>{formatDebt(due)}</span>}
+                    className={`single-transaction-detail-text ${Number(due) > -1e-2 ? 'single-transaction-price-p' : 'single-transaction-price-n'}`}>{formatDebt(due)}</span>}
             </div>
             <div className='horizon-split'/>
         </div>

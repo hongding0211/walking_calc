@@ -60,6 +60,8 @@ function DebtDetailCard() {
             let payAmount = Math.abs(pay.debt)
             for (let i = 0; payAmount > 0 && i < debts.to.length; i++) {
                 const payDue = payAmount <= debts.to[i].debt ? payAmount : debts.to[i].debt
+                if (payDue < 1e-2)
+                    continue
                 payAmount -= payDue
                 debts.to[i].debt -= payDue
                 newCalcDebts.push({from: pay, to: debts.to[i], due: payDue})
@@ -69,14 +71,14 @@ function DebtDetailCard() {
     }
 
     async function clearDebt() {
-        if (calcedDebt.from.length === 0)
+        if (calcedDebt.length === 0)
             return newRejectedPromise('所有债务已和解')
         if (group.creator !== uid)
             return newRejectedPromise('只有群主才可以清空债务')
         try {
             let flag = true
-            for (const debt of calcedDebt.from) {
-                const res = await addRecord(groupId, debt.uid, Math.abs(Number(debt.debt)), [calcedDebt.to.uid], '💶')
+            for (const debt of calcedDebt) {
+                const res = await addRecord(groupId, debt.from.uid, debt.due, [debt.to.uid], '💶')
                 if (res?.code === 200)
                     flag = flag && true
             }
@@ -113,7 +115,7 @@ function DebtDetailCard() {
                     }
                 </div>
                 <div className='debt-detail-simplify flex-vertical-split'>
-                    <div className='debt-detail-text-sub'>{-1 > 0 ? '债务和解' : '所有债务已和解'}</div>
+                    <div className='debt-detail-text-sub'>{calcedDebt.length > 0 ? '债务和解' : '所有债务已和解'}</div>
                     <div className='debt-detail-transfer-container'>
                         {
                             calcedDebt.map(debt => {
