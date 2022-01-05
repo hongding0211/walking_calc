@@ -27,16 +27,3 @@
 global.host = 'http://192.168.50.44:3001'		// 前端 host
 global.srvHost = 'http://192.168.50.44:3000'		// 后端 host
 ```
-
-### Electron
-
-切换至 `electron` 分支，再进行打包
-
-```bash
-# 首次运行先安装 electron 相关依赖
-yarn install            
-# 打包，输出在 ./dist 目录
-yarn run electron-pack
-```
-
-![RHdOUP](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/RHdOUP.png)
