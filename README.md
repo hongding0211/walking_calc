@@ -39,4 +39,4 @@ yarn install
 yarn run electron-pack
 ```
 
-![Vtb3jR](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/Vtb3jR.png)
+![RHdOUP](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/RHdOUP.png)
