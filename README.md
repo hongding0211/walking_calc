@@ -4,13 +4,9 @@
 
 ## 👀 Preview
 
-![IMG_1837](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1837.JPEG)
+![IMG_1931](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1931.JPEG)
 
-![IMG_1838](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1838.JPEG)
-
-![IMG_1856](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1856.JPEG)
-
-![IMG_1857](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1857.JPEG)
+![IMG_1932](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1932.JPEG)
 
 ## ⛏ 技术栈
 
@@ -42,3 +38,5 @@ yarn install
 # 打包，输出在 ./dist 目录
 yarn run electron-pack
 ```
+
+![Vtb3jR](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/Vtb3jR.png)
