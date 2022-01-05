@@ -8,7 +8,7 @@
 
 ![IMG_1945](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1945.JPEG)
 
-![IMG_1951](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1951.JPEG)
+![IMG_1955](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1955.JPEG)
 
 ## ⛏ 技术栈
 
