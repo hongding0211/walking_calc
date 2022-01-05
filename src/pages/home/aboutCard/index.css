@@ -18,9 +18,13 @@
     font-weight: 500;
 }
 
+.about-text-3 {
+    font-size: 12px;
+    font-weight: 500;
+}
+
 .about-text-sub {
     color: #a3a3a3;
-    font-size: 12px;
 }
 
 .about-text-container a {
