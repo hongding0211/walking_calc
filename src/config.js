@@ -1,4 +1,4 @@
-global.host = 'http://192.168.50.44:3001'
+global.host = 'http://192.168.50.44:5500'
 global.srvHost = 'http://192.168.50.44:3000'
 global.backgroundRefreshRate = 2
 global.categories = [
