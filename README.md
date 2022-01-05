@@ -1,8 +1,8 @@
 # Walking Calculator
 
-## 👀 Preview
-
 **一个辅助你在朋友之间记账的 App 。记录好每笔开销的明细，并帮你计算出最终的债务去向。已适配深色模式。**
+
+## 👀 Preview
 
 ![IMG_1837](https://raw.githubusercontent.com/HongDing97/imgs/main/uPic/IMG_1837.JPEG)
 
@@ -32,3 +32,13 @@ global.host = 'http://192.168.50.44:3001'		// 前端 host
 global.srvHost = 'http://192.168.50.44:3000'		// 后端 host
 ```
 
+### Electron
+
+切换至 `electron` 分支，再进行打包
+
+```bash
+# 首次运行先安装 electron 相关依赖
+yarn install            
+# 打包，输出在 ./dist 目录
+yarn run electron-pack
+```
