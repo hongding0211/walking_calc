@@ -13,11 +13,11 @@ function About() {
                     <div className='about-text-container'>
                         <span className='about-text-main margin-bottom-5'>Walking Calculator</span>
                         <span className='about-text-2 margin-bottom-15'>Build with React</span>
-                        <span className='about-text-2 margin-bottom-5'>Commit: {buildInfo.commit}</span>
-                        <span className='about-text-2 margin-bottom-15'>Build: {buildInfo.build}</span>
+                        <span className='about-text-3 margin-bottom-5'>Commit: {buildInfo.commit}</span>
+                        <span className='about-text-3 margin-bottom-15'>Build: {buildInfo.build}</span>
                         <span
-                            className='about-text-2 about-text-sub margin-bottom-5'>© {new Date(Date.now()).getFullYear()} Hong</span>
-                        <span className='about-text-2 margin-bottom-5 about-text-sub'>
+                            className='about-text-3 about-text-sub margin-bottom-5'>© {new Date(Date.now()).getFullYear()} Hong</span>
+                        <span className='about-text-3 margin-bottom-5 about-text-sub'>
                             <a href='https://github.com/HongDing97/walking_calc' target='_blank' rel="noreferrer">Github Repo</a>
                         </span>
                     </div>
