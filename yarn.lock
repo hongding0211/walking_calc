@@ -7270,6 +7270,11 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+mapvgl@^1.0.0-beta.139:
+  version "1.0.0-beta.141"
+  resolved "https://registry.npmmirror.com/mapvgl/download/mapvgl-1.0.0-beta.141.tgz#a0ba60d7f049abc3680a22933a480f1fe9339dce"
+  integrity sha512-ZLDmq1JM0ENrGfDBe0h8tPGdyALhnJC3uh2juitrRUwCCRkDOpV6U/ZbhEJnte+yaENWDIo4AKFwlnkpxCN7/w==
+
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://registry.npm.taobao.org/md5.js/download/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -9227,6 +9232,16 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
+react-bmapgl@^0.1.28:
+  version "0.1.28"
+  resolved "https://registry.npmmirror.com/react-bmapgl/download/react-bmapgl-0.1.28.tgz#7adf75dfcedbbab39aa9b0ce364f60195edc2a6b"
+  integrity sha512-CZXjPf8vrrhrd3JPwjCFTSBJv8XXx3vvCST9SO+oXbwlpzKd/ajbwna9GDhmC5nRt3zO7s8S4juS/csS+WVV2g==
+  dependencies:
+    mapvgl "^1.0.0-beta.139"
+    react "^17.0.1"
+    react-dom "^17.0.1"
+    shallowequal "^1.1.0"
+
 react-cookie@^4.1.1:
   version "4.1.1"
   resolved "https://registry.nlark.com/react-cookie/download/react-cookie-4.1.1.tgz#832e134ad720e0de3e03deaceaab179c4061a19d"
@@ -9266,7 +9281,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@^17.0.2:
+react-dom@^17.0.1, react-dom@^17.0.2:
   version "17.0.2"
   resolved "https://registry.npmmirror.com/react-dom/download/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
   integrity sha1-7P+2hF462Nv83EmPDQqTlzZQLCM=
@@ -9395,7 +9410,7 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
-react@^17.0.2:
+react@^17.0.1, react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.npmmirror.com/react/download/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha1-0LXMUW0p6z7uOD91tihkz7aAADc=
@@ -10047,6 +10062,11 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+shallowequal@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npm.taobao.org/shallowequal/download/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
+  integrity sha1-GI1SHelbkIdAT9TctosT3wrk5/g=
 
 shebang-command@^1.2.0:
   version "1.2.0"

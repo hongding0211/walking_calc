@@ -10,9 +10,11 @@ import SelectGroup from "../../../components/selectGroup";
 import CategoryIcon from "./categoryIcon";
 import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
 import {addRecord} from "../../../api/client";
+import Input from "../../../components/input";
 
 function AddRecordCard() {
     const inputPriceRef = useRef()
+    const typeTextRef = useRef()
     const {groupId} = useParams()
     const group = useSelector(selectGroupById(groupId))
     const members = useSelector(selectMembersByUids(group.members))
@@ -20,12 +22,15 @@ function AddRecordCard() {
 
     const [whoPaidIdx, setWhoPaidIdx] = useState(-1)
     const [paidForIdx, setPaidForIdx] = useState([])
+    const [location, setLocation] = useState(null)
 
     const [selectedCategoryIdx, setSelectedCategoryIdx] = useState(0)
 
     const dispatch = useDispatch()
 
     useEffect(() => inputPriceRef.current.focus(), [])
+
+    useEffect(() => navigator.geolocation.getCurrentPosition(p => setLocation(p)))
 
     function whoPaidSelectedHandler(index) {
         setWhoPaidIdx(index)
@@ -55,18 +60,21 @@ function AddRecordCard() {
                 if (paidForIdx.includes(i))
                     forWhomList.push(members[i].uid)
             }
-
+            const lat = location?.coords?.latitude
+            const long = location?.coords?.longitude
             const res = await addRecord(
                 groupId,
                 members[whoPaidIdx].uid,
                 Number(inputPriceRef.current.value),
                 forWhomList,
-                global.categories[selectedCategoryIdx][0]
+                global.categories[selectedCategoryIdx][0],
+                typeTextRef.current.value,
+                {lat, long}
             )
             if (res?.code === 200) {
                 dispatch(fetchGroups(uid))
                 return newFulfilledPromise('添加成功')
-            } else if (res?.code === 4008){
+            } else if (res?.code === 4008) {
                 return newRejectedPromise('支付方和被支付方不能为同一个人')
             }
         } catch (e) {
@@ -115,6 +123,7 @@ function AddRecordCard() {
                             )
                         })}
                     </div>
+                    <Input title='' placeHolder='备注信息' inputRef={typeTextRef}/>
                 </div>
             </PopCard>
         </Fragment>

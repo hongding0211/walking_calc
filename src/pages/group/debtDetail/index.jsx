@@ -80,7 +80,7 @@ function DebtDetailCard() {
         try {
             let flag = true
             for (const debt of calcedDebt) {
-                const res = await addRecord(groupId, debt.from.uid, debt.due, [debt.to.uid], '💶')
+                const res = await addRecord(groupId, debt.from.uid, debt.due, [debt.to.uid], '💶', '债务和解')
                 if (res?.code === 200)
                     flag = flag && true
             }

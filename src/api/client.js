@@ -51,11 +51,11 @@ export async function joinGroup(uid, groupId) {
     return await fetchAndDump(`${global.srvHost}/joinGroup?groupID=${groupId}&uid=${uid}`)
 }
 
-export async function addRecord(groupId, who, paid, forWhom, type) {
+export async function addRecord(groupId, who, paid, forWhom, type, typeText, location) {
     let forWhomStr = ''
     for (const i in forWhom)
         forWhomStr += `&forWhom${Number(i) + 1}=${forWhom[i]}`
-    return await fetchAndDump(`${global.srvHost}/addRecord?groupID=${groupId}&who=${who}&paid=${paid}&type=${type}${forWhomStr}`)
+    return await fetchAndDump(`${global.srvHost}/addRecord?groupID=${groupId}&who=${who}&paid=${paid}&type=${type}&typeText=${typeText}&long=${location.long}&lat=${location.lat}${forWhomStr}`)
 }
 
 export async function deleteRecord(groupId, recordId) {
