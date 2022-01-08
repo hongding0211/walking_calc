@@ -99,6 +99,7 @@ function AddRecordCard() {
                     <div className='add-record-card-member-group'>
                         <RadioGroup
                             items={members.map(member => member.name)}
+                            defaultIdx={members.findIndex(e => e.uid === uid)}
                             onItemSelected={whoPaidSelectedHandler}
                         />
                     </div>

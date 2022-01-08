@@ -51,7 +51,7 @@ export async function joinGroup(uid, groupId) {
     return await fetchAndDump(`${global.srvHost}/joinGroup?groupID=${groupId}&uid=${uid}`)
 }
 
-export async function addRecord(groupId, who, paid, forWhom, type, typeText, location) {
+export async function addRecord(groupId, who, paid, forWhom, type, typeText, location={lat: undefined, long: undefined}) {
     let forWhomStr = ''
     for (const i in forWhom)
         forWhomStr += `&forWhom${Number(i) + 1}=${forWhom[i]}`
