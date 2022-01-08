@@ -1,6 +1,5 @@
 .transaction-top {
-    margin-top: 20px;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
 }
 
 .transaction-id {
@@ -20,21 +19,28 @@
 }
 
 .transaction-record {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .transaction-sub-text {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.transaction-sub-text2 {
+    margin-bottom: 10px;
+    margin-right: 15px;
     font-size: 12px;
     font-weight: 500;
 }
 
 .transaction-single-detail {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .transaction-for-whom {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     max-height: 150px;
     overflow: auto;
 }
@@ -45,4 +51,8 @@
 
 .transaction-top-l {
     align-items: center;
+}
+
+.transaction-map {
+    border-radius: 8px;
 }

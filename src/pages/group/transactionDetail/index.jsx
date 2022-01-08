@@ -11,6 +11,7 @@ import SingleTransactionDetail from "./singleTransactionDetaili";
 import {deleteRecord} from "../../../api/client";
 import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
 import CategoryIcon from "../addRecord/categoryIcon";
+import {Map, Marker} from "react-bmapgl";
 
 function TransactionDetailCard() {
 
@@ -72,6 +73,27 @@ function TransactionDetailCard() {
                         </div>
                     })}
                 </div>
+                {
+                    transaction.location && transaction.location.long && transaction.location.lat &&
+                    <Map
+                        style={{
+                            height: '100px',
+                            marginTop: '-5px',
+                            marginBottom: '10px'
+                        }}
+                        className='transaction-map'
+                        enableDragging={false}
+                        center={{lng: transaction.location.long, lat: transaction.location.lat}}
+                        zoom="15"
+                    >
+                        <Marker position={{lng: transaction.location.long, lat: transaction.location.lat}}
+                                icon='simple_blue'/>
+                    </Map>
+                }
+                {
+                    transaction.typeText &&
+                    <div className='transaction-sub-text2'>备注：{transaction.typeText}</div>
+                }
                 <div className='transaction-id flex-vertical-split'>
                     <span><strong>Record ID:</strong></span>
                     <span><i>{transaction.recordID}</i></span>
