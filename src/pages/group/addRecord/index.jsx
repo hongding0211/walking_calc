@@ -32,6 +32,8 @@ function AddRecordCard() {
 
     useEffect(() => navigator.geolocation.getCurrentPosition(p => setLocation(p)))
 
+    useEffect(() => setWhoPaidIdx(members.findIndex(e => e.uid === uid)), [members, uid])
+
     function whoPaidSelectedHandler(index) {
         setWhoPaidIdx(index)
     }
