@@ -1,0 +1,12 @@
+version: "2"
+services:
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "3600:80"
+      - "3610:443"
+      - "3510:3510"
+    volumes:
+      - /srv/walking_calc/build:/usr/share/nginx/html
+      - /srv/walking_calc/nginx:/etc/nginx
