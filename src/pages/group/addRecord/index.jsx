@@ -30,7 +30,7 @@ function AddRecordCard() {
 
     useEffect(() => inputPriceRef.current.focus(), [])
 
-    useEffect(() => navigator.geolocation.getCurrentPosition(p => setLocation(p)))
+    useEffect(() => navigator.geolocation.getCurrentPosition(p => setLocation(p)), [])
 
     useEffect(() => setWhoPaidIdx(members.findIndex(e => e.uid === uid)),
         // eslint-disable-next-line react-hooks/exhaustive-deps

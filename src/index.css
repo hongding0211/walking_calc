@@ -109,3 +109,11 @@ body {
         background-color: #282828;
     }
 }
+
+.BMap_cpyCtrl {
+    display: none;
+}
+
+.anchorBL {
+    display: none;
+}

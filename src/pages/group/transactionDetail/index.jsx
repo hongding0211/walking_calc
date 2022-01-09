@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import PopCard from "../../../components/popCard";
 import {format} from 'date-fns'
@@ -11,7 +11,9 @@ import SingleTransactionDetail from "./singleTransactionDetaili";
 import {deleteRecord} from "../../../api/client";
 import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
 import CategoryIcon from "../addRecord/categoryIcon";
-import {Map, Marker} from "react-bmapgl";
+import {CustomOverlay, Map} from "react-bmapgl";
+import Avatar from "../../../components/avatar";
+
 
 function TransactionDetailCard() {
 
@@ -24,6 +26,9 @@ function TransactionDetailCard() {
     const uid = useSelector(selectUserData).uid
 
     const dispatch = useDispatch()
+
+    const [realPos, setRealPos] = useState(null)
+    const [realPosText, setRealPosText] = useState(null)
 
     async function submit() {
         try {
@@ -38,6 +43,25 @@ function TransactionDetailCard() {
             return newRejectedPromise('操作失败，请稍后操作')
         }
     }
+
+    function getRealPos() {
+        if (!transaction?.location?.lat || !transaction?.location?.long)
+            return
+        const convertor = new window.BMapGL.Convertor()
+        const pointArr = [new window.BMapGL.Point(transaction.location.long, transaction.location.lat)]
+        convertor.translate(pointArr, 1, 5, (data) => {
+            setRealPos(data.points[0])
+            const geo = new window.BMapGL.Geocoder()
+            geo.getLocation(data.points[0], function (result) {
+                if (result) {
+                    setRealPosText(`${result.addressComponents.city} ${result.addressComponents.district} ${result.addressComponents.street}`)
+                }
+            });
+        })
+    }
+
+    useEffect(getRealPos, [transaction.location])
+
 
     return (
         <Fragment>
@@ -74,7 +98,7 @@ function TransactionDetailCard() {
                     })}
                 </div>
                 {
-                    transaction.location && transaction.location.long && transaction.location.lat &&
+                    realPos &&
                     <Map
                         style={{
                             height: '100px',
@@ -83,20 +107,28 @@ function TransactionDetailCard() {
                         }}
                         className='transaction-map'
                         enableDragging={false}
-                        center={{lng: transaction.location.long, lat: transaction.location.lat}}
+                        center={realPos}
                         zoom="15"
                     >
-                        <Marker position={{lng: transaction.location.long, lat: transaction.location.lat}}
-                                icon='simple_blue'/>
+                        <CustomOverlay position={realPos} offset={{width: 0, height: 15}}>
+                            <div className='transaction-map-marker'>
+                                <Avatar img={members.find(e => e.uid === transaction.who).img} size={'30px'}/>
+                            </div>
+                        </CustomOverlay>
                     </Map>
                 }
                 {
                     transaction.typeText &&
                     <div className='transaction-sub-text2'>备注：{transaction.typeText}</div>
                 }
+                {
+                    realPos &&
+                    <div className='transaction-id flex-vertical-split'>
+                        <span><strong>定位：{realPosText}</strong></span>
+                    </div>
+                }
                 <div className='transaction-id flex-vertical-split'>
-                    <span><strong>Record ID:</strong></span>
-                    <span><i>{transaction.recordID}</i></span>
+                    <span><strong>Record ID：</strong><i>{transaction.recordID}</i></span>
                 </div>
             </PopCard>
         </Fragment>
