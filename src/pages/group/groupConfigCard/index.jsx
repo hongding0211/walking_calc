@@ -129,7 +129,7 @@ function GroupConfigCard() {
                                 autoViewport={true}
                                 data={locations}
                                 options={{
-                                    size: 12,
+                                    size: 8,
                                     color: 'rgba(71,120,255)',
                                     blender: 'lighter',
                                     shape: 'circle'
