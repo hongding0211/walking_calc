@@ -5,6 +5,7 @@
 .transaction-id {
     font-weight: 500;
     font-size: 8px;
+    margin-bottom: 3px;
     color: #a3a3a3;
 }
 
@@ -54,4 +55,17 @@
 
 .transaction-map {
     border-radius: 8px;
+}
+
+.transaction-map-marker {
+    height: 30px;
+    border: 2px solid #F5F4F7;
+    box-shadow:0 0 3px 1px rgba(0, 0, 0, 0.13);
+    border-radius: 9999px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .transaction-map-marker {
+        border-color: #606060;
+    }
 }
