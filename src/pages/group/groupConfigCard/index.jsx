@@ -127,9 +127,12 @@ function GroupConfigCard() {
                             <MapvglLayer
                                 type="PointLayer"
                                 autoViewport={true}
+                                viewportOptions={{
+                                    zoomFactor: -1
+                                }}
                                 data={locations}
                                 options={{
-                                    size: 8,
+                                    size: 7,
                                     color: 'rgba(71,120,255)',
                                     blender: 'lighter',
                                     shape: 'circle'
