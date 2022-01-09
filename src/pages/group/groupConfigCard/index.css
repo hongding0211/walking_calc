@@ -35,3 +35,12 @@
     flex-wrap: wrap;
     font-size: 14px !important;
 }
+
+.group-config-map {
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+.group-config-map canvas {
+    border-radius: 8px;
+}
