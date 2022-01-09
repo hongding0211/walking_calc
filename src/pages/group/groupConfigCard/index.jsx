@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import PopCard from "../../../components/popCard";
 import './index.css'
 import {useDispatch, useSelector} from "react-redux";
@@ -8,6 +8,7 @@ import {selectMembersByUids, selectUserData} from "../../../features/users/users
 import Avatar from "../../../components/avatar";
 import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
 import {dismissGroup} from "../../../api/client";
+import {Map, MapvglLayer, MapvglView} from "react-bmapgl";
 
 function GroupConfigCard() {
 
@@ -24,6 +25,27 @@ function GroupConfigCard() {
     const dispatch = useDispatch()
 
     const members = useSelector(selectMembersByUids(group.members.slice(1)))
+
+    const [locations, setLocations] = useState([])
+
+    useEffect(() => {
+        const convertor = new window.BMapGL.Convertor()
+        const pointArr = group.records.filter(e => e.location?.long).map(e => new window.BMapGL.Point(e.location.long, e.location.lat))
+        convertor.translate(pointArr, 1, 5, (data) => {
+            setLocations(data.points.map(p => {
+                return {
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [p.lng, p.lat]
+                    },
+                    properties: {
+                        time: 1
+                    }
+                }
+            }))
+        })
+    }, [group.records])
+
 
     async function submitHandler() {
         if (uid !== creator.uid)
@@ -69,7 +91,7 @@ function GroupConfigCard() {
                     <div className='group-config-text-sub'>组员({members.length})</div>
                     <div className='group-config-member'>
                         {members.map(member => (
-                            <div className='group-config-avatar'>
+                            <div key={member.uid} className='group-config-avatar'>
                                 <Avatar img={member.img} size='16px'/>
                                 <div className='group-config-avatar-name'>{member.name}</div>
                             </div>
@@ -86,7 +108,36 @@ function GroupConfigCard() {
                     <div className='group-config-text-sub'>记录条数</div>
                     <div className='group-config-text'>{group.records.length}</div>
                 </div>
-                <div className='horizon-split group-config-last-group'/>
+                <div className='horizon-split'/>
+                {
+                    locations.length > 0 &&
+                    <Map
+                        style={{
+                            height: '150px'
+                        }}
+                        maxZoom='15'
+                        className='group-config-map'
+                        enableScrollWheelZoom={false}
+                        enableDragging={false}
+                        enableDoubleClickZoom={false}
+                        enableRotate={false}
+                        enableTilt={false}
+                    >
+                        <MapvglView>
+                            <MapvglLayer
+                                type="PointLayer"
+                                autoViewport={true}
+                                data={locations}
+                                options={{
+                                    size: 12,
+                                    color: 'rgba(71,120,255)',
+                                    blender: 'lighter',
+                                    shape: 'circle'
+                                }}
+                            />
+                        </MapvglView>
+                    </Map>
+                }
             </PopCard>
         </Fragment>
     );

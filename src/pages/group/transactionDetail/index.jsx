@@ -106,9 +106,13 @@ function TransactionDetailCard() {
                             marginBottom: '10px'
                         }}
                         className='transaction-map'
-                        enableDragging={false}
                         center={realPos}
                         zoom="15"
+                        enableScrollWheelZoom={false}
+                        enableDragging={false}
+                        enableDoubleClickZoom={false}
+                        enableRotate={false}
+                        enableTilt={false}
                     >
                         <CustomOverlay position={realPos} offset={{width: 0, height: 15}}>
                             <div className='transaction-map-marker'>
