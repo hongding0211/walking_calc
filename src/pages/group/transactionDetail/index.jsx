@@ -98,6 +98,9 @@ function TransactionDetailCard() {
                     })}
                 </div>
                 {
+                    transaction?.location?.lat && !realPos && <div className='transaction-map-skeleton'></div>
+                }
+                {
                     realPos &&
                     <Map
                         style={{
@@ -126,9 +129,9 @@ function TransactionDetailCard() {
                     <div className='transaction-sub-text2'>备注：{transaction.typeText}</div>
                 }
                 {
-                    realPos &&
+                    transaction?.location?.lat &&
                     <div className='transaction-id flex-vertical-split'>
-                        <span><strong>定位：{realPosText}</strong></span>
+                        <span><strong>定位：{realPos && realPosText}</strong></span>
                     </div>
                 }
                 <div className='transaction-id flex-vertical-split'>
