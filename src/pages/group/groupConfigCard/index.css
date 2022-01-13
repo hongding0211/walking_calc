@@ -44,3 +44,10 @@
 .group-config-map canvas {
     border-radius: 8px;
 }
+
+.group-config-map-skeleton {
+    border-radius: 8px;
+    height: 150px;
+    margin-top: 15px;
+    background-color: #a3a3a3;
+}
