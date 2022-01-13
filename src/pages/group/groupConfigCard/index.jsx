@@ -28,10 +28,11 @@ function GroupConfigCard() {
 
     const [locations, setLocations] = useState([])
 
+    const pointArr = group.records.filter(e => e.location?.long)
+
     useEffect(() => {
         const convertor = new window.BMapGL.Convertor()
-        const pointArr = group.records.filter(e => e.location?.long).map(e => new window.BMapGL.Point(e.location.long, e.location.lat))
-        convertor.translate(pointArr, 1, 5, (data) => {
+        convertor.translate(pointArr.map(e => new window.BMapGL.Point(e.location.long, e.location.lat)), 1, 5, (data) => {
             setLocations(data.points.map(p => {
                 return {
                     geometry: {
@@ -109,6 +110,9 @@ function GroupConfigCard() {
                     <div className='group-config-text'>{group.records.length}</div>
                 </div>
                 <div className='horizon-split'/>
+                {
+                    pointArr.length > 0 && locations.length === 0 && <div className='group-config-map-skeleton'></div>
+                }
                 {
                     locations.length > 0 &&
                     <Map
