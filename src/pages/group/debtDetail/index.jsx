@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
 import PopCard from "../../../components/popCard";
 import {useParams} from "react-router-dom";
 import './index.css'
@@ -9,6 +9,8 @@ import SingleTransactionDetail from "../transactionDetail/singleTransactionDetai
 import DebtTransfer from "./debtTransfer";
 import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
 import {addRecord} from "../../../api/client";
+import {exportComponentAsPNG} from "react-component-export-image";
+import {format} from "date-fns";
 
 function DebtDetailCard() {
     const {groupId} = useParams()
@@ -23,6 +25,8 @@ function DebtDetailCard() {
     const [calcedDebt, setCalcedDebt] = useState([])
 
     const dispatch = useDispatch()
+
+    const exportRef = useRef()
 
     function calculateOnesDebt(uid) {
         let debt = 0
@@ -98,10 +102,46 @@ function DebtDetailCard() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [])
 
+    const DebtDetailExport = React.forwardRef(((props, ref) => (
+        <div className='debt-detail-export' ref={ref}>
+            <div className='debt-detail-text-sub'>债务列表({debts.length})</div>
+            <div className='debt-detail-export-members'>
+                {
+                    debts.map(debt => {
+                        return (
+                            <div key={debt.uid} className='transaction-single-detail'>
+                                <SingleTransactionDetail
+                                    user={members.find(e => e.uid === debt.uid)}
+                                    due={debt.debt}
+                                    colored={true}
+                                />
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            <div className='debt-detail-simplify flex-vertical-split'>
+                <div
+                    className='debt-detail-text-sub'>{calcedDebt.length > 0 ? `债务和解(${calcedDebt.length})` : '所有债务已和解'}</div>
+                <div>
+                    {
+                        calcedDebt.map(debt => {
+                            return (
+                                <div key={debt.from.uid + debt.to.uid} className='transaction-single-detail'>
+                                    <DebtTransfer from={debt.from} to={debt.to} due={debt.due}/>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    )))
+
     return (
         <Fragment>
             <PopCard title='债务详细' btnType='delete' btnText='清空债务' onSubmit={clearDebt}>
-                <div className='debt-detail-text-sub'>债务列表({debts.length})</div>
+                <div onClick={()=>exportComponentAsPNG(exportRef,{fileName:`debt${Date.now()}`})} className='debt-detail-text-sub'>债务列表({debts.length})</div>
                 <div className='debt-detail-members'>
                     {
                         debts.map(debt => {
@@ -133,6 +173,7 @@ function DebtDetailCard() {
                     </div>
                 </div>
             </PopCard>
+            <DebtDetailExport ref={exportRef}/>
         </Fragment>
     );
 }
