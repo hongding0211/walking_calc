@@ -24,3 +24,12 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.debt-detail-export {
+    padding: 20px;
+    width: 400px;
+}
+
+.debt-detail-export-members {
+    margin-top: 20px;
+}
