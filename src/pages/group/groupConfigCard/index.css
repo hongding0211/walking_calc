@@ -49,5 +49,11 @@
     border-radius: 8px;
     height: 150px;
     margin-top: 15px;
-    background-color: #a3a3a3;
+    background-color: #f4f4f4;
+}
+
+@media (prefers-color-scheme: dark) {
+    .group-config-map-skeleton {
+        background-color: #a3a3a3;
+    }
 }
