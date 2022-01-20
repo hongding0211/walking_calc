@@ -113,7 +113,7 @@ function GroupConfigCard() {
                 </div>
                 <div className='horizon-split'/>
                 {
-                    pointArr.length > 0 && locations.length === 0 && <div className='group-config-map-skeleton'></div>
+                    pointArr.length > 0 && locations.length !== pointArr.length && <div className='group-config-map-skeleton'></div>
                 }
                 {
                     locations.length === pointArr.length &&
