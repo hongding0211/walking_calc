@@ -36,7 +36,7 @@ function GroupConfigCard() {
         for (let i = 0; i < Math.ceil(pointArr.length / 10); i++) {
             convertor.translate(pointArr.slice(i * 10, (i + 1) * 10).map(e => new window.BMapGL.Point(e.location.long, e.location.lat)), 1, 5, (data) => {
                 for (const p of data.points) {
-                    locationsList.push(setLocations(prevState => [...prevState, {
+                    setLocations(prevState => [...prevState, {
                         geometry: {
                             type: 'Point',
                             coordinates: [p.lng, p.lat]
@@ -44,7 +44,7 @@ function GroupConfigCard() {
                         properties: {
                             time: 1
                         }
-                    }]))
+                    }])
                 }
             })
         }
