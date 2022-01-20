@@ -30,23 +30,27 @@ function GroupConfigCard() {
 
     const pointArr = group.records.filter(e => e.location?.long)
 
+    let locationsList = []
+
     useEffect(() => {
         const convertor = new window.BMapGL.Convertor()
-        convertor.translate(pointArr.map(e => new window.BMapGL.Point(e.location.long, e.location.lat)), 1, 5, (data) => {
-            setLocations(data.points.map(p => {
-                return {
-                    geometry: {
-                        type: 'Point',
-                        coordinates: [p.lng, p.lat]
-                    },
-                    properties: {
-                        time: 1
-                    }
-                }
-            }))
-        })
-    }, [group.records])
 
+        for (let i = 0; i < Math.ceil(pointArr.length / 10); i++) {
+            convertor.translate(pointArr.slice(i * 10, (i + 1) * 10).map(e => new window.BMapGL.Point(e.location.long, e.location.lat)), 1, 5, (data) => {
+                for (const p of data.points) {
+                    locationsList.push(setLocations(prevState => [...prevState, {
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [p.lng, p.lat]
+                        },
+                        properties: {
+                            time: 1
+                        }
+                    }]))
+                }
+            })
+        }
+    }, [])
 
     async function submitHandler() {
         if (uid !== creator.uid)
@@ -114,7 +118,7 @@ function GroupConfigCard() {
                     pointArr.length > 0 && locations.length === 0 && <div className='group-config-map-skeleton'></div>
                 }
                 {
-                    locations.length > 0 &&
+                    locations.length === pointArr.length &&
                     <Map
                         style={{
                             height: '150px'
