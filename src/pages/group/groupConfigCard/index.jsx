@@ -30,8 +30,6 @@ function GroupConfigCard() {
 
     const pointArr = group.records.filter(e => e.location?.long)
 
-    let locationsList = []
-
     useEffect(() => {
         const convertor = new window.BMapGL.Convertor()
 
