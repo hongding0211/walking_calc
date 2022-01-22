@@ -116,7 +116,7 @@ function GroupConfigCard() {
                     pointArr.length > 0 && locations.length !== pointArr.length && <div className='group-config-map-skeleton'></div>
                 }
                 {
-                    locations.length === pointArr.length &&
+                    pointArr.length > 0 && locations.length === pointArr.length &&
                     <Map
                         style={{
                             height: '150px'
