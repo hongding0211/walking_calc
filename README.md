@@ -29,12 +29,17 @@
 - Redux
 - React Route v6
 - Node.js + Express (https://github.com/hongding0211/walking_calc_srv)
+- 原型图
 
-### 原型图
-
-![PyIFtj](https://raw.githubusercontent.com/hongding0211/imgs/main/uPic/PyIFtj.png)
+  ![PyIFtj](https://raw.githubusercontent.com/hongding0211/imgs/main/uPic/PyIFtj.png)
 
 ## 🌟 Build & Run
+
+### Online Preview
+
+https://hong97.ltd/walkingcalc
+
+> 试用账号：130000000
 
 在 **/src/config.js** 中修改 `host` 地址
 
