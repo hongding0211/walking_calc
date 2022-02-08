@@ -142,7 +142,7 @@ function Login() {
                         </div>
                     </div>
                     <div onClick={submit} style={{'width': '100%'}}><CardButton text='注册登录'/></div>
-                    <a href='https://github.com/HongDing97/walking_calc' target='_blank' className='login-footer'
+                    <a href='https://github.com/hongding0211/walking_calc' target='_blank' className='login-footer'
                        rel="noreferrer">by Hong</a>
                 </div>
             </div>
