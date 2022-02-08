@@ -18,7 +18,7 @@ function About() {
                         <span
                             className='about-text-3 about-text-sub margin-bottom-5'>© {new Date(Date.now()).getFullYear()} Hong</span>
                         <span className='about-text-3 margin-bottom-5 about-text-sub'>
-                            <a href='https://github.com/HongDing97/walking_calc' target='_blank' rel="noreferrer">Github Repo</a>
+                            <a href='https://github.com/hongding0211/walking_calc' target='_blank' rel="noreferrer">Github Repo</a>
                         </span>
                     </div>
                 </div>
