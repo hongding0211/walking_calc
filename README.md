@@ -1,18 +1,27 @@
-# Walking Calculator
+<br />
+<p align='center'>
+  <a href="https://hong97.ltd/walkingcalc" target="blank"><img src='public/logo512.png' width=150></a>
+  <h2 align='center' style='font-weight:600'>Walking Calculator</h2>
+  <p align='center' style='font-weight:500'>一个辅助你在朋友之间记账的 App，记录好每笔开销的明细，并帮你计算出最终的债务去向。</p>
+  <p align="center">
+    <a href="https://hong97.ltd/walkingcalc" target="blank"><strong>💎 Online Demo</strong></a>
+    <br />
+  </p>
+</p>
 
-**一个辅助你在朋友之间记账的 App 。记录好每笔开销的明细，并帮你计算出最终的债务去向。已适配深色模式。**
+![screen1](images/1.png)
 
-## 👀 Preview
+## 🌈 Features
 
-**Online Demo: [https://hong97.ltd/walkingcalc](https://hong97.ltd/walkingcalc)**
+- ✏️ 随手记录
+- ☁️ 云端存储
+- 👫 好友共享
 
-账号：13000000000
+![screen2](images/2.png)
 
-![IMG_1940](https://raw.githubusercontent.com/hongding0211/imgs/main/uPic/IMG_1940.JPEG)
+![screen3](images/3.png)
 
-![IMG_2023](https://raw.githubusercontent.com/hongding0211/imgs/main/uPic/IMG_2023.JPEG)
-
-![IMG_2020](https://raw.githubusercontent.com/hongding0211/imgs/main/uPic/IMG_2020.JPEG)
+![screen4](images/4.png)
 
 ## ⛏ 技术栈
 
@@ -23,7 +32,7 @@
 
 ### 原型图
 
-![h4gv5G](https://raw.githubusercontent.com/hongding0211/imgs/main/uPic/h4gv5G.png)
+![PyIFtj](https://raw.githubusercontent.com/hongding0211/imgs/main/uPic/PyIFtj.png)
 
 ## 🌟 Build & Run
 
