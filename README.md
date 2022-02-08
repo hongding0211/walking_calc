@@ -20,7 +20,7 @@
 ## 👀 Online Demo
 
 - 🔗 https://hong97.ltd/walkingcalc
-
+  
   试用账号：130000000 
 
 ## ⛏ 技术栈
@@ -110,3 +110,15 @@ docker run -itd --restart=always -v <前端build目录>:/usr/share/nginx/html -v
 ```
 
 使用 `https://<domain>:3610` 即可访问服务
+
+## 📐 原型图
+
+![prototype](images/prototype.png)
+
+## 📱 Screenshots
+
+![screen2](images/2.png)
+
+![screen3](images/3.png)
+
+![screen4](images/4.png)
