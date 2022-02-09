@@ -14,8 +14,10 @@
 ## 🌈 Features
 
 - ✏️ 随手记录
+- 💰 债务和解，
+- 📍 保存定位
 - ☁️ 云端存储
-- 👫 好友共享
+- 👫 好友分享，群组隔离
 
 ## 👀 Online Demo
 
@@ -46,7 +48,7 @@ yarn build
 
 ### 记录定位
 
-**💡 如果定位失败或者没有定位权限那么也不会记录或展示定位信息**
+**💡定位不是必须的，定位权限需要开启 HTTPS**
 
 > 百度地图 API 指南： https://lbsyun.baidu.com/solutions/reactBmapDoc
 
@@ -62,7 +64,7 @@ yarn build
 
 使用 Nginx Docker 镜像来部署 HTTPS 服务器，并且使用端口转发代理后端的 HTTP 协议
 
-> 这里使用 `3610` 作为前端 HTTP 端口，`3600` 作为前端 HTTP 端口，`3510` 作为服务器 HTTPS 端口，`3500` 作为服务器 HTTP 端口
+> 这里假设使用 `3610` 作为前端 HTTPS 端口，`3600` 作为前端 HTTP 端口，`3510` 作为服务器 HTTPS 端口，`3500` 作为服务器 HTTP 端口
 
 在 **/nginx** 中，放入 `.crt` `.key` 证书文件
 
