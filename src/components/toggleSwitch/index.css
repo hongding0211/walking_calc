@@ -1,0 +1,50 @@
+.toggle-container {
+    width: 35px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    background-color: #f0f0f0;
+    transition: background-color ease-out 0.15s;
+}
+
+.toggle-container-on {
+    background-color: #2f6fdc;
+}
+
+.toggle-dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 100%;
+    margin: 0 2px;
+    background-color: #fff;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.toggle-dot-on {
+    animation: slide 0.25s 1 ease-out forwards;
+}
+
+.toggle-dot-off {
+    animation: slide-off 0.2s 1 ease-out forwards;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(14px);
+    }
+}
+
+@keyframes slide-off {
+    from {
+        transform: translateX(14px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}

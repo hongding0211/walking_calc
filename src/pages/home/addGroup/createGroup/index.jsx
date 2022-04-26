@@ -11,6 +11,7 @@ import {selectUserData} from "../../../../features/users/usersSlice";
 import {createGroup, getUsersById} from "../../../../api/client";
 import {fetchGroups} from "../../../../features/group/groupSlice";
 import {newRejectedPromise} from "../../../../module/module";
+import ToggleSwitch from "../../../../components/toggleSwitch";
 
 /*
  * @Project    : walking_calc
@@ -117,6 +118,7 @@ const CreateGroupCard = () => {
                             })
                         }
                     />
+                    <ToggleSwitch />
                 </div>
             </PopCard>
         </div>
