@@ -1,0 +1,27 @@
+.toggle-container {
+    width: 35px;
+    height: 20px;
+    border-radius: 15px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+
+.toggle-container-on {
+    background-color: #316FE2;
+}
+
+.toggle-dot {
+    width: 17px;
+    height: 17px;
+    margin: 0 2px;
+    border-radius: 100%;
+    background-color: white;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.toggle-dot-on {
+    animation: ;
+}
