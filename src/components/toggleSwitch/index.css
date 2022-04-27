@@ -1,11 +1,12 @@
 .toggle-container {
-    width: 35px;
-    height: 20px;
+    width: 45px;
+    height: 25px;
     display: flex;
     align-items: center;
     border-radius: 15px;
     background-color: #f0f0f0;
     transition: background-color ease-out 0.15s;
+    cursor: pointer;
 }
 
 .toggle-container-on {
@@ -13,8 +14,8 @@
 }
 
 .toggle-dot {
-    width: 17px;
-    height: 17px;
+    width: 22px;
+    height: 22px;
     border-radius: 100%;
     margin: 0 2px;
     background-color: #fff;
@@ -35,13 +36,13 @@
     }
 
     to {
-        transform: translateX(14px);
+        transform: translateX(19px);
     }
 }
 
 @keyframes slide-off {
     from {
-        transform: translateX(14px);
+        transform: translateX(19px);
     }
 
     to {

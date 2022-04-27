@@ -1,19 +1,20 @@
 import React, {Fragment, useState} from 'react';
 import './index.css'
 
-function ToggleSwitch({defaultStatus = false, onClickHandler = (status) => {}}) {
+function ToggleSwitch({onClickHandler = (status) => {}}) {
 
-    const [status, setStatus] = useState(defaultStatus)
+    const [status, setStatus] = useState(undefined)
 
     function toggle() {
-        setStatus(!status)
-        onClickHandler(status)
+        const newStatus = (status === false || status === undefined ) ? true : false
+        onClickHandler(newStatus)
+        setStatus(newStatus)
     }
 
     return (
         <Fragment>
             <div className={`toggle-container ${status ? 'toggle-container-on' : ''}`} onClick={toggle}>
-                <div className={`toggle-dot ${status ? 'toggle-dot-on' : 'toggle-dot-off'}`} onClick={toggle}/>
+                <div className={`toggle-dot ${status === undefined ? '' : status ? 'toggle-dot-on' : 'toggle-dot-off'}`}/>
             </div>
         </Fragment>
     );

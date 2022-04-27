@@ -73,6 +73,11 @@ input::-webkit-inner-spin-button {
     margin-bottom: 25px;
 }
 
+.add-record-card-member-gamemode {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
 
 .add-record-card-icons-container {
     display: flex;

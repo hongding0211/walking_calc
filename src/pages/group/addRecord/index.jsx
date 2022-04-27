@@ -20,6 +20,8 @@ function AddRecordCard() {
     const members = useSelector(selectMembersByUids(group.members))
     const uid = useSelector(selectUserData).uid
 
+    const gamersInput = useRef(new Array(members.length).fill('0'))
+
     const [whoPaidIdx, setWhoPaidIdx] = useState(-1)
     const [paidForIdx, setPaidForIdx] = useState([])
     const [location, setLocation] = useState(null)
@@ -28,7 +30,7 @@ function AddRecordCard() {
 
     const dispatch = useDispatch()
 
-    useEffect(() => inputPriceRef.current.focus(), [])
+    useEffect(() => !group?.isGameMode === 'true' && inputPriceRef.current.focus(), [])
 
     useEffect(() => navigator.geolocation.getCurrentPosition(p => setLocation(p)), [])
 
@@ -46,6 +48,10 @@ function AddRecordCard() {
 
     function categorySelectedHandler(index) {
         setSelectedCategoryIdx(index)
+    }
+
+    function usersInputsChangeHandler(inputText, idx) {
+        gamersInput.current[idx] = inputText === '' ? '0' : inputText
     }
 
     async function submit() {
@@ -86,51 +92,127 @@ function AddRecordCard() {
         }
     }
 
+    async function submitGameMode() {
+        // check param
+        if (whoPaidIdx < 0)
+            return newRejectedPromise('至少有一名庄家')
+        const submitList = []
+        try {
+            for (let i = 0; i < members.length; i++) {
+                // 庄家不处理，直接跳过
+                if (i === whoPaidIdx)
+                    continue
+                // check input
+                if (gamersInput.current[i] !== '0' && !/^-?\d*\.?\d{1,2}$/.test(gamersInput.current[i]))
+                    return newRejectedPromise('输入金额不合法')
+
+                const num = parseFloat(gamersInput.current[i])
+                if (num === 0)
+                    continue
+                else if (num > 0) {
+                    submitList.push(addRecord(
+                        groupId,
+                        members[whoPaidIdx].uid,
+                        num,
+                        [members[i].uid],
+                        '🎲',
+                        `庄家 ${members[whoPaidIdx].name} 收钱`
+                    ))
+                } else {
+                    submitList.push(addRecord(
+                        groupId,
+                        members[i].uid,
+                        -num,
+                        [members[whoPaidIdx].uid],
+                        '🎲',
+                        `庄家 ${members[whoPaidIdx].name} 付钱`
+                    ))
+                }
+
+            }
+            if (submitList.length === 0)
+                return newRejectedPromise('至少有一名玩家的赌金不为 0')
+            await Promise.all(submitList)
+            dispatch(fetchGroups(uid))
+            return newFulfilledPromise('添加成功')
+        } catch (e) {
+            return newRejectedPromise('操作失败，请稍后尝试')
+        }
+    }
+
+
     return (
         <Fragment>
-            <PopCard title='添加记录' onSubmit={submit}>
-                <div className='add-record-card-container'>
-                    <div className='add-record-card-price flex-horizon-split'>
-                        <div>￥</div>
-                        <input
-                            ref={inputPriceRef}
-                            inputMode="decimal"
-                            className='add-record-card-price-input'
-                            placeholder='0.00'
-                        />
+            {
+                !group?.isGameMode &&
+                <PopCard title='添加记录' onSubmit={submit}>
+                    <div className='add-record-card-container'>
+                        <div className='add-record-card-price flex-horizon-split'>
+                            <div>￥</div>
+                            <input
+                                ref={inputPriceRef}
+                                inputMode="decimal"
+                                className='add-record-card-price-input'
+                                placeholder='0.00'
+                            />
+                        </div>
+                        <span className='add-record-card-sub-text'>谁支付的</span>
+                        <div className='add-record-card-member-group'>
+                            <RadioGroup
+                                items={members.map(member => member.name)}
+                                defaultIdx={members.findIndex(e => e.uid === uid)}
+                                onItemSelected={whoPaidSelectedHandler}
+                            />
+                        </div>
+                        <span className='add-record-card-sub-text'>为谁支付</span>
+                        <div className='add-record-card-member-group'>
+                            <SelectGroup
+                                items={members.map(member => member.name)}
+                                onItemsSelected={paidForSelectedHandler}
+                            />
+                        </div>
+                        <span className='add-record-card-sub-text'>类别</span>
+                        <div className='add-record-card-icons-container'>
+                            {global.categories.map((e, i) => {
+                                return (
+                                    <div
+                                        key={e[1]}
+                                        className={`add-record-card-icons ${i === selectedCategoryIdx ? ' add-record-card-icons-selected' : ''}`}
+                                        onClick={() => categorySelectedHandler(i)}
+                                    >
+                                        <CategoryIcon icon={e[0]} text={e[1]}/>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <Input title='' placeHolder='备注信息' inputRef={typeTextRef}/>
                     </div>
-                    <span className='add-record-card-sub-text'>谁支付的</span>
-                    <div className='add-record-card-member-group'>
-                        <RadioGroup
-                            items={members.map(member => member.name)}
-                            defaultIdx={members.findIndex(e => e.uid === uid)}
-                            onItemSelected={whoPaidSelectedHandler}
-                        />
+                </PopCard>
+            }
+            {
+                group?.isGameMode === 'true' &&
+                <PopCard title='添加记录' onSubmit={submitGameMode}>
+                    <div className='add-record-card-container'>
+                        <span className='add-record-card-sub-text'>庄家</span>
+                        <div className='add-record-card-member-group'>
+                            <RadioGroup
+                                items={members.map(member => member.name)}
+                                defaultIdx={members.findIndex(e => e.uid === uid)}
+                                onItemSelected={whoPaidSelectedHandler}
+                            />
+                        </div>
+                        <div className='add-record-card-member-gamemode'>
+                            {members.map((user, idx) => user.uid !== members[whoPaidIdx]?.uid &&
+                                <div className='margin-bottom-10' key={user.uid}><Input title={user.name} type='number'
+                                                                                        step='0.01'
+                                                                                        placeHolder='0'
+                                                                                        onChange={(content) => {
+                                                                                            usersInputsChangeHandler(content, idx)
+                                                                                        }}/></div>)}
+                        </div>
                     </div>
-                    <span className='add-record-card-sub-text'>为谁支付</span>
-                    <div className='add-record-card-member-group'>
-                        <SelectGroup
-                            items={members.map(member => member.name)}
-                            onItemsSelected={paidForSelectedHandler}
-                        />
-                    </div>
-                    <span className='add-record-card-sub-text'>类别</span>
-                    <div className='add-record-card-icons-container'>
-                        {global.categories.map((e, i) => {
-                            return (
-                                <div
-                                    key={e[1]}
-                                    className={`add-record-card-icons ${i === selectedCategoryIdx ? ' add-record-card-icons-selected' : ''}`}
-                                    onClick={() => categorySelectedHandler(i)}
-                                >
-                                    <CategoryIcon icon={e[0]} text={e[1]}/>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <Input title='' placeHolder='备注信息' inputRef={typeTextRef}/>
-                </div>
-            </PopCard>
+                </PopCard>
+            }
         </Fragment>
     );
 }
