@@ -20,6 +20,10 @@
     transition: border 0.3s;
 }
 
+.input-field:invalid {
+    color: #FB4A3E;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .input-field:hover {
         border: 1px solid #dddddd;

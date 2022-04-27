@@ -40,11 +40,11 @@ export async function getGroupsByUid(uid) {
     return newFulfilledPromise(res)
 }
 
-export async function createGroup(groupName, creator, members) {
+export async function createGroup(groupName, creator, isGameMode, members) {
     let membersStr = ''
     for (const i in members)
         membersStr += `&member${Number(i) + 1}=${members[i].uid}`
-    return await fetchAndDump(`${global.srvHost}/createGroup?groupName=${groupName}&creator=${creator}${membersStr}`)
+    return await fetchAndDump(`${global.srvHost}/createGroup?groupName=${groupName}&creator=${creator}&isGameMode=${isGameMode}${membersStr}`)
 }
 
 export async function joinGroup(uid, groupId) {

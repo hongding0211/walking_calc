@@ -29,6 +29,8 @@ const CreateGroupCard = () => {
 
     const groupNameRef = useRef()
 
+    const isGameMode = useRef(false)
+
     const creator = useSelector(selectUserData)
 
     const dispatch = useDispatch()
@@ -68,7 +70,7 @@ const CreateGroupCard = () => {
         } else {
             // try to submit
             try {
-                let res = await createGroup(groupName, creator.uid, members)
+                let res = await createGroup(groupName, creator.uid, isGameMode.current, members)
                 if (res.code === 200) {
                     return new Promise(resolve => resolve('添加成功'))
                 } else
@@ -79,6 +81,10 @@ const CreateGroupCard = () => {
                 dispatch(fetchGroups(creator.uid))
             }
         }
+    }
+
+    function toggleGameMode(status) {
+        isGameMode.current = status
     }
 
     return (
@@ -118,7 +124,12 @@ const CreateGroupCard = () => {
                             })
                         }
                     />
+<<<<<<< HEAD
                     <ToggleSwitch />
+=======
+                    <div className='small-title margin-top-20 margin-bottom-10'>游戏模式</div>
+                    <ToggleSwitch onClickHandler={toggleGameMode}/>
+>>>>>>> dev
                 </div>
             </PopCard>
         </div>

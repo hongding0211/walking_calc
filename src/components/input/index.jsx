@@ -11,6 +11,10 @@ import './index.css'
 */
 
 const Input = props => {
+    function inputChangeHandler(e) {
+        const content = e.target.value
+        props?.onChange && props.onChange(content)
+    }
     return (
         <div className='input-container'>
             <div className='small-title'>
@@ -20,6 +24,11 @@ const Input = props => {
                 className='input-field'
                 placeholder={props.placeHolder}
                 ref={props.inputRef}
+                inputMode = {props?.inputMode}
+                type = {props?.type}
+                step = {props?.step}
+                pattern = {props?.pattern}
+                onChange = {inputChangeHandler}
             />
         </div>
     )
