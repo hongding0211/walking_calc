@@ -8,7 +8,7 @@ import {selectMembersByUids, selectUserData} from "../../../features/users/users
 import SingleTransactionDetail from "../transactionDetail/singleTransactionDetaili";
 import DebtTransfer from "./debtTransfer";
 import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
-import {addRecord} from "../../../api/client";
+import {addRecord, clearGroup} from "../../../api/client";
 import {exportComponentAsPNG} from "react-component-export-image";
 import {format} from "date-fns";
 
@@ -82,17 +82,26 @@ function DebtDetailCard() {
         if (group.creator !== uid)
             return newRejectedPromise('只有群主才可以清空债务')
         try {
-            let flag = true
-            for (const debt of calcedDebt) {
-                const res = await addRecord(groupId, debt.from.uid, debt.due, [debt.to.uid], '💶', '债务和解')
-                if (res?.code === 200)
-                    flag = flag && true
-            }
-            if (flag) {
+            if (group?.isGameMode === 'true') {
+                const res = await clearGroup(groupId)
                 dispatch(fetchGroups(uid))
-                return newFulfilledPromise('债务已和解')
-            } else
-                return newRejectedPromise('操作失败')
+                if (res?.code === 200)
+                    return newFulfilledPromise('债务已和解')
+                else
+                    return newRejectedPromise('操作失败')
+            } else {
+                let flag = true
+                for (const debt of calcedDebt) {
+                    const res = await addRecord(groupId, debt.from.uid, debt.due, [debt.to.uid], '💶', '债务和解')
+                    if (res?.code === 200)
+                        flag = flag && true
+                }
+                if (flag) {
+                    dispatch(fetchGroups(uid))
+                    return newFulfilledPromise('债务已和解')
+                } else
+                    return newRejectedPromise('操作失败')
+            }
         } catch (e) {
             return newRejectedPromise('操作失败')
         }

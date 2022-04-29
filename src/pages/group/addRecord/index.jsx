@@ -201,6 +201,7 @@ function AddRecordCard() {
                                 onItemSelected={whoPaidSelectedHandler}
                             />
                         </div>
+                        <span className='add-record-card-sub-text'>赌徒 </span>
                         <div className='add-record-card-member-gamemode'>
                             {members.map((user, idx) => user.uid !== members[whoPaidIdx]?.uid &&
                                 <div className='margin-bottom-10' key={user.uid}><Input title={user.name} type='number'

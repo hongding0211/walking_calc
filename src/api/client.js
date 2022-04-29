@@ -80,3 +80,7 @@ export async function register(uid, name, avatar) {
 export async function dismissGroup(uid, groupId) {
     return await fetchAndDump(`${global.srvHost}/dissmissGroup?uid=${uid}&groupID=${groupId}`)
 }
+
+export async function clearGroup(groupId) {
+    return await  fetchAndDump(`${global.srvHost}/clearGroup?groupID=${groupId}`)
+}
