@@ -144,7 +144,7 @@ function AddRecordCard() {
     return (
         <Fragment>
             {
-                group?.isGameMode !== 'true' &&
+                (!group?.isGameMode || group?.isGameMode === 'false') &&
                 <PopCard title='添加记录' onSubmit={submit}>
                     <div className='add-record-card-container'>
                         <div className='add-record-card-price flex-horizon-split'>
