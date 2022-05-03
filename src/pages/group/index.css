@@ -103,9 +103,9 @@
     transition: box-shadow 0.3s;
 }
 
-@media (min-width: 450px) {
+@media (min-width: 500px) {
     .group-add-btn {
-        right: calc((100vw - 450px) / 2 + 20px);
+        right: calc((100vw - 500px) / 2 + 20px);
     }
 }
 
