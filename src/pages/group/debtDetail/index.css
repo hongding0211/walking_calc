@@ -26,6 +26,8 @@
 }
 
 .debt-detail-export {
+    position: fixed;
+    top: -100vh;
     padding: 20px;
     width: 400px;
 }
