@@ -11,7 +11,6 @@ body{
     box-sizing: border-box;
     color: #1e1f1f;
     background-color: #F5F4F7;
-
     position: relative;
     max-width: 500px;
 }
@@ -22,6 +21,7 @@ body{
         background-color: #0a0a0a;
     }
 }
+
 
 .small-title {
     margin-bottom: 5px;
