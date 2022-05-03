@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import CardButton from './cardButton'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
@@ -55,6 +55,16 @@ function PopCard({
         }
     }
 
+    function handleKeyDown (e) {
+        if (e.code === 'Escape')
+            closeCard()
+        if (e.code === 'Enter' && btnType === 'normal') {
+            submit()
+        }
+    }
+
+    useEffect(() => cardRef.current.focus(), [])
+
     return (
         <div>
             <div
@@ -62,7 +72,7 @@ function PopCard({
                 className='transparent-mask'
                 onClick={closeCard}
             />
-            <div ref={cardRef} className='pop-card'>
+            <div ref={cardRef} className='pop-card' tabIndex={0} onKeyDown={handleKeyDown}>
 
                 <div className='pop-card-header'>
                     <div>{title}</div>

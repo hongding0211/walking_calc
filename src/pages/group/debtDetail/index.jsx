@@ -10,7 +10,6 @@ import DebtTransfer from "./debtTransfer";
 import {newFulfilledPromise, newRejectedPromise} from "../../../module/module";
 import {addRecord, clearGroup} from "../../../api/client";
 import {exportComponentAsPNG} from "react-component-export-image";
-import {format} from "date-fns";
 
 function DebtDetailCard() {
     const {groupId} = useParams()
