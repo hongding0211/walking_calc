@@ -30,13 +30,13 @@ function AddRecordCard() {
 
     const dispatch = useDispatch()
 
-    useEffect(() => !group?.isGameMode === 'true' && inputPriceRef.current.focus(), [])
-
     useEffect(() => navigator.geolocation.getCurrentPosition(p => setLocation(p)), [])
 
     useEffect(() => setWhoPaidIdx(members.findIndex(e => e.uid === uid)),
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [])
+
+    useEffect(() => inputPriceRef.current.focus(), [whoPaidIdx])
 
     function whoPaidSelectedHandler(index) {
         setWhoPaidIdx(index)
@@ -144,7 +144,7 @@ function AddRecordCard() {
     return (
         <Fragment>
             {
-                !group?.isGameMode &&
+                group?.isGameMode !== 'true' &&
                 <PopCard title='添加记录' onSubmit={submit}>
                     <div className='add-record-card-container'>
                         <div className='add-record-card-price flex-horizon-split'>
@@ -193,7 +193,7 @@ function AddRecordCard() {
                 group?.isGameMode === 'true' &&
                 <PopCard title='添加记录' onSubmit={submitGameMode}>
                     <div className='add-record-card-container'>
-                        <span className='add-record-card-sub-text'>庄家</span>
+                        <span className='add-record-card-sub-text'>庄家（收款）</span>
                         <div className='add-record-card-member-group'>
                             <RadioGroup
                                 items={members.map(member => member.name)}
@@ -201,15 +201,19 @@ function AddRecordCard() {
                                 onItemSelected={whoPaidSelectedHandler}
                             />
                         </div>
-                        <span className='add-record-card-sub-text'>赌徒 </span>
+                        <span className='add-record-card-sub-text'>赌徒（向庄家支付）</span>
                         <div className='add-record-card-member-gamemode'>
                             {members.map((user, idx) => user.uid !== members[whoPaidIdx]?.uid &&
-                                <div className='margin-bottom-10' key={user.uid}><Input title={user.name} type='number'
-                                                                                        step='0.01'
-                                                                                        placeHolder='0'
-                                                                                        onChange={(content) => {
-                                                                                            usersInputsChangeHandler(content, idx)
-                                                                                        }}/></div>)}
+                                <div className='margin-bottom-10' key={user.uid}>
+                                    <Input title={user.name} type='number'
+                                           step='0.01'
+                                           placeHolder='0'
+                                           onChange={(content) => {
+                                               usersInputsChangeHandler(content, idx)
+                                           }}
+                                           inputRef={whoPaidIdx === 0 ? (idx === 1 ? inputPriceRef : undefined) : (idx === 0 ? inputPriceRef : undefined)}
+                                    />
+                                </div>)}
                         </div>
                     </div>
                 </PopCard>

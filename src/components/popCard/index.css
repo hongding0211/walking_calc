@@ -1,9 +1,9 @@
 .transparent-mask {
-    height: 100%;
-    width: 100%;
     position: fixed;
-    top: 0px;
-    bottom: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 10;
     cursor: pointer;
     animation: mask-display 0.3s ease-out forwards;
@@ -35,10 +35,11 @@
 
 .pop-card {
     position: fixed;
-    left: 20px;
-    right: 20px;
     top: 0;
     bottom: 0;
+    left: 20px;
+    right: 20px;
+    max-width: 410px;
     height: min-content;
     margin: auto;
     padding: 20px;
@@ -49,6 +50,7 @@
     align-items: center;
     background-color: #ffffff;
     box-shadow: 3px 3px 15px -7px rgba(0, 0, 0, 0.15);
+    outline: 0;
 }
 
 @media (prefers-color-scheme: dark) {
