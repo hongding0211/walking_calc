@@ -89,7 +89,7 @@ function Group() {
             </div>
             <div className='group-container'>
                 <div className='group-container-title-bar'>
-                    <div className='small-hover-btn-deep' onClick={navBack}>
+                    <div className='small-hover-btn1-deep' onClick={navBack}>
                         <FontAwesomeIcon icon={faChevronLeft}/>
                         <span className='group-container-title-bar-text'>群组</span>
                     </div>
