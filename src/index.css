@@ -124,3 +124,38 @@ body{
 .anchorBL {
     display: none;
 }
+
+.transparent-mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    cursor: pointer;
+    animation: mask-display 0.3s ease-out forwards;
+}
+
+@keyframes mask-display {
+    from {
+        background: rgba(122, 122, 122, 0);
+        backdrop-filter: saturate(100%) blur(0px);
+    }
+    to {
+        background: rgba(122, 122, 122, 0.2);
+        backdrop-filter: saturate(180%) blur(20px);
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    @keyframes mask-display {
+        from {
+            background: rgba(100, 100, 100, 0);
+            backdrop-filter: saturate(100%) blur(0px);
+        }
+        to {
+            background: rgba(100, 100, 100, 0.2);
+            backdrop-filter: saturate(180%) blur(20px);
+        }
+    }
+}

@@ -1,10 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react'
-import CardButton from './cardButton'
+import CardButton from '../cardButton'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import './index.css'
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-hot-toast";
+import Dialog from "../dialog";
 
 /*
  * @Project    : walking_calc
@@ -28,21 +29,35 @@ function PopCard({
                          console.error('Popcard does not have a submit callback.')
                          return new Promise(resolve => (resolve('Nothing Changed')))
                      },
-                     autoPopout = true
+                     autoPopout = true,
+                     confirmOnSubmit = false,
+                     confirmType = 'normal',
+                     confirmText = '确定提交吗？'
                  }) {
 
     const [pending, setPending] = useState(false)
+
+    const [showDialog, setShowDialog] = useState(false)
 
     const navigate = useNavigate()
 
     const maskRef = useRef()
     const cardRef = useRef()
 
+
     function closeCard() {
         navigate(-1)
     }
 
-    async function submit() {
+    function handleDialogCancel() {
+        setShowDialog(false)
+    }
+
+
+
+    async function handleDialogConfirm() {
+        setShowDialog(false)
+
         setPending(true)
         try {
             toast.success(await onSubmit())
@@ -55,7 +70,25 @@ function PopCard({
         }
     }
 
-    function handleKeyDown (e) {
+    async function submit() {
+        if (confirmOnSubmit) {
+            setShowDialog(true)
+            return
+        }
+        
+        setPending(true)
+        try {
+            toast.success(await onSubmit())
+            if (autoPopout)
+                closeCard()
+        } catch (e) {
+            toast.error(e)
+        } finally {
+            setPending(false)
+        }
+    }
+
+    function handleKeyDown(e) {
         if (e.code === 'Escape')
             closeCard()
         if (e.code === 'Enter' && btnType === 'normal') {
@@ -93,6 +126,8 @@ function PopCard({
                 }
 
             </div>
+            {showDialog && <Dialog text={confirmText} type={confirmType} handleConfirm={handleDialogConfirm}
+                                   handleCancel={handleDialogCancel}/>}
         </div>
     )
 

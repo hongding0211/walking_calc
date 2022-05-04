@@ -1,6 +1,6 @@
 import React, {Fragment, useRef, useState} from 'react';
 import './index.css'
-import CardButton from "../../components/popCard/cardButton";
+import CardButton from "../../components/cardButton";
 import {toast} from "react-hot-toast";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import {login} from "../../api/client";

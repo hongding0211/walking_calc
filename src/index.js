@@ -43,7 +43,7 @@ ReactDOM.render(
                             </Route>
                             <Route path='home/:groupId' element={<Group/>}>
                                 <Route path='share' element={<ShareGroup/>}/>
-                                <Route path='debtDetail' element={<DebtDetailCard/>}/>
+                                <Route path='debtDetail' element={<DebtDetailCard/>} />
                                 <Route path='addRecord' element={<AddRecordCard/>}/>
                                 <Route path='groupConfig' element={<GroupConfigCard/>}/>
                                 <Route path=':transactionId' element={<TransactionDetailCard/>}/>
