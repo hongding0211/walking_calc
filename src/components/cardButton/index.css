@@ -17,6 +17,11 @@
     background-color: #F64842;
 }
 
+.card-button-plain {
+    background-color: #f0f0f0;
+    color: #1e1e1f;
+}
+
 @media(hover: hover) and (pointer: fine) {
     .card-button:hover {
         box-shadow: 0 0 25px -5px rgba(0, 60, 255, 0.7);
@@ -24,6 +29,10 @@
 
     .card-button-delete:hover {
         box-shadow: 0 0 25px -5px rgba(218, 82, 82, 0.7);
+    }
+
+    .card-button-plain:hover {
+        box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.1);
     }
 }
 
@@ -38,4 +47,11 @@
 
 .loading-icon {
     margin-right: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card-button-plain {
+        background-color: #1e1e1f;
+        color: #fff;
+    }
 }

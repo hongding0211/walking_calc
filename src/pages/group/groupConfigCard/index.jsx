@@ -76,6 +76,9 @@ function GroupConfigCard() {
                 btnText='解散群组'
                 onSubmit={submitHandler}
                 autoPopout={false}
+                confirmOnSubmit={true}
+                confirmType={'delete'}
+                confirmText={'⚠️ 确定解散群组吗？'}
             >
                 <div className='group-config-group'>
                     <div className='group-config-text-sub'>群名</div>

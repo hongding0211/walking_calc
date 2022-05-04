@@ -148,8 +148,10 @@ function DebtDetailCard() {
 
     return (
         <Fragment>
-            <PopCard title='债务详细' btnType='delete' btnText='清空债务' onSubmit={clearDebt}>
-                <div onClick={()=>exportComponentAsPNG(exportRef,{fileName:`debt${Date.now()}`})} className='debt-detail-text-sub'>债务列表({debts.length})</div>
+            <PopCard title='债务详细' btnType='delete' btnText='清空债务' onSubmit={clearDebt} confirmOnSubmit={true} confirmType={'delete'} confirmText={'⚠️ 确定清空债务吗？'}>
+                <div onClick={() => exportComponentAsPNG(exportRef, {fileName: `debt${Date.now()}`})}
+                     className='debt-detail-text-sub'>债务列表({debts.length})
+                </div>
                 <div className='debt-detail-members'>
                     {
                         debts.map(debt => {

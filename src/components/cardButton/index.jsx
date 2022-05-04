@@ -29,7 +29,7 @@ function CardButton({
         text = '删除'
     return (
         <button
-            className={`card-button ${type === 'delete' ? 'card-button-delete' : ''} ${pending ? 'card-button-pending' : ''} ${type === 'delete' && pending ? 'card-button-delete-pending' : ''}`}
+            className={`card-button ${type === 'delete' ? 'card-button-delete' : (type === 'plain' ? 'card-button-plain' : '')} ${pending ? 'card-button-pending' : ''} ${type === 'delete' && pending ? 'card-button-delete-pending' : ''}`}
             style={{text, type, width, height}}
         >
             {pending && loadingIcon && <FontAwesomeIcon className='loading-icon' icon={faCircleNotch} spin/>}
